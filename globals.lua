@@ -13,6 +13,14 @@ G_DRAW = {
 	end
 }
 
+require("States/intro")
+require("States/mainMenu")
+require("States/outside")
+require("States/frontdesk")
+require("States/checkup")
+require("States/careunit")
+require("States/onlineshop")
+
 Main_Volume = 1
 Music_Volume = 1
 SFX_Volume = 1
