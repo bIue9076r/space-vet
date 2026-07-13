@@ -75,5 +75,8 @@ function love.draw()
 		end
 	end
 
+	love.graphics.setColor(0,0,0)
+	love.graphics.rectangle("fill",cx,cy,ASPECT_INDEX*SCREEN_X_O,ASPECT_INDEX*SCREEN_Y_O)
+	love.graphics.setColor(1,1,1)
 	love.graphics.draw(CANVAS,cx,cy,0,ASPECT_INDEX,ASPECT_INDEX)
 end

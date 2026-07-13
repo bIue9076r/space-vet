@@ -2,6 +2,7 @@ require("modules/assets")
 require("Assets/defines")
 require("modules/sfx")
 require("modules/button")
+require("modules/normMouse")
 
 G_STATE = 1
 G_UPDATE = {}
@@ -10,6 +11,7 @@ G_MOUSEPRESSED = {}
 G_DRAW = {}
 
 G_DAY = 1
+G_CLEAR = {1,1,1,1}
 G_STRINGS = {}
 
 require("States/intro")
@@ -87,4 +89,11 @@ function GetStrings(path)
 	else
 		Panic("Error: No Text File at Path", "GetStrings")
 	end
+end
+
+-- String Fetch
+-- Takes: n - string index
+-- Returns: String if it exists
+function StringFetch(n)
+	return G_STRINGS[n] or ""
 end
