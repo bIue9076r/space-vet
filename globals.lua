@@ -14,6 +14,7 @@ G_DAY = 1
 G_CLEAR = {1,1,1,1}
 G_STRINGS = {}
 
+require("States/metagame")
 require("States/intro")
 require("States/mainMenu")
 require("States/outside")
