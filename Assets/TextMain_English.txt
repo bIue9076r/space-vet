@@ -1,2 +1,5 @@
 Help from a Terrestrial
+Main Menu
 Exit
+New Game
+Load Game
