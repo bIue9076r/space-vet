@@ -12,6 +12,7 @@ function love.load()
 	GetStrings()
 
 	-- Check save file
+	G_SAVE = true -- testing
 end
 
 function love.resize()

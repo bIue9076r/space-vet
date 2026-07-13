@@ -21,7 +21,7 @@ function Play_Sfx(index, volume)
 end
 
 function Draw_Sfx()
-	if #SFX > 1 then
+	if #SFX >= 1 then
 		local s = Pop()
 		s:play()
 	end

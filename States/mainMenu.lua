@@ -9,6 +9,10 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 			love.graphics.print({{0,0,0},StringFetch(2)},50,50)
 
 			love.graphics.print({{0,0,0},StringFetch(4)},100,100)
+
+			if G_SAVE then
+				love.graphics.print({{0,0,0},StringFetch(5)},400,100)
+			end
 		end,
 
 		Update = function(self,dt)
@@ -16,10 +20,11 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 		end,
 
 		Keypressed = function(self,key)
-			
+			Play_Sfx("ding",0.1)
 		end,
 
 		Mousepressed = function(self,x,y,button)
+			Play_Sfx("ding",0.1)
 			G_STATE = G_STATE_ONLINE_SHOP
 		end
 	}
