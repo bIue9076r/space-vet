@@ -7,11 +7,10 @@ G_STATE = 1
 G_UPDATE = {}
 G_KEYPRESSED = {}
 G_MOUSEPRESSED = {}
-G_DRAW = {
-	[1] = function()
-		love.graphics.rectangle("fill",0,0,800,600)
-	end
-}
+G_DRAW = {}
+
+G_DAY = 1
+G_STRINGS = {}
 
 require("States/intro")
 require("States/mainMenu")
@@ -34,6 +33,25 @@ ASPECT = (SCREEN_X/SCREEN_Y)
 ASPECT_INDEX = 1
 CANVAS = love.graphics.newCanvas()
 
+G_DRAW[-10] = function()
+	love.graphics.setColor(0,0,1)
+	love.graphics.rectangle("fill",0,0,SCREEN_X_O,SCREEN_Y_O)
+	love.graphics.setColor(1,1,1)
+	love.graphics.print({{1,1,1},G_REASON},50,50)
+end
+
+function Panic(Reason, Caller)
+	G_STATE = -10
+	G_REASON = "Panic: Error."
+	if Reason then
+		if Caller then
+			G_REASON = "Panic! "..tostring(Reason)..". Called by: "..tostring(Caller)
+		else
+			G_REASON = "Panic! "..tostring(Reason)
+		end
+	end
+end
+
 function Error_Draw()
 	
 end
@@ -41,5 +59,22 @@ end
 function Error_Keypressed(key)
 	if key == "return" then
 		G_STATE = 1
+	end
+end
+
+function GetStrings(path)
+	-- Defualt Localization (English)
+	path = path or "/Assets/TextMain_English.txt"
+	local info = love.filesystem.getInfo(path)
+	if info then
+		if info.type == "file" then
+			for v in love.filesystem.lines(path) do
+				table.insert(G_STRINGS,v)
+			end
+		else
+			Panic("Error: Text File is a Directory", "GetStrings")
+		end
+	else
+		Panic("Error: No Text File at Path", "GetStrings")
 	end
 end

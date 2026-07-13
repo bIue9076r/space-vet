@@ -7,6 +7,11 @@ require("globals")
 function love.load()
 	love.window.setMode(1000, 600, {resizable = true, minwidth = 800, minheight = 600})
 	love.resize()
+
+	-- Get Strings
+	GetStrings()
+
+	-- Check save file
 end
 
 function love.resize()
@@ -42,6 +47,7 @@ function love.mousepressed(x,y,button)
 end
 
 function love.draw()
+	Draw_Sfx()
 	love.graphics.setCanvas(CANVAS)
 	love.graphics.clear()
 
@@ -51,20 +57,23 @@ function love.draw()
 	end
 
 	love.graphics.setCanvas()
-	for y = 0,SCREEN_Y,100 do
-		for x = 0,SCREEN_X/2,100 do
-			love.graphics.draw(Image.get("Alien"),x,y)
-			love.graphics.draw(Image.get("Alien"),x + SCREEN_X/2 + 100,y,0,-1)
-		end
-	end
 
 	local cx = (SCREEN_X - (ASPECT_INDEX * SCREEN_X_O))/2
 	local cy = (SCREEN_Y - (ASPECT_INDEX * SCREEN_Y_O))/2
-	for y = 0, math.ceil(cx/100) do
-		for x = 0, math.ceil(cy/100) do
-			love.graphics.draw(Image.get("Alien"),x,y)
-			love.graphics.draw(Image.get("Alien"),x + SCREEN_X/2 + 100,y,0,-1)
+	
+	for y = 0, (math.ceil(cy/100) - 1) do
+		for x = 0, (math.ceil(SCREEN_X/100) - 1) do
+			love.graphics.draw(Image.get("Alien"),x*100,y*100)
+			love.graphics.draw(Image.get("Alien"),x*100 + 100,SCREEN_Y - y*100 - 100,0,-1,1)
 		end
 	end
+
+	for x = 0, (math.ceil(cx/100) - 1) do
+		for y = 0, (math.ceil(SCREEN_Y/100) - 1) do
+			love.graphics.draw(Image.get("Alien"),x*100,y*100)
+			love.graphics.draw(Image.get("Alien"),SCREEN_X - x*100,y*100,0,-1,1)
+		end
+	end
+
 	love.graphics.draw(CANVAS,cx,cy,0,ASPECT_INDEX,ASPECT_INDEX)
 end
