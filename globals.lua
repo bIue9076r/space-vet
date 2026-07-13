@@ -40,6 +40,16 @@ G_DRAW[-10] = function()
 	love.graphics.print({{1,1,1},G_REASON},50,50)
 end
 
+G_KEYPRESSED[-10] = function(key)
+	if key then
+		love.event.quit(-1)
+	end
+end
+
+-- Panic
+-- Used to signal an error
+-- Takes: Reason for error, Caller of error
+-- Returns: Nothing
 function Panic(Reason, Caller)
 	G_STATE = -10
 	G_REASON = "Panic: Error."
