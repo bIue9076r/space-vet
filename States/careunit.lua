@@ -1,5 +1,5 @@
 -- Care Unit
-G_STATE_CARE_UNIT = 1
+G_STATE_CARE_UNIT = 6
 
 G_DRAW[G_STATE_CARE_UNIT] = function()
 	

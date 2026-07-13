@@ -1,5 +1,5 @@
 -- Online Shop
-G_STATE_ONLINE_SHOP = 1
+G_STATE_ONLINE_SHOP = 7
 
 G_DRAW[G_STATE_ONLINE_SHOP] = function()
 	

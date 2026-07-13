@@ -1,5 +1,5 @@
 -- Main Menu
-G_STATE_MAIN_MENU = 1
+G_STATE_MAIN_MENU = 2
 
 G_DRAW[G_STATE_MAIN_MENU] = function()
 	

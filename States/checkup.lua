@@ -1,5 +1,5 @@
 -- Check-up
-G_STATE_CHECK_UP = 1
+G_STATE_CHECK_UP = 5
 
 G_DRAW[G_STATE_CHECK_UP] = function()
 	

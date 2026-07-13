@@ -1,5 +1,5 @@
 -- Outside
-G_STATE_OUTSIDE = 1
+G_STATE_OUTSIDE = 3
 
 G_DRAW[G_STATE_OUTSIDE] = function()
 	

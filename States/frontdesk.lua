@@ -1,5 +1,5 @@
 -- Front Desk
-G_STATE_FRONT_DESK = 1
+G_STATE_FRONT_DESK = 4
 
 G_DRAW[G_STATE_FRONT_DESK] = function()
 	
