@@ -12,11 +12,11 @@ G_STATE_CHECK_UP_SUBSTATES = {
 
             love.graphics.setColor(1,0,0)
             -- bed
-            love.graphics.rectangle("fill",500,400,SCREEN_X - 760,100)
+            love.graphics.rectangle("fill",500,400,SCREEN_X - 560,100)
 
             love.graphics.setColor(0,1,0)
             -- bath
-            love.graphics.rectangle("fill",50,350,SCREEN_X - 700,150)
+            love.graphics.rectangle("fill",50,350,SCREEN_X - 500,150)
             
             love.graphics.setColor(G_CLEAR)
 			Meta_Game.Draw()

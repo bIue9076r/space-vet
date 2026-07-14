@@ -1,10 +1,10 @@
 -- Normalize Mouse inputs to screen
 function NormalizeMouse(x,y)
-	local cx = (SCREEN_X - (ASPECT_INDEX * SCREEN_X_O))/2
-	local cy = (SCREEN_Y - (ASPECT_INDEX * SCREEN_Y_O))/2
-	x = SCREEN_X_O*((x - cx) / (ASPECT_INDEX * SCREEN_X_O))
-	y = SCREEN_Y_O*((y - cy) / (ASPECT_INDEX * SCREEN_Y_O))
-	x = math.max(0,math.min(x,SCREEN_X_O))
-	y = math.max(0,math.min(y,SCREEN_Y_O))
+	local cx = (CSCREEN_X - (ASPECT_INDEX * SCREEN_X))/2
+	local cy = (CSCREEN_Y - (ASPECT_INDEX * SCREEN_Y))/2
+	x = SCREEN_X*((x - cx) / (ASPECT_INDEX * SCREEN_X))
+	y = SCREEN_Y*((y - cy) / (ASPECT_INDEX * SCREEN_Y))
+	x = math.max(0,math.min(x,SCREEN_X))
+	y = math.max(0,math.min(y,SCREEN_Y))
 	return x,y
 end

@@ -14,17 +14,17 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 
 			love.graphics.setColor(41/255,37/255,27/255)
 			-- table
-			love.graphics.rectangle("fill",440,380,SCREEN_X - 710,120)
+			love.graphics.rectangle("fill",440,380,SCREEN_X - 510,120)
 
 			-- pills
 			love.graphics.setColor(1,0,0)
-			love.graphics.rectangle("fill",680,340,SCREEN_X - 960,40)
+			love.graphics.rectangle("fill",680,340,SCREEN_X - 760,40)
 			-- bandage
 			love.graphics.setColor(1,1,1)
-			love.graphics.rectangle("fill",490,350,SCREEN_X - 940,30)
+			love.graphics.rectangle("fill",490,350,SCREEN_X - 740,30)
 			-- rubber hammer
 			love.graphics.setColor(0,1,1)
-			love.graphics.rectangle("fill",570,330,SCREEN_X - 930,50)
+			love.graphics.rectangle("fill",570,330,SCREEN_X - 730,50)
 
 			-- xray
 			-- button

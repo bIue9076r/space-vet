@@ -29,17 +29,17 @@ Music_Volume = 1
 SFX_Volume = 1
 love.audio.setVolume(Main_Volume)
 
-SCREEN_X = love.graphics.getWidth()
-SCREEN_X_O = SCREEN_X
-SCREEN_Y = love.graphics.getHeight()
-SCREEN_Y_O = SCREEN_Y
-ASPECT = (SCREEN_X/SCREEN_Y) 
+CSCREEN_X = love.graphics.getWidth()
+SCREEN_X = CSCREEN_X
+CSCREEN_Y = love.graphics.getHeight()
+SCREEN_Y = CSCREEN_Y
+ASPECT = (CSCREEN_X/CSCREEN_Y) 
 ASPECT_INDEX = 1
 CANVAS = love.graphics.newCanvas()
 
 G_DRAW[-10] = function()
 	love.graphics.setColor(0,0,1)
-	love.graphics.rectangle("fill",0,0,SCREEN_X_O,SCREEN_Y_O)
+	love.graphics.rectangle("fill",0,0,SCREEN_X,SCREEN_Y)
 	love.graphics.setColor(1,1,1)
 	love.graphics.print({{1,1,1},G_REASON},50,50)
 end

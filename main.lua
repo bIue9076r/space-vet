@@ -16,12 +16,12 @@ function love.load()
 end
 
 function love.resize()
-	SCREEN_X = love.graphics.getWidth()
-	SCREEN_Y = love.graphics.getHeight()
-	ASPECT = (SCREEN_X/SCREEN_Y) 
+	CSCREEN_X = love.graphics.getWidth()
+	CSCREEN_Y = love.graphics.getHeight()
+	ASPECT = (CSCREEN_X/CSCREEN_Y) 
 	
 	ASPECT_INDEX = 1
-	while ((SCREEN_X_O * (ASPECT_INDEX + 1)) <= SCREEN_X) and ((SCREEN_Y_O * (ASPECT_INDEX + 1)) <= SCREEN_Y) do
+	while ((SCREEN_X * (ASPECT_INDEX + 1)) <= CSCREEN_X) and ((SCREEN_Y * (ASPECT_INDEX + 1)) <= CSCREEN_Y) do
 		ASPECT_INDEX = ASPECT_INDEX + 1
 	end
 end
@@ -69,28 +69,28 @@ function love.draw()
 
 	love.graphics.setCanvas()
 
-	local cx = (SCREEN_X - (ASPECT_INDEX * SCREEN_X_O))/2
-	local cy = (SCREEN_Y - (ASPECT_INDEX * SCREEN_Y_O))/2
+	local cx = (CSCREEN_X - (ASPECT_INDEX * SCREEN_X))/2
+	local cy = (CSCREEN_Y - (ASPECT_INDEX * SCREEN_Y))/2
 	
 	-- Screen Border
 	for y = 0, (math.ceil(cy/100) - 1) do
-		for x = 0, (math.ceil(SCREEN_X/100) - 1) do
+		for x = 0, (math.ceil(CSCREEN_X/100) - 1) do
 			love.graphics.draw(Image.get("Alien"),x*100,y*100)
-			love.graphics.draw(Image.get("Alien"),x*100 + 100,SCREEN_Y - y*100 - 100,0,-1,1)
+			love.graphics.draw(Image.get("Alien"),x*100 + 100,CSCREEN_Y - y*100 - 100,0,-1,1)
 		end
 	end
 
 	for x = 0, (math.ceil(cx/100) - 1) do
-		for y = 0, (math.ceil(SCREEN_Y/100) - 1) do
+		for y = 0, (math.ceil(CSCREEN_Y/100) - 1) do
 			love.graphics.draw(Image.get("Alien"),x*100,y*100)
-			love.graphics.draw(Image.get("Alien"),SCREEN_X - x*100,y*100,0,-1,1)
+			love.graphics.draw(Image.get("Alien"),CSCREEN_X - x*100,y*100,0,-1,1)
 		end
 	end
 	-----------------
 
 	-- Black Background
 	love.graphics.setColor(0,0,0)
-	love.graphics.rectangle("fill",cx,cy,ASPECT_INDEX*SCREEN_X_O,ASPECT_INDEX*SCREEN_Y_O)
+	love.graphics.rectangle("fill",cx,cy,ASPECT_INDEX*SCREEN_X,ASPECT_INDEX*SCREEN_Y)
 	love.graphics.setColor(1,1,1)
 	love.graphics.draw(CANVAS,cx,cy,0,ASPECT_INDEX,ASPECT_INDEX)
 end

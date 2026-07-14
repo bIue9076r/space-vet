@@ -12,11 +12,11 @@ G_STATE_FRONT_DESK_SUBSTATES = {
 
 			love.graphics.setColor(80/255,40/255,50/255)
 			-- computer desk
-			love.graphics.rectangle("fill",300,400,SCREEN_X - 600,100)
+			love.graphics.rectangle("fill",300,400,SCREEN_X - 400,100)
 
 			love.graphics.setColor(0,1,1)
             -- computer
-            love.graphics.rectangle("fill",490,280,SCREEN_X - 800,120)
+            love.graphics.rectangle("fill",490,280,SCREEN_X - 600,120)
 
 			love.graphics.setColor(G_CLEAR)
 			Meta_Game.Draw()
