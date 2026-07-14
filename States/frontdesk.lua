@@ -28,11 +28,11 @@ G_STATE_FRONT_DESK_SUBSTATES = {
 		end,
 
 		Keypressed = function(self,key)
-			if key == "w" then
+			if G_KEY_UP(key) then
 				G_STATE = G_STATE_ONLINE_SHOP
-			elseif key == "a" then
+			elseif G_KEY_LEFT(key) then
 				G_STATE = G_STATE_CHECK_UP
-			elseif key == "d" then
+			elseif G_KEY_RIGHT(key) then
 				G_STATE = G_STATE_OUTSIDE
 			end
 			Meta_Game.Keypressed(key)
