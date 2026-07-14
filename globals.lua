@@ -53,6 +53,22 @@ function G_DT()
 	return love.timer.getDelta()
 end
 
+function G_KEY_LEFT(key)
+	return key == "a" or key == "left"
+end
+
+function G_KEY_RIGHT(key)
+	return key == "d" or key == "right"
+end
+
+function G_KEY_UP(key)
+	return key == "w" or key == "up"
+end
+
+function G_KEY_DOWN(key)
+	return key == "s" or key == "down"
+end
+
 -- Panic
 -- Used to signal an error
 -- Takes: Reason for error, Caller of error

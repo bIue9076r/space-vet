@@ -37,7 +37,7 @@ G_STATE_OUTSIDE_SUBSTATES = {
 		end,
 
 		Keypressed = function(self,key)
-			if key == "left" or key == "a" then
+			if G_KEY_LEFT(key) then
 				G_STATE = G_STATE_FRONT_DESK
 				G_TRANSITION_T = 0
 				G_TRANSITION = function()

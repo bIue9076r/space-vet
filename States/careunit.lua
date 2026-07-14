@@ -15,7 +15,7 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 		end,
 
 		Keypressed = function(self,key)
-			if key == "d" then
+			if G_KEY_RIGHT(key) then
 				G_STATE = G_STATE_CHECK_UP
 			end
 			Meta_Game.Keypressed(key)

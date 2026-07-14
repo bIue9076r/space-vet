@@ -55,7 +55,7 @@ G_STATE_ONLINE_SHOP_SUBSTATES = {
 		end,
 
 		Keypressed = function(self,key)
-			if key == "s" then
+			if G_KEY_DOWN(key) then
 				G_STATE = G_STATE_FRONT_DESK
 			end
 		end,
