@@ -5,7 +5,16 @@ G_STATE_CHECK_UP_SUB = 1
 G_STATE_CHECK_UP_SUBSTATES = {
 	[1] = {
 		Draw = function(self)
-			
+            love.graphics.setColor(229/255, 182/255, 234/255)
+			love.graphics.rectangle("fill",0,0,SCREEN_X,SCREEN_Y)
+            love.graphics.setColor(65/255, 38/255, 15/255)
+			love.graphics.rectangle("fill",0,SCREEN_Y - 100,SCREEN_X,100)
+
+            love.graphics.setColor(1,0,0)
+            -- bed
+            love.graphics.rectangle("fill",500,400,SCREEN_X - 760,100)
+            
+
 			Meta_Game.Draw()
 		end,
 
