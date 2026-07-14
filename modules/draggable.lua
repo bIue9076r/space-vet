@@ -57,6 +57,7 @@ function Draggable:update(dt)
 		-- Let go
 		if self:collide() then
 			self.goal.Action()
+			self:firstClear()
 		end
 		self.location.Button.x = self.location.x
 		self.location.Button.y = self.location.y
