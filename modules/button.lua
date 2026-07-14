@@ -14,7 +14,7 @@ end
 function Button:focus(x,y)
 	if self:inX(x) and self:inY(y) then
 		self.f = true
-		self.t = self.t + 1
+		self.t = self.t + love.timer.getDelta()
 	else
 		self.f = false
 		self.t = 0
@@ -29,7 +29,7 @@ function Button:click(x,y,button)
 end
 
 function Button:draw()
-	local t = (math.min(self.t,20) / 20)
+	local t = (math.min(self.t,0.125) / 0.125)
 	if self.d then
 		local img = Image.get(self.i)
 		if img then

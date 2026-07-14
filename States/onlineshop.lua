@@ -49,20 +49,21 @@ G_STATE_ONLINE_SHOP_SUBSTATES = {
 		end,
 
 		Update = function(self,dt)
-			local x, y = love.mouse.getPosition()
-			x, y = NormalizeMouse(x,y)
+			local x, y = NormalizeMouse(love.mouse.getPosition())
 
 			Computor_Exit_Button:focus(x,y)
 		end,
 
 		Keypressed = function(self,key)
-			
+			if key == "s" then
+				G_STATE = G_STATE_FRONT_DESK
+			end
 		end,
 
 		Mousepressed = function(self,x,y,button)
 			x, y = NormalizeMouse(x,y)
 			if Computor_Exit_Button:click(x,y) then
-				G_STATE = G_STATE_INTRO
+				G_STATE = G_STATE_FRONT_DESK
 			end
 		end
 	}

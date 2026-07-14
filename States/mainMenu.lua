@@ -25,7 +25,7 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 
 		Mousepressed = function(self,x,y,button)
 			Play_Sfx("ding",0.1)
-			G_STATE = G_STATE_ONLINE_SHOP
+			G_STATE = G_STATE_OUTSIDE
 		end
 	}
 }

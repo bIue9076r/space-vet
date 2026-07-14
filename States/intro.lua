@@ -26,7 +26,7 @@ G_STATE_INTRO_SUBSTATES = {
 
 	[10] = {
 		Update = function(self,dt)
-			G_STATE = G_STATE_OUTSIDE
+			G_STATE = G_STATE_MAIN_MENU
 		end
 	}
 }

@@ -17,3 +17,14 @@ function Owners.Validate(o)
 
 	return "Alien_1"
 end
+
+function Owners.Generate()
+	local tbl = {}
+	for i,v in pairs(Owners.list) do
+		if DayObj.Available(v) then
+			table.insert(tbl,v.value)
+		end
+	end
+
+	return tbl[math.random(1,#tbl)]
+end

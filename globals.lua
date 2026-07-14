@@ -49,6 +49,10 @@ G_KEYPRESSED[-10] = function(key)
 	end
 end
 
+function G_DT()
+	return love.timer.getDelta()
+end
+
 -- Panic
 -- Used to signal an error
 -- Takes: Reason for error, Caller of error

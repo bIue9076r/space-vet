@@ -27,23 +27,27 @@ function love.resize()
 end
 
 function love.update(dt)
-	local f = G_UPDATE[G_STATE]
-	if f then
-		f(dt)
+	if not G_TRANSITION then
+		local f = G_UPDATE[G_STATE]
+		if f then f(dt) end
 	end
 end
 
 function love.keypressed(key)
-	local f = G_KEYPRESSED[G_STATE] or Error_Keypressed
-	if f then
-		f(key)
+	if not G_TRANSITION then
+		local f = G_KEYPRESSED[G_STATE] or Error_Keypressed
+		if f then f(key) end
+	else
+		G_TRANSITION = nil
 	end
 end
 
 function love.mousepressed(x,y,button)
-	local f = G_MOUSEPRESSED[G_STATE]
-	if f then
-		f(x,y,button)
+	if not G_TRANSITION then
+		local f = G_MOUSEPRESSED[G_STATE]
+		if f then f(x,y,button) end
+	else
+		G_TRANSITION = nil
 	end
 end
 
@@ -52,8 +56,16 @@ function love.draw()
 	love.graphics.setCanvas(CANVAS)
 	love.graphics.clear()
 
-	local f = G_DRAW[G_STATE] or Error_Draw
-	if f then f() end
+	if not G_TRANSITION then
+		local f = G_DRAW[G_STATE] or Error_Draw
+		if f then f() end
+	else
+		local later = love.timer.getTime()
+		if(G_TRANSITION and G_TRANSITION()) then
+		else
+			G_TRANSITION = nil
+		end
+	end
 
 	love.graphics.setCanvas()
 
