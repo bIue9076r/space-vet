@@ -2,6 +2,7 @@ require("modules/assets")
 require("Assets/defines")
 require("modules/sfx")
 require("modules/button")
+require("modules/draggable")
 require("modules/normMouse")
 
 G_STATE = 1

@@ -6,6 +6,10 @@ G_STATE_OUTSIDE_SUBSTATES = {
 	[1] = {
 		Door = Button.new(0,180,100,360),
 
+		TestDrag = Draggable.new(0,0,50,50, 100,100,50,50, function ()
+			print("Testing")
+		end, "e", "d"),
+
 		Draw = function(self)
 			love.graphics.setColor(135/255, 206/255, 235/255)
 			love.graphics.rectangle("fill",0,0,SCREEN_X,SCREEN_Y)
@@ -27,40 +31,36 @@ G_STATE_OUTSIDE_SUBSTATES = {
 			love.graphics.rectangle("fill",0,180,100,360)
 
 			love.graphics.setColor(G_CLEAR)
+			self.TestDrag:draw()
 			Meta_Game.Draw()
 		end,
 
 		Update = function(self,dt)
 			local x,y = NormalizeMouse(love.mouse.getPosition())
 			self.Door:focus(x,y)
+			self.TestDrag:update(dt)
 			Meta_Game.Update(dt)
 		end,
 
 		Keypressed = function(self,key)
 			if G_KEY_LEFT(key) then
 				G_STATE = G_STATE_FRONT_DESK
-				G_TRANSITION_T = 0
-				G_TRANSITION = function()
-					love.graphics.setColor(0,1,1)
-					love.graphics.rectangle("fill",0,0,SCREEN_X,SCREEN_Y)
-					G_TRANSITION_T = G_TRANSITION_T + G_DT()
-					if(G_TRANSITION_T < 1) then
-						return true
-					end
-				end
+				-- G_TRANSITION_T = 0
+				-- G_TRANSITION = function()
+				-- end
 				-- Play_Sfx("Swipe")
 			end
+			self.TestDrag:keypressed(key)
 			Meta_Game.Keypressed(key)
 		end,
 
 		Mousepressed = function(self,x,y,button)
-			print(NormalizeMouse(x,y))
 			local nx, ny = NormalizeMouse(x,y)
 			if self.Door:click(nx,ny) then
 				G_STATE = G_STATE_FRONT_DESK
 				-- Play_Sfx("Swipe")
 			end
-
+			self.TestDrag:mousepressed(x,y,button)
 			Meta_Game.Mousepressed(x,y,button)
 		end
 	}
