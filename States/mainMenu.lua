@@ -95,6 +95,7 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 				G_STATE = G_STATE_OUTSIDE
 				G_MUSIC_NEW()
 				if G_MUSIC_SONG then
+					G_MUSIC_SONG:stop()
 					G_MUSIC_SONG:play()
 				end
 

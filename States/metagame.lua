@@ -13,6 +13,9 @@ function Meta_Game.Draw()
 			end
 		end
 	end
+
+	love.graphics.print({{0,0,0},"Day "..G_DAY},0,0)
+	love.graphics.print({{0,0,0},"Balance: "..Bank.balance},0,20)
 end
 
 function Meta_Game.Update(dt)

@@ -4,6 +4,8 @@ require("modules/sfx")
 require("modules/button")
 require("modules/draggable")
 require("modules/normMouse")
+require("modules/bank")
+require("modules/animal")
 
 G_STATE = 1
 G_UPDATE = {}
