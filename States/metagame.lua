@@ -1,6 +1,13 @@
 -- Meta Game State
 Meta_Game = {}
 Meta_Game.Objects = {}
+Meta_Game.Objects.Animal = {}
+
+function New_Game()
+	Meta_Game.Objects.Animal = {
+		Animal.new("Xittens", "Catlike", "Alien_1"),
+	}
+end
 
 function Meta_Game.Draw()
 	if G_MUSIC_PLAYING then

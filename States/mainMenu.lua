@@ -135,6 +135,13 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 
 	[2] = {
 		Back_b = Button.new(600,495,85,25),
+		Mute_b = Button.new(50,250,25,25),
+		Main_Volume_Up = Button.new(50,100,25,25),
+		Main_Volume_Down = Button.new(100,100,25,25),
+		Music_Volume_Up = Button.new(50,150,25,25),
+		Music_Volume_Down = Button.new(100,150,25,25),
+		SFX_Volume_Up = Button.new(50,200,25,25),
+		SFX_Volume_Down = Button.new(100,200,25,25),
 
 		Draw = function(self)
 			love.graphics.rectangle("fill",0,0,800,600)
@@ -151,12 +158,31 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 			love.graphics.rectangle("fill",630,495,85,25)
 			love.graphics.print({{0,0,0},StringFetch(10)},650,500)
 
+			self.Mute_b:draw()
+			self.Main_Volume_Up:draw()
+			self.Main_Volume_Down:draw()
+			self.Music_Volume_Up:draw()
+			self.Music_Volume_Down:draw()
+			self.SFX_Volume_Up:draw()
+			self.SFX_Volume_Down:draw()
+
+			love.graphics.print({{0,0,0},Main_Volume},150,100)
+			love.graphics.print({{0,0,0},Music_Volume},150,150)
+			love.graphics.print({{0,0,0},SFX_Volume},150,200)
+
 			love.graphics.setColor(G_CLEAR)
 		end,
 
 		Update = function(self,dt)
 			local x,y = NormalizeMouse(love.mouse.getPosition())
 			self.Back_b:focus(x,y)
+			self.Mute_b:focus(x,y)
+			self.Main_Volume_Up:focus(x,y)
+			self.Main_Volume_Down:focus(x,y)
+			self.Music_Volume_Up:focus(x,y)
+			self.Music_Volume_Down:focus(x,y)
+			self.SFX_Volume_Up:focus(x,y)
+			self.SFX_Volume_Down:focus(x,y)
 		end,
 
 		Keypressed = function(self,key)
@@ -169,6 +195,37 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 				Play_Sfx("ding",0.1)
 				G_STATE_MAIN_MENU_SUB = 1
 			end
+
+			if self.Mute_b:click(nx,ny) then
+				Main_Volume = 0
+				love.audio.setVolume(Main_Volume)
+			end
+
+			if self.Main_Volume_Up:click(nx,ny) then
+				Main_Volume = math.min(1,Main_Volume + 0.1)
+				love.audio.setVolume(Main_Volume)
+			end
+
+			if self.Main_Volume_Down:click(nx,ny) then
+				Main_Volume = math.max(0,Main_Volume - 0.1)
+				love.audio.setVolume(Main_Volume)
+			end
+
+			if self.Music_Volume_Up:click(nx,ny) then
+				Music_Volume = math.min(1,Music_Volume + 0.1)
+			end
+
+			if self.Music_Volume_Down:click(nx,ny) then
+				Music_Volume = math.max(0,Music_Volume - 0.1)
+			end
+
+			if self.SFX_Volume_Up:click(nx,ny) then
+				SFX_Volume = math.min(1,SFX_Volume + 0.1)
+			end
+
+			if self.SFX_Volume_Down:click(nx,ny) then
+				SFX_Volume = math.max(0,SFX_Volume - 0.1)
+			end
 		end
 	},
 
@@ -176,7 +233,7 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 		Back_b = Button.new(600,495,85,25),
 		Draw = function(self)
 			love.graphics.rectangle("fill",0,0,800,600)
-			-- Settings
+			-- Load
 			love.graphics.print({{0,0,0},StringFetch(11)},50,50)
 
 			-- Back button
@@ -214,7 +271,7 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 		Back_b = Button.new(600,495,85,25),
 		Draw = function(self)
 			love.graphics.rectangle("fill",0,0,800,600)
-			-- Settings
+			-- Save
 			love.graphics.print({{0,0,0},StringFetch(12)},50,50)
 
 			-- Back button
