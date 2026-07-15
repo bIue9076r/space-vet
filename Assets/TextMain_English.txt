@@ -6,3 +6,5 @@ Load Game
 Settings
 Resume
 Save Game
+Settings
+Back
