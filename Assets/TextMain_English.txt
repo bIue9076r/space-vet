@@ -3,3 +3,6 @@ Main Menu
 Exit
 New Game
 Load Game
+Settings
+Resume
+Save Game

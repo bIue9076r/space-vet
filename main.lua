@@ -52,6 +52,14 @@ function love.mousepressed(x,y,button)
 end
 
 function love.draw()
+	if G_MUSIC_SONG then
+		if G_MUSIC_PLAYING then
+			G_MUSIC_SONG:setVolume(Music_Volume)
+		else
+			G_MUSIC_SONG:pause()
+		end
+	end
+	
 	Draw_Sfx()
 	love.graphics.setCanvas(CANVAS)
 	love.graphics.clear()

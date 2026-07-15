@@ -3,6 +3,8 @@ Help from a Terrestrial
 --Managers--
 Programming Lead - @le_banane
 Art Lead - @yeahimnotrichardfeynman
+Music Lead - @le_banane
+SFX Lead - @le_banane
 
 --Programmers--
 @le_banane
@@ -14,6 +16,6 @@ UI/GUI - @acxiel
 Sprites - @yeahimnotrichardfeynman
 Background - @yuno_d.
 
---Music--
+--Music / SFX --
 @le_banane
-
+@yeahimnotrichardfeynman

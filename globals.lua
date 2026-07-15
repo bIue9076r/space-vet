@@ -14,6 +14,8 @@ G_DRAW = {}
 G_DAY = 1
 G_CLEAR = {1,1,1,1}
 G_STRINGS = {}
+G_PLAYING = false
+G_LAST_STATE = 0
 
 require("States/metagame")
 require("States/intro")
@@ -28,6 +30,17 @@ Main_Volume = 1
 Music_Volume = 1
 SFX_Volume = 1
 love.audio.setVolume(Main_Volume)
+
+G_MUSIC_LIST = {
+	"beep",
+	"gloorp",
+	"pit",
+}
+
+G_MUSIC_PLAYING = true
+G_MUSIC_SONG = nil
+G_MUSIC_DELAY = 5
+G_MUSIC_DELAY_T = 0
 
 CSCREEN_X = love.graphics.getWidth()
 SCREEN_X = CSCREEN_X
@@ -48,6 +61,11 @@ G_KEYPRESSED[-10] = function(key)
 	if key then
 		love.event.quit(-1)
 	end
+end
+
+function G_MUSIC_NEW()
+	local n = math.random(1,#G_MUSIC_LIST)
+	G_MUSIC_SONG = Sound.get(G_MUSIC_LIST[n])
 end
 
 function G_DT()

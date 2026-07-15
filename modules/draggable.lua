@@ -111,6 +111,7 @@ function Draggable.new(x1,y1,w1,h1,x2,y2,w2,h2,A,k1,k2)
 		firstKey = false,
 		firstClick = false,
 		firstDrag = false,
+		drag = false,
 		dragOffset = {x = 0, y = 0}
 	}
 

@@ -13,6 +13,14 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 			if G_SAVE then
 				love.graphics.print({{0,0,0},StringFetch(5)},400,100)
 			end
+
+			love.graphics.print({{0,0,0},StringFetch(6)},100,300)
+
+			if G_PLAYING then
+				love.graphics.print({{0,0,0},StringFetch(7)},400,300)
+
+				love.graphics.print({{0,0,0},StringFetch(8)},100,500)
+			end
 		end,
 
 		Update = function(self,dt)
@@ -26,6 +34,19 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 		Mousepressed = function(self,x,y,button)
 			Play_Sfx("ding",0.1)
 			G_STATE = G_STATE_OUTSIDE
+
+			G_MUSIC_PLAYING = true
+			if not G_PLAYING then
+				G_MUSIC_NEW()
+			else
+				G_STATE = G_LAST_STATE
+			end
+
+			if G_MUSIC_SONG then
+				G_MUSIC_SONG:play()
+			end
+
+			G_PLAYING = true
 		end
 	}
 }
