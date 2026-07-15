@@ -18,6 +18,7 @@ function Animal.new(n,k,o)
 		kind = Kinds.Validate(k),
 		owner = Owners.Validate(o),
 		aches = {},
+		-- Multiple Combinations of Aches in the future
 	}
 
 	local mt = {

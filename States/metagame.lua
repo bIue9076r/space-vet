@@ -1,12 +1,24 @@
 -- Meta Game State
 Meta_Game = {}
 Meta_Game.Objects = {}
-Meta_Game.Objects.Animal = {}
+Meta_Game.Objects.Animals = {}
 
 function New_Game()
-	Meta_Game.Objects.Animal = {
+	Meta_Game.Objects.Animals = {
 		Animal.new("Xittens", "Catlike", "Alien_1"),
 	}
+
+	Meta_Game.Objects.Animals[1].aches = {
+		[1] = "Antenne"
+	}
+end
+
+function Load_Game(path)
+	
+end
+
+function Save_Game(path)
+	
 end
 
 function Meta_Game.Draw()

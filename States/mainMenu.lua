@@ -234,7 +234,7 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 		Draw = function(self)
 			love.graphics.rectangle("fill",0,0,800,600)
 			-- Load
-			love.graphics.print({{0,0,0},StringFetch(11)},50,50)
+			love.graphics.print({{0,0,0},StringFetch(5)},50,50)
 
 			-- Back button
 			if not self.Back_b.f then
@@ -272,7 +272,7 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 		Draw = function(self)
 			love.graphics.rectangle("fill",0,0,800,600)
 			-- Save
-			love.graphics.print({{0,0,0},StringFetch(12)},50,50)
+			love.graphics.print({{0,0,0},StringFetch(8)},50,50)
 
 			-- Back button
 			if not self.Back_b.f then
