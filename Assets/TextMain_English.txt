@@ -8,3 +8,5 @@ Resume
 Save Game
 Settings
 Back
+Load Game
+Save Game
