@@ -15,7 +15,7 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 
 			-- Main menu
 			love.graphics.print({{0,0,0},StringFetch(2)},50,50)
-			
+
 			-- New game
 			if not self.NewGame_b.f then
 				love.graphics.setColor(1,1,1)

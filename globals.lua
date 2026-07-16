@@ -6,6 +6,9 @@ require("modules/draggable")
 require("modules/normMouse")
 require("modules/bank")
 require("modules/animal")
+require("modules/AlienNames")
+
+CurrentAlienName = {}
 
 G_STATE = 1
 G_UPDATE = {}
@@ -145,3 +148,12 @@ end
 function StringFetch(n)
 	return G_STRINGS[n] or ""
 end
+
+
+-- Generates five random alien names and stores them in a table
+function GetRandomName()
+		for i = 1,5 do
+			local number = love.math.random(1,16)
+			table.insert(CurrentAlienName, AlienNames[number])
+		end
+	end

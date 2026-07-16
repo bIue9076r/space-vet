@@ -11,6 +11,9 @@ function love.load()
 	-- Get Strings
 	GetStrings()
 
+	-- Generates random alien names
+	GetRandomName()
+
 	-- Check save file
 	G_SAVE = true -- testing
 end
