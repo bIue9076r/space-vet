@@ -37,6 +37,11 @@ G_STATE_CHECK_UP_SUBSTATES = {
 						self.Pet_Bed.location.Button.w,
 						self.Pet_Bed.location.Button.h
 					)
+
+					local x,y = NormalizeMouse(love.mouse.getPosition())
+					if self.Pet_Bed.location.Button.f then
+						love.graphics.print({{0,0,0},tb.name},x + 15,y + 15)
+					end
 				end
 			else
 				if Meta_Game.Interaction_Draw then

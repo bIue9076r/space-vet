@@ -44,11 +44,11 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 		Pet_Hammer = Draggable.new(570,330,70,50,200,450,250,100,function(self)
 			print("Hammer Interacted")
 			local tb = Meta_Game.getLastThree()
-			print(tb.aches[1],"Antenne")
 			if tb.aches[1] == "Antenne" then -- Todo: Success chance for lower level items
 											-- Later: expand for more Aches
 				tb.aches[1] = nil
 				Meta_Game.Cured = true
+				Play_Sfx("thx")
 			end
 
 			Meta_Game.Interaction = true
@@ -104,6 +104,11 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 				if tb then
 					love.graphics.setColor(0,0,1)
 					love.graphics.rectangle("fill",200,450,250,100)
+
+					local x,y = NormalizeMouse(love.mouse.getPosition())
+					if self.Pet_Pills.goal.Button.f then
+						love.graphics.print({{0,0,0},tb.name},x + 15,y + 15)
+					end
 				end
 				
 				if self.Pet_Pills.drag then

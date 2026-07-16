@@ -51,8 +51,7 @@ function New_Day()
 
 	Meta_Game.Animals = {}
 	for i = 1, Meta_Game.Animal_Count do
-		-- Todo: Name Generator
-		Meta_Game.Animals[i] = Animal.new("???",Kinds.Generate(),Owners.Generate())
+		Meta_Game.Animals[i] = Animal.new(Name.Generate(),Kinds.Generate(),Owners.Generate())
 		Meta_Game.Animals[i].aches[1] = Ache.Generate()
 	end
 end
@@ -61,10 +60,10 @@ function New_Game()
 	New_Day()
 
 	Meta_Game.Animals = {
-		Animal.new("Xittens", "Catlike", "Alien_1"),
-		Animal.new("Xittens", "Catlike", "Alien_1"),
-		Animal.new("Xittens", "Catlike", "Alien_1"),
-		Animal.new("Xittens", "Catlike", "Alien_1"),
+		Animal.new("Xittens 4", "Catlike", "Alien_1"),
+		Animal.new("Xittens 3", "Catlike", "Alien_1"),
+		Animal.new("Xittens 2", "Catlike", "Alien_1"),
+		Animal.new("Xittens 1", "Catlike", "Alien_1"),
 	}
 
 	Meta_Game.Animals[1].aches = {
