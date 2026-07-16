@@ -4,41 +4,39 @@ G_STATE_OUTSIDE = 3
 G_STATE_OUTSIDE_SUB = 1
 G_STATE_OUTSIDE_SUBSTATES = {
 	[1] = {
-		Door = Button.new(0,180,100,360),
-
-		TestDrag = Draggable.new(0,0,50,50, 100,100,50,50, function ()
-			print("Testing")
-		end, "e", "d"),
+		Door = Button.new(30,100,225,480),
 
 		Draw = function(self)
-			love.graphics.setColor(135/255, 206/255, 235/255)
-			love.graphics.rectangle("fill",0,0,SCREEN_X,SCREEN_Y)
-			love.graphics.setColor(92/255, 153/255, 113/255)
-			love.graphics.rectangle("fill",0,SCREEN_Y - 100,SCREEN_X,100)
+			local tn = Meta_Game.getTimeNumber() or 1
+			love.graphics.draw(Image.get("Outside_"..tn),0,0)
 
-			love.graphics.setColor(1,1,0)
+			love.graphics.setColor(1,1,0,0.5)
 			-- Customer Line
-			love.graphics.rectangle("fill",240,225,SCREEN_X - 240,300)
+			love.graphics.rectangle("fill",325,125,SCREEN_X - 325,400)
+			local tb = {Meta_Game.getLastThree()}
+			love.graphics.setColor(0,0,1)
+			for i = 1,#tb do
+				love.graphics.rectangle("fill",325 + 175*(i - 1),125,100,400)
+			end
 
 			-- Door to inside
 			-- Button
 			if not self.Door.f then
-				love.graphics.setColor(1,0,1)
+				love.graphics.setColor(1,0,1,0.5)
 			else
 				local t = math.min(self.Door.t/0.125,1)
-				love.graphics.setColor(1*(1 - t),t,1*(1 - t))
+				love.graphics.setColor(1*(1 - t),t,1*(1 - t),0.5)
 			end
-			love.graphics.rectangle("fill",0,180,100,360)
+			love.graphics.rectangle("fill",30,100,225,480)
 
 			love.graphics.setColor(G_CLEAR)
-			self.TestDrag:draw()
+			
 			Meta_Game.Draw()
 		end,
 
 		Update = function(self,dt)
 			local x,y = NormalizeMouse(love.mouse.getPosition())
 			self.Door:focus(x,y)
-			self.TestDrag:update(dt)
 			Meta_Game.Update(dt)
 		end,
 
@@ -50,7 +48,6 @@ G_STATE_OUTSIDE_SUBSTATES = {
 				-- end
 				-- Play_Sfx("Swipe")
 			end
-			self.TestDrag:keypressed(key)
 			Meta_Game.Keypressed(key)
 		end,
 
@@ -60,7 +57,6 @@ G_STATE_OUTSIDE_SUBSTATES = {
 				G_STATE = G_STATE_FRONT_DESK
 				-- Play_Sfx("Swipe")
 			end
-			self.TestDrag:mousepressed(x,y,button)
 			Meta_Game.Mousepressed(x,y,button)
 		end
 	}

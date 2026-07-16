@@ -93,13 +93,18 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 				Play_Sfx("ding",0.1)
 				G_MUSIC_PLAYING = true
 				G_STATE = G_STATE_OUTSIDE
-				G_MUSIC_NEW()
 				if G_MUSIC_SONG then
 					G_MUSIC_SONG:stop()
+				end
+
+				G_MUSIC_NEW()
+
+				if G_MUSIC_SONG then
 					G_MUSIC_SONG:play()
 				end
 
 				G_PLAYING = true
+				New_Game()
 			end
 
 			-- Load previous save

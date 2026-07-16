@@ -13,7 +13,7 @@ G_KEYPRESSED = {}
 G_MOUSEPRESSED = {}
 G_DRAW = {}
 
-G_DAY = 1
+G_DAY = 0
 G_CLEAR = {1,1,1,1}
 G_STRINGS = {}
 G_PLAYING = false
@@ -104,6 +104,12 @@ function Panic(Reason, Caller)
 			G_REASON = "Panic! "..tostring(Reason)
 		end
 	end
+end
+
+function PopTbl(tbl)
+	local r = tbl[#tbl]
+	tbl[#tbl] = nil
+	return r
 end
 
 function Error_Draw()

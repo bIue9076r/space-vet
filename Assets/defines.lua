@@ -1,5 +1,7 @@
 -- Images
 Image.new("Alien","/Assets/Alien.png")
+Image.new("Outside_1","/Assets/outside_1.png")
+Image.new("Outside_2","/Assets/outside_2.png")
 
 -- Sounds
 Sound.new("ding","/Assets/ding.mp3","static")

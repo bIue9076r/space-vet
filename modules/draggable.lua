@@ -1,6 +1,6 @@
 Draggable = {}
 Draggable.location = {x = 0, y = 0, Button = Button.new(), Key = ""}
-Draggable.goal = {Button = Button.new(), Action = function() end, Key = ""}
+Draggable.goal = {Button = Button.new(), Action = function(self) end, Key = ""}
 Draggable.firstKey = false
 Draggable.firstClick = false
 Draggable.firstDrag = false
@@ -56,7 +56,7 @@ function Draggable:update(dt)
 	else
 		-- Let go
 		if self:collide() then
-			self.goal.Action()
+			self.goal.Action(self)
 			self:firstClear()
 		end
 		self.location.Button.x = self.location.x
@@ -74,7 +74,7 @@ function Draggable:keypressed(key)
 		end
 	else
 		if key == self.goal.Key then
-			self.goal.Action()
+			self.goal.Action(self)
 		end
 		self:firstClear()
 	end
@@ -91,7 +91,7 @@ function Draggable:mousepressed(x,y,button)
 	else
 		self.goal.Button:focus(x,y)
 		if self.goal.Button.f and button == 1 then
-			self.goal.Action()
+			self.goal.Action(self)
 		end
 		self:firstClear()
 	end
@@ -106,7 +106,7 @@ function Draggable.new(x1,y1,w1,h1,x2,y2,w2,h2,A,k1,k2)
 			Key = k1 or "",
 		},
 		
-		goal = {Button = Button.new(x2,y2,w2,h2), Action = A or function() end, Key = k2 or ""},
+		goal = {Button = Button.new(x2,y2,w2,h2), Action = A or function(self) end, Key = k2 or ""},
 
 		firstKey = false,
 		firstClick = false,
