@@ -1,54 +1,74 @@
 -- Care Unit
 G_STATE_CARE_UNIT = 6
 
-G_STATE_CARE_UNIT_SUB = 1
 G_STATE_CARE_UNIT_SUBSTATES = {
 	[1] = {
 		Xray = Button.new(60,250,220,250),
 		Pet_Pills = Draggable.new(680,340,40,40,200,450,250,100,function(self)
-			print("Pills Interacted")
+			local tb = Meta_Game.getLastThree()
+			if tb.aches[1] == "Tummy" then	-- Todo: Success chance for lower level items
+											-- Later: expand for more Aches
+				tb.aches[1] = nil
+				Meta_Game.Cured = true
+				Play_Sfx("thx")
+			else
+				Play_Sfx("no_"..math.random(1,4))
+			end
+
 			Meta_Game.Interaction = true
 			Meta_Game.Interaction_Timer_Goal = 1
 			local x,y,w,h = self.location.Button.x, self.location.Button.y,self.location.Button.w, self.location.Button.h
 			Meta_Game.Interaction_Draw = function()
 				local t = Meta_Game.Interaction_Timer/Meta_Game.Interaction_Timer_Goal
-				local tb = Meta_Game.getLastThree()
+				-- Draw Pet
 				if tb then
 					love.graphics.setColor(0,0,1)
 					love.graphics.rectangle("fill",200,450,250,100)
 				end
 
+				-- Draw tool being used
 				love.graphics.setColor(1,0,0,1 - t)
 				love.graphics.rectangle("fill",x,y,w,h)
 			end
 		end),
 
 		Pet_Bandage = Draggable.new(490,350,60,30,200,450,250,100,function(self)
-			print("Bandage Interacted")
+			local tb = Meta_Game.getLastThree()
+			if tb.aches[1] == "Scratch" then	-- Todo: Success chance for lower level items
+												-- Later: expand for more Aches
+				tb.aches[1] = nil
+				Meta_Game.Cured = true
+				Play_Sfx("thx")
+			else
+				Play_Sfx("no_"..math.random(1,4))
+			end
+
 			Meta_Game.Interaction = true
 			Meta_Game.Interaction_Timer_Goal = 1
 			local x,y,w,h = self.location.Button.x, self.location.Button.y,self.location.Button.w, self.location.Button.h
 			Meta_Game.Interaction_Draw = function()
 				local t = Meta_Game.Interaction_Timer/Meta_Game.Interaction_Timer_Goal
-				local tb = Meta_Game.getLastThree()
+				-- Draw Pet
 				if tb then
 					love.graphics.setColor(0,0,1)
 					love.graphics.rectangle("fill",200,450,250,100)
 				end
 
+				-- Draw tool being used
 				love.graphics.setColor(1,1,1,1 - t)
 				love.graphics.rectangle("fill",x,y,w,h)
 			end
 		end),
 
 		Pet_Hammer = Draggable.new(570,330,70,50,200,450,250,100,function(self)
-			print("Hammer Interacted")
 			local tb = Meta_Game.getLastThree()
-			if tb.aches[1] == "Antenne" then -- Todo: Success chance for lower level items
-											-- Later: expand for more Aches
+			if tb.aches[1] == "Antenne" then	-- Todo: Success chance for lower level items
+												-- Later: expand for more Aches
 				tb.aches[1] = nil
 				Meta_Game.Cured = true
 				Play_Sfx("thx")
+			else
+				Play_Sfx("no_"..math.random(1,4))
 			end
 
 			Meta_Game.Interaction = true
@@ -56,17 +76,17 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 			local x,y,w,h = self.location.Button.x, self.location.Button.y,self.location.Button.w, self.location.Button.h
 			Meta_Game.Interaction_Draw = function()
 				local t = Meta_Game.Interaction_Timer/Meta_Game.Interaction_Timer_Goal
-				
+				-- Draw Pet
 				if tb then
 					love.graphics.setColor(0,0,1)
 					love.graphics.rectangle("fill",200,450,250,100)
 				end
 
+				-- Draw tool being used
 				love.graphics.setColor(0,1,1,1 - t)
 				love.graphics.rectangle("fill",x,y,w,h)
 			end
 		end),
-
 
 		Draw = function(self)
 			love.graphics.setColor(170/255, 212/255, 153/255)
@@ -172,8 +192,13 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 		end,
 
 		Keypressed = function(self,key)
-			if G_KEY_RIGHT(key) then
-				G_STATE = G_STATE_CHECK_UP
+			if not Meta_Game.Interaction then
+				if G_KEY_RIGHT(key) then
+					G_STATE = G_STATE_CHECK_UP
+					G_STATE_SUB = 1
+				elseif G_KEY_UP(key) then
+					G_STATE_SUB = 2
+				end
 			end
 			Meta_Game.Keypressed(key)
 		end,
@@ -182,7 +207,7 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 
 			if not Meta_Game.Interaction then
 				if self.Xray:click(x,y,button) then
-					
+					G_STATE_SUB = 2
 				end
 
 				self.Pet_Pills:mousepressed(x,y,button)
@@ -192,26 +217,71 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 		
 			Meta_Game.Mousepressed(x,y,button)
 		end
+	},
+
+	[2] = {
+		Draw = function(self)
+			love.graphics.setColor(170/255, 212/255, 153/255)
+			love.graphics.rectangle("fill",0,0,SCREEN_X,SCREEN_Y)
+            love.graphics.setColor(84/255, 34/255, 16/255)
+			love.graphics.rectangle("fill",0,SCREEN_Y - 300,SCREEN_X,300)
+
+			love.graphics.setColor(41/255,37/255,27/255)
+			-- table
+			love.graphics.rectangle("fill",550,110,250,330)
+
+			-- Pet
+			local tb = Meta_Game.getLastThree()
+			if tb then
+				love.graphics.setColor(0,0,1)
+				love.graphics.rectangle("fill",135,265,250*2,100*2)
+
+				if tb.aches[1] == "Tummy" then
+					love.graphics.setColor(G_CLEAR)
+					love.graphics.rectangle("fill",135 + 125,265 + 50,250,100)
+				end
+			end
+
+			love.graphics.setColor(G_CLEAR)
+			Meta_Game.Draw()
+		end,
+
+		Update = function(self,dt)
+			local x,y = NormalizeMouse(love.mouse.getPosition())
+			Meta_Game.Update(dt)
+		end,
+
+		Keypressed = function(self,key)
+			if G_KEY_DOWN(key) then
+				G_STATE_SUB = 1
+			end
+			Meta_Game.Keypressed(key)
+		end,
+
+		Mousepressed = function(self,x,y,button)
+			
+			Meta_Game.Mousepressed(x,y,button)
+		end
 	}
 }
 
 
 G_DRAW[G_STATE_CARE_UNIT] = function()
-	local f = G_STATE_CARE_UNIT_SUBSTATES[G_STATE_CARE_UNIT_SUB]
+	local f = G_STATE_CARE_UNIT_SUBSTATES[G_STATE_SUB]
 	if f and f.Draw then f:Draw() end
 end
 
 G_UPDATE[G_STATE_CARE_UNIT] = function(dt)
-	local f = G_STATE_CARE_UNIT_SUBSTATES[G_STATE_CARE_UNIT_SUB]
+	local f = G_STATE_CARE_UNIT_SUBSTATES[G_STATE_SUB]
 	if f and f.Update then f:Update(dt) end
 end
 
 G_KEYPRESSED[G_STATE_CARE_UNIT] = function(key)
-	local f = G_STATE_CARE_UNIT_SUBSTATES[G_STATE_CARE_UNIT_SUB]
+	local f = G_STATE_CARE_UNIT_SUBSTATES[G_STATE_SUB]
 	if f and f.Keypressed then f:Keypressed(key) end
 end
 
 G_MOUSEPRESSED[G_STATE_CARE_UNIT] = function(x,y,button)
-	local f = G_STATE_CARE_UNIT_SUBSTATES[G_STATE_CARE_UNIT_SUB]
+	local f = G_STATE_CARE_UNIT_SUBSTATES[G_STATE_SUB]
 	if f and f.Mousepressed then f:Mousepressed(x,y,button) end
 end

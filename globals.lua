@@ -8,9 +8,8 @@ require("modules/bank")
 require("modules/animal")
 require("modules/AlienNames")
 
-CurrentAlienName = {}
-
 G_STATE = 1
+G_STATE_SUB = 1
 G_UPDATE = {}
 G_KEYPRESSED = {}
 G_MOUSEPRESSED = {}
@@ -21,6 +20,8 @@ G_CLEAR = {1,1,1,1}
 G_STRINGS = {}
 G_PLAYING = false
 G_LAST_STATE = 0
+
+love.graphics.setFont(Font.get("Spacy"))
 
 require("States/metagame")
 require("States/intro")

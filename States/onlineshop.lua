@@ -10,7 +10,6 @@ Computor_Blue = {8/255,39/255,245/255}
 
 Computor_Exit_Button = Button.new(55,520,60,25)
 
-G_STATE_ONLINE_SHOP_SUB = 1
 G_STATE_ONLINE_SHOP_SUBSTATES = {
 	[1] = {
 		Draw = function(self)
@@ -57,6 +56,7 @@ G_STATE_ONLINE_SHOP_SUBSTATES = {
 		Keypressed = function(self,key)
 			if G_KEY_DOWN(key) then
 				G_STATE = G_STATE_FRONT_DESK
+				G_STATE_SUB = 1
 			end
 		end,
 
@@ -64,6 +64,7 @@ G_STATE_ONLINE_SHOP_SUBSTATES = {
 			x, y = NormalizeMouse(x,y)
 			if Computor_Exit_Button:click(x,y) then
 				G_STATE = G_STATE_FRONT_DESK
+				G_STATE_SUB = 1
 			end
 		end
 	}
@@ -71,21 +72,21 @@ G_STATE_ONLINE_SHOP_SUBSTATES = {
 
 
 G_DRAW[G_STATE_ONLINE_SHOP] = function()
-	local f = G_STATE_ONLINE_SHOP_SUBSTATES[G_STATE_ONLINE_SHOP_SUB]
+	local f = G_STATE_ONLINE_SHOP_SUBSTATES[G_STATE_SUB]
 	if f and f.Draw then f:Draw() end
 end
 
 G_UPDATE[G_STATE_ONLINE_SHOP] = function(dt)
-	local f = G_STATE_ONLINE_SHOP_SUBSTATES[G_STATE_ONLINE_SHOP_SUB]
+	local f = G_STATE_ONLINE_SHOP_SUBSTATES[G_STATE_SUB]
 	if f and f.Update then f:Update(dt) end
 end
 
 G_KEYPRESSED[G_STATE_ONLINE_SHOP] = function(key)
-	local f = G_STATE_ONLINE_SHOP_SUBSTATES[G_STATE_ONLINE_SHOP_SUB]
+	local f = G_STATE_ONLINE_SHOP_SUBSTATES[G_STATE_SUB]
 	if f and f.Keypressed then f:Keypressed(key) end
 end
 
 G_MOUSEPRESSED[G_STATE_ONLINE_SHOP] = function(x,y,button)
-	local f = G_STATE_ONLINE_SHOP_SUBSTATES[G_STATE_ONLINE_SHOP_SUB]
+	local f = G_STATE_ONLINE_SHOP_SUBSTATES[G_STATE_SUB]
 	if f and f.Mousepressed then f:Mousepressed(x,y,button) end
 end

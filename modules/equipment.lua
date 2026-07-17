@@ -1,11 +1,11 @@
 Equipment = {
     level = 1,
     Upgrade_Cost = 500,
-    -- Upgrade_func = // linear for now
+    -- Upgrade_func = // constant for now
 
-    -- Checks if the upgrade is a success
-    act = function()
-        if Equipment.level == 1 then
+    -- Checks if the tool is used successfully
+    act = function(self)
+        if self.level == 1 then
             if math.random(0,1) == 0 then
                 return true -- success
             end
@@ -14,37 +14,34 @@ Equipment = {
     end,
 
     -- Upgrades the tool if there is enough money and act function is successful
-    upgrade = function()
-        local result = (Bank.balance - Equipment.Upgrade_Cost)
+    upgrade = function(self)
+        local result = (Bank.balance - self.Upgrade_Cost)
 
         if result < 0 then
             -- broke
             -- play sfx(No_money)
-            Equipment.level = Equipment.level
-            return true
+            self.level = self.level
+			return
         end
 
-        if Equipment.act() then
-            -- play sfx (Spend)
-            Equipment.level = Equipment.level + 1
-            Bank.balance = result
-            return false
-
-        else 
-            Equipment.level = Equipment.level
-            -- sfx (Not successful)
-            return true
-        end
+		-- play sfx (Spend)
+		self.level = self.level + 1
+		Bank.balance = result
+		-- self.Upgrade_Cost = self.Upgrade_func()
     end
 }
 
 -- Creates new tool
 function Equipment.new(newCost)
-    local newTool = {}
+    local newTool = {
+		level = 1,
+		Upgrade_Cost = newCost or 500,
+	}
 
-    newTool.level = Equipment.level
-    newTool.Upgrade_Cost = newCost or Equipment.Upgrade_Cost
+	local mt = {
+		__index = Equipment,
+	}
 
-    return newTool
+    return setmetatable(newTool,mt)
 end
 

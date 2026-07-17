@@ -8,9 +8,9 @@ function love.load(args)
 	love.window.setMode(1000, 600, {resizable = true, minwidth = 800, minheight = 600})
 	love.resize()
 
-	for i,v in pairs(args) do
-		print(i,v)
-	end
+	-- for i,v in pairs(args) do
+	-- 	print(i,v)
+	-- end
 
 	-- Get Strings
 	GetStrings()
@@ -75,7 +75,6 @@ function love.draw()
 		local f = G_DRAW[G_STATE] or Error_Draw
 		if f then f() end
 	else
-		local later = love.timer.getTime()
 		if(G_TRANSITION and G_TRANSITION()) then
 		else
 			G_TRANSITION = nil

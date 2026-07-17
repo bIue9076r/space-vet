@@ -19,3 +19,6 @@ Background - @yuno_d.
 --Music / SFX --
 @le_banane
 @yeahimnotrichardfeynman
+
+-- Other Credits --
+Metaflop - Font Editor

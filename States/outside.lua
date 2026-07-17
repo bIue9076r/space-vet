@@ -1,10 +1,9 @@
 -- Outside
 G_STATE_OUTSIDE = 3
 
-G_STATE_OUTSIDE_SUB = 1
 G_STATE_OUTSIDE_SUBSTATES = {
 	[1] = {
-		Door = Button.new(30,100,225,480),
+		Door = Button.new(30,100,250,380),
 
 		Draw = function(self)
 			local tn = Meta_Game.getTimeNumber() or 1
@@ -27,7 +26,7 @@ G_STATE_OUTSIDE_SUBSTATES = {
 				local t = math.min(self.Door.t/0.125,1)
 				love.graphics.setColor(1*(1 - t),t,1*(1 - t),0.5)
 			end
-			love.graphics.rectangle("fill",30,100,225,480)
+			love.graphics.rectangle("fill",30,100,250,380)
 
 			love.graphics.setColor(G_CLEAR)
 			
@@ -43,6 +42,7 @@ G_STATE_OUTSIDE_SUBSTATES = {
 		Keypressed = function(self,key)
 			if G_KEY_LEFT(key) then
 				G_STATE = G_STATE_FRONT_DESK
+				G_STATE_SUB = 1
 				-- G_TRANSITION_T = 0
 				-- G_TRANSITION = function()
 				-- end
@@ -55,6 +55,7 @@ G_STATE_OUTSIDE_SUBSTATES = {
 			local nx, ny = NormalizeMouse(x,y)
 			if self.Door:click(nx,ny) then
 				G_STATE = G_STATE_FRONT_DESK
+				G_STATE_SUB = 1
 				-- Play_Sfx("Swipe")
 			end
 			Meta_Game.Mousepressed(x,y,button)
@@ -64,21 +65,21 @@ G_STATE_OUTSIDE_SUBSTATES = {
 
 
 G_DRAW[G_STATE_OUTSIDE] = function()
-	local f = G_STATE_OUTSIDE_SUBSTATES[G_STATE_OUTSIDE_SUB]
+	local f = G_STATE_OUTSIDE_SUBSTATES[G_STATE_SUB]
 	if f and f.Draw then f:Draw() end
 end
 
 G_UPDATE[G_STATE_OUTSIDE] = function(dt)
-	local f = G_STATE_OUTSIDE_SUBSTATES[G_STATE_OUTSIDE_SUB]
+	local f = G_STATE_OUTSIDE_SUBSTATES[G_STATE_SUB]
 	if f and f.Update then f:Update(dt) end
 end
 
 G_KEYPRESSED[G_STATE_OUTSIDE] = function(key)
-	local f = G_STATE_OUTSIDE_SUBSTATES[G_STATE_OUTSIDE_SUB]
+	local f = G_STATE_OUTSIDE_SUBSTATES[G_STATE_SUB]
 	if f and f.Keypressed then f:Keypressed(key) end
 end
 
 G_MOUSEPRESSED[G_STATE_OUTSIDE] = function(x,y,button)
-	local f = G_STATE_OUTSIDE_SUBSTATES[G_STATE_OUTSIDE_SUB]
+	local f = G_STATE_OUTSIDE_SUBSTATES[G_STATE_SUB]
 	if f and f.Mousepressed then f:Mousepressed(x,y,button) end
 end

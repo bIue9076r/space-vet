@@ -1,7 +1,6 @@
 -- Front Desk
 G_STATE_FRONT_DESK = 4
 
-G_STATE_FRONT_DESK_SUB = 1
 G_STATE_FRONT_DESK_SUBSTATES = {
 	[1] = {
 		Computor = Button.new(490,280,200,120),
@@ -38,10 +37,13 @@ G_STATE_FRONT_DESK_SUBSTATES = {
 		Keypressed = function(self,key)
 			if G_KEY_UP(key) then
 				G_STATE = G_STATE_ONLINE_SHOP
+				G_STATE_SUB = 1
 			elseif G_KEY_LEFT(key) then
 				G_STATE = G_STATE_CHECK_UP
+				G_STATE_SUB = 1
 			elseif G_KEY_RIGHT(key) then
 				G_STATE = G_STATE_OUTSIDE
+				G_STATE_SUB = 1
 			end
 			Meta_Game.Keypressed(key)
 		end,
@@ -50,6 +52,7 @@ G_STATE_FRONT_DESK_SUBSTATES = {
 			local nx, ny = NormalizeMouse(x,y)
 			if self.Computor:click(nx,ny) then
 				G_STATE = G_STATE_ONLINE_SHOP
+				G_STATE_SUB = 1
 			end
 			Meta_Game.Mousepressed(x,y,button)
 		end
@@ -58,21 +61,21 @@ G_STATE_FRONT_DESK_SUBSTATES = {
 
 
 G_DRAW[G_STATE_FRONT_DESK] = function()
-	local f = G_STATE_FRONT_DESK_SUBSTATES[G_STATE_FRONT_DESK_SUB]
+	local f = G_STATE_FRONT_DESK_SUBSTATES[G_STATE_SUB]
 	if f and f.Draw then f:Draw() end
 end
 
 G_UPDATE[G_STATE_FRONT_DESK] = function(dt)
-	local f = G_STATE_FRONT_DESK_SUBSTATES[G_STATE_FRONT_DESK_SUB]
+	local f = G_STATE_FRONT_DESK_SUBSTATES[G_STATE_SUB]
 	if f and f.Update then f:Update(dt) end
 end
 
 G_KEYPRESSED[G_STATE_FRONT_DESK] = function(key)
-	local f = G_STATE_FRONT_DESK_SUBSTATES[G_STATE_FRONT_DESK_SUB]
+	local f = G_STATE_FRONT_DESK_SUBSTATES[G_STATE_SUB]
 	if f and f.Keypressed then f:Keypressed(key) end
 end
 
 G_MOUSEPRESSED[G_STATE_FRONT_DESK] = function(x,y,button)
-	local f = G_STATE_FRONT_DESK_SUBSTATES[G_STATE_FRONT_DESK_SUB]
+	local f = G_STATE_FRONT_DESK_SUBSTATES[G_STATE_SUB]
 	if f and f.Mousepressed then f:Mousepressed(x,y,button) end
 end

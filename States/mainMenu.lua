@@ -1,7 +1,6 @@
 -- Main Menu
 G_STATE_MAIN_MENU = 2
 
-G_STATE_MAIN_MENU_SUB = 1
 G_STATE_MAIN_MENU_SUBSTATES = {
 	[1] = {
 		NewGame_b = Button.new(90,95,85,25),
@@ -93,6 +92,8 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 				Play_Sfx("ding",0.1)
 				G_MUSIC_PLAYING = true
 				G_STATE = G_STATE_OUTSIDE
+				G_STATE_SUB = 1
+				
 				if G_MUSIC_SONG then
 					G_MUSIC_SONG:stop()
 				end
@@ -110,14 +111,14 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 			-- Load previous save
 			if self.LoadGame_b:click(nx,ny) then
 				Play_Sfx("ding",0.1)
-				G_STATE_MAIN_MENU_SUB = 3
+				G_STATE_SUB = 3
 				
 			end
 
 			-- Open settings sub menu
 			if self.Settings_b:click(nx,ny) then
 				Play_Sfx("ding",0.1)
-				G_STATE_MAIN_MENU_SUB = 2
+				G_STATE_SUB = 2
 			end
 
 			-- Resume game
@@ -133,7 +134,7 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 			-- Save game
 			if self.Save_b:click(nx,ny) then
 				Play_Sfx("ding",0.1)
-				G_STATE_MAIN_MENU_SUB = 4
+				G_STATE_SUB = 4
 			end
 		end
 	},
@@ -198,7 +199,7 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 			local nx, ny = NormalizeMouse(x,y)
 			if self.Back_b:click(nx,ny) then
 				Play_Sfx("ding",0.1)
-				G_STATE_MAIN_MENU_SUB = 1
+				G_STATE_SUB = 1
 			end
 
 			if self.Mute_b:click(nx,ny) then
@@ -267,7 +268,7 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 			local nx, ny = NormalizeMouse(x,y)
 			if self.Back_b:click(nx,ny) then
 				Play_Sfx("ding",0.1)
-				G_STATE_MAIN_MENU_SUB = 1
+				G_STATE_SUB = 1
 			end
 		end
 	},
@@ -305,7 +306,7 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 			local nx, ny = NormalizeMouse(x,y)
 			if self.Back_b:click(nx,ny) then
 				Play_Sfx("ding",0.1)
-				G_STATE_MAIN_MENU_SUB = 1
+				G_STATE_SUB = 1
 			end
 		end
 	}
@@ -313,21 +314,21 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 
 
 G_DRAW[G_STATE_MAIN_MENU] = function()
-	local f = G_STATE_MAIN_MENU_SUBSTATES[G_STATE_MAIN_MENU_SUB]
+	local f = G_STATE_MAIN_MENU_SUBSTATES[G_STATE_SUB]
 	if f and f.Draw then f:Draw() end
 end
 
 G_UPDATE[G_STATE_MAIN_MENU] = function(dt)
-	local f = G_STATE_MAIN_MENU_SUBSTATES[G_STATE_MAIN_MENU_SUB]
+	local f = G_STATE_MAIN_MENU_SUBSTATES[G_STATE_SUB]
 	if f and f.Update then f:Update(dt) end
 end
 
 G_KEYPRESSED[G_STATE_MAIN_MENU] = function(key)
-	local f = G_STATE_MAIN_MENU_SUBSTATES[G_STATE_MAIN_MENU_SUB]
+	local f = G_STATE_MAIN_MENU_SUBSTATES[G_STATE_SUB]
 	if f and f.Keypressed then f:Keypressed(key) end
 end
 
 G_MOUSEPRESSED[G_STATE_MAIN_MENU] = function(x,y,button)
-	local f = G_STATE_MAIN_MENU_SUBSTATES[G_STATE_MAIN_MENU_SUB]
+	local f = G_STATE_MAIN_MENU_SUBSTATES[G_STATE_SUB]
 	if f and f.Mousepressed then f:Mousepressed(x,y,button) end
 end

@@ -8,3 +8,6 @@ Resume
 Save Game
 Settings
 Back
+Day 
+Balance: 
+Time Remaining: 

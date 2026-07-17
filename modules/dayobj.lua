@@ -14,7 +14,7 @@ end
 -- Takes: DayObj
 -- Returns: If available
 function DayObj.Available(DObj)
-	if DObj.day >= G_DAY then
+	if DObj.day <= G_DAY then
 		return true
 	end
 
