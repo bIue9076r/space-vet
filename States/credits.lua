@@ -39,6 +39,7 @@ G_STATE_CREDITS_SUBSTATES = {
 				self.t = 0
 				Credits_Song:stop()
 				G_STATE = G_LAST_STATE
+				G_STATE_SUB = 1
 			end
 		end,
 
@@ -47,6 +48,7 @@ G_STATE_CREDITS_SUBSTATES = {
 				self.t = 0
 				Credits_Song:stop()
 				G_STATE = G_LAST_STATE
+				G_STATE_SUB = 1
 			end
 		end,
 
@@ -54,6 +56,7 @@ G_STATE_CREDITS_SUBSTATES = {
 			self.t = 0
 			Credits_Song:stop()
 			G_STATE = G_LAST_STATE
+			G_STATE_SUB = 1
 		end
 	}
 }

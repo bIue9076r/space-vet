@@ -8,10 +8,6 @@ function love.load(args)
 	love.window.setMode(1000, 600, {resizable = true, minwidth = 800, minheight = 600})
 	love.resize()
 
-	-- for i,v in pairs(args) do
-	-- 	print(i,v)
-	-- end
-
 	-- Get Strings
 	GetStrings()
 

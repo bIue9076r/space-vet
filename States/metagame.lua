@@ -121,11 +121,63 @@ function New_Game()
 end
 
 function Load_Game(path)
-	
+	path = path or "Save.txt"
+	local st, save, err = pcall(love.filesystem.load, path)
+	if not st or err then
+		-- Panic(err,"Load_Game")
+		return
+	end
+
+	local V = G_VERSION
+	pcall(save())
+
+	if V > G_VERSION then -- it shouldn't break but in case
+		-- Panic("Save File Issue", "Load_Game")
+	end
 end
 
 function Save_Game(path)
+	path = path or "Save.txt"
+	-- Stuff to store
+		-- Version
+		-- Main_Volume
+		-- Music_Volume
+		-- SFX_Volume
+		-- G_LAST_STATE
+		-- G_PLAYING
+		-- G_ENDING
+		-- Bank.balance
+		-- G_DAY
+		-- Statistics
+			-- G_STATS.Pets
+			-- G_STATS.Pills_Used
+			-- G_STATS.Bandades_Used
+			-- G_STATS.Hammer_Used
+			-- G_STATS.Baths_Taken
+			-- G_STATS.Naps_Taken
 	
+	local file, err = love.filesystem.newFile(path,"w")
+	if err then
+		-- Panic(err,"Save_Game")
+		return
+	end
+
+	file:write("G_VERSION = "..tostring(G_VERSION))
+	file:write("Main_Volume = "..tostring(Main_Volume))
+	file:write("Main_Volume = "..tostring(Music_Volume))
+	file:write("SFX_Volume = "..tostring(SFX_Volume))
+	file:write("G_LAST_STATE = "..tostring(G_LAST_STATE))
+	file:write("G_PLAYING = "..tostring(G_PLAYING))
+	file:write("G_ENDING = "..tostring(G_ENDING))
+	file:write("Bank.balance = "..tostring(Bank.balance))
+	file:write("G_DAY = "..tostring(G_DAY))
+	file:write("G_STATS.Pets = "..tostring(G_STATS.Pets))
+	file:write("G_STATS.Pills_Used = "..tostring(G_STATS.Pills_Used))
+	file:write("G_STATS.Bandades_Used = "..tostring(G_STATS.Bandades_Used))
+	file:write("G_STATS.Hammer_Used = "..tostring(G_STATS.Hammer_Used))
+	file:write("G_STATS.Baths_Taken = "..tostring(G_STATS.Baths_Taken))
+	file:write("G_STATS.Naps_Taken = "..tostring(G_STATS.Naps_Taken))
+	file:close()
 end
 
 function Meta_Game.getTimeNumber()
