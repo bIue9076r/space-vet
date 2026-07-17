@@ -86,10 +86,10 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 		end,
 
 		Mousepressed = function(self,x,y,button)
+			Play_Sfx("ding",0.1)
 			-- Start new game
 			local nx, ny = NormalizeMouse(x,y)
 			if self.NewGame_b:click(nx,ny) then
-				Play_Sfx("ding",0.1)
 				G_MUSIC_PLAYING = true
 				G_STATE = G_STATE_OUTSIDE
 				G_STATE_SUB = 1
@@ -110,20 +110,17 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 
 			-- Load previous save
 			if self.LoadGame_b:click(nx,ny) then
-				Play_Sfx("ding",0.1)
 				G_STATE_SUB = 3
 				
 			end
 
 			-- Open settings sub menu
 			if self.Settings_b:click(nx,ny) then
-				Play_Sfx("ding",0.1)
 				G_STATE_SUB = 2
 			end
 
 			-- Resume game
 			if self.Resume_b:click(nx,ny) then
-				Play_Sfx("ding",0.1)
 				G_MUSIC_PLAYING = true
 				G_STATE = G_LAST_STATE
 				if G_MUSIC_SONG then
@@ -133,7 +130,6 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 
 			-- Save game
 			if self.Save_b:click(nx,ny) then
-				Play_Sfx("ding",0.1)
 				G_STATE_SUB = 4
 			end
 		end
@@ -196,9 +192,9 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 		end,
 
 		Mousepressed = function(self,x,y,button)
+			Play_Sfx("ding",0.1)
 			local nx, ny = NormalizeMouse(x,y)
 			if self.Back_b:click(nx,ny) then
-				Play_Sfx("ding",0.1)
 				G_STATE_SUB = 1
 			end
 
@@ -265,9 +261,9 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 		end,
 
 		Mousepressed = function(self,x,y,button)
+			Play_Sfx("ding",0.1)
 			local nx, ny = NormalizeMouse(x,y)
 			if self.Back_b:click(nx,ny) then
-				Play_Sfx("ding",0.1)
 				G_STATE_SUB = 1
 			end
 		end
@@ -303,9 +299,9 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 		end,
 
 		Mousepressed = function(self,x,y,button)
+			Play_Sfx("ding",0.1)
 			local nx, ny = NormalizeMouse(x,y)
 			if self.Back_b:click(nx,ny) then
-				Play_Sfx("ding",0.1)
 				G_STATE_SUB = 1
 			end
 		end

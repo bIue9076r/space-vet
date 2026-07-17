@@ -15,11 +15,13 @@ G_STATE_INTRO_SUBSTATES = {
 		Keypressed = function(self,key)
 			if key == "return" then
 				G_STATE_SUB = 10
+				Play_Sfx("ding",0.1)
 			end
 		end,
 
 		Mousepressed = function(self,x,y,button)
-			
+			G_STATE_SUB = 10
+			Play_Sfx("ding",0.1)
 		end
 	},
 

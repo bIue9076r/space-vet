@@ -8,9 +8,10 @@ require("modules/bank")
 require("modules/animal")
 require("modules/AlienNames")
 
+G_VERSION = 1
 G_STATE = 1
 G_STATE_SUB = 1
-G_ENDING = 1
+G_ENDING = 0
 G_UPDATE = {}
 G_KEYPRESSED = {}
 G_MOUSEPRESSED = {}
@@ -21,6 +22,7 @@ G_CLEAR = {1,1,1,1}
 G_STRINGS = {}
 G_PLAYING = false
 G_LAST_STATE = 1
+G_STATS = {}
 
 love.graphics.setFont(Font.get("Spacy"))
 
@@ -58,6 +60,12 @@ SCREEN_Y = CSCREEN_Y
 ASPECT = (CSCREEN_X/CSCREEN_Y) 
 ASPECT_INDEX = 1
 CANVAS = love.graphics.newCanvas()
+
+function PrintAll()
+	for i,v in pairs(_G) do
+		print(i,"= [",v,"]")
+	end
+end
 
 G_DRAW[-10] = function()
 	love.graphics.setColor(0,0,1)
