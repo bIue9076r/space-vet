@@ -4,10 +4,12 @@ G_STATE_MAIN_MENU = 2
 G_STATE_MAIN_MENU_SUBSTATES = {
 	[1] = {
 		NewGame_b = Button.new(90,95,85,25),
-		LoadGame_b = Button.new(390,95,85,25),
+		LoadGame_b = Button.new(90,155,85,25),
 		Settings_b = Button.new(90,295,85,25),
-		Resume_b = Button.new(390,295,85,25),
-		Save_b = Button.new(90,495,85,25),
+		Resume_b = Button.new(630,495,85,25),
+		Save_b = Button.new(90,215,85,25),
+		Credits_b = Button.new(90,435,85,25),
+		ExitGame_b = Button.new(90,495,85,25),
 
 		Draw = function(self)
 			love.graphics.rectangle("fill",0,0,800,600)
@@ -33,8 +35,8 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 					local t = math.min(self.LoadGame_b.t/0.125,1)
 					love.graphics.setColor(1*(1 - t),t,1*(1 - t))
 				end
-				love.graphics.rectangle("fill",390,95,85,25)
-				love.graphics.print({{0,0,0},StringFetch(5)},400,100)
+				love.graphics.rectangle("fill",90,155,85,25)
+				love.graphics.print({{0,0,0},StringFetch(5)},100,160)
 			end
 
 			-- Settings
@@ -55,8 +57,8 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 					local t = math.min(self.Resume_b.t/0.125,1)
 					love.graphics.setColor(1*(1 - t),t,1*(1 - t))
 				end
-				love.graphics.rectangle("fill",390,295,85,25)
-				love.graphics.print({{0,0,0},StringFetch(7)},400,300)
+				love.graphics.rectangle("fill",630,495,85,25)
+				love.graphics.print({{0,0,0},StringFetch(7)},640,500)
 
 				-- Save
 				if not self.Save_b.f then
@@ -65,9 +67,30 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 					local t = math.min(self.Save_b.t/0.125,1)
 					love.graphics.setColor(1*(1 - t),t,1*(1 - t))
 				end
-				love.graphics.rectangle("fill",90,495,85,25)
-				love.graphics.print({{0,0,0},StringFetch(8)},100,500)
+				love.graphics.rectangle("fill",90,215,85,25)
+				love.graphics.print({{0,0,0},StringFetch(8)},100,220)
 			end
+
+			-- Credits
+			if not self.Credits_b.f then
+				love.graphics.setColor(1,1,1)
+			else
+				local t = math.min(self.Credits_b.t/0.125,1)
+				love.graphics.setColor(1*(1 - t),t,1*(1 - t))
+			end
+			love.graphics.rectangle("fill",90,435,85,25)
+			love.graphics.print({{0,0,0},StringFetch(15)},100,440)
+			
+
+			-- Exit the game
+			if not self.ExitGame_b.f then
+				love.graphics.setColor(1,1,1)
+			else
+				local t = math.min(self.ExitGame_b.t/0.125,1)
+				love.graphics.setColor(1*(1 - t),t,1*(1 - t))
+			end
+			love.graphics.rectangle("fill",90,495,85,25)
+			love.graphics.print({{0,0,0},StringFetch(14)},100,500)
 
 			love.graphics.setColor(G_CLEAR)
 		end,
@@ -79,6 +102,8 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 			self.LoadGame_b:focus(x,y)
 			self.Resume_b:focus(x,y)
 			self.Save_b:focus(x,y)
+			self.ExitGame_b:focus(x,y)
+			self.Credits_b:focus(x,y)
 		end,
 
 		Keypressed = function(self,key)
@@ -135,6 +160,18 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 			if self.Save_b:click(nx,ny) then
 				Play_Sfx("ding",0.1)
 				G_STATE_SUB = 4
+			end
+			
+			-- Credits
+			if self.Credits_b:click(nx,ny) then
+				Play_Sfx("ding",0.1)
+				G_STATE = 9
+			end
+
+			-- Exit game
+			if self.ExitGame_b:click(nx,ny) then
+				Play_Sfx("ding",0.1)
+				love.event.quit()
 			end
 		end
 	},

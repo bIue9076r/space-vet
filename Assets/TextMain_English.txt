@@ -11,3 +11,5 @@ Back
 Day 
 Balance: 
 Time Remaining: 
+Exit Game
+Credits
