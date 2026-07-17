@@ -206,7 +206,8 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 		Mousepressed = function(self,x,y,button)
 
 			if not Meta_Game.Interaction then
-				if self.Xray:click(x,y,button) then
+				local nx,ny = NormalizeMouse(love.mouse.getPosition())
+				if self.Xray:click(nx,ny,button) then
 					G_STATE_SUB = 2
 				end
 
