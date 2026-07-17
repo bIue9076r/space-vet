@@ -31,7 +31,7 @@ G_STATE_ONLINE_SHOP_SUBSTATES = {
 				love.graphics.rectangle("fill",55,520,60,1)
 				love.graphics.rectangle("fill",55,520,1,25)
 
-				love.graphics.print({Computor_Black,StringFetch(3)},60,525)
+				love.graphics.print({Computor_Black,StringFetch(3)},60,520)
 			else
 				love.graphics.setColor(Computor_White)
 				love.graphics.rectangle("fill",115,520,1,25)
@@ -41,10 +41,37 @@ G_STATE_ONLINE_SHOP_SUBSTATES = {
 				love.graphics.rectangle("fill",55,520,60,1)
 				love.graphics.rectangle("fill",55,520,1,25)
 
-				love.graphics.print({Computor_Black,StringFetch(3)},61,526)
+				love.graphics.print({Computor_Black,StringFetch(3)},61,521)
 			end
 			
+			love.graphics.setColor(Computor_Gray)
+			love.graphics.rectangle("fill",80,100,300,300)
+
+			love.graphics.setColor(Computor_Black)
+			love.graphics.rectangle("fill",80,400,301,1)
+			love.graphics.rectangle("fill",380,100,1,301)
+
+			love.graphics.setColor(Computor_White)
+			love.graphics.rectangle("fill",80,100,300,1)
+			love.graphics.rectangle("fill",80,100,1,300)
+
+			love.graphics.setColor(Computor_Blue)
+			love.graphics.rectangle("fill",81,101,298,25)
+
+			local x, y = NormalizeMouse(love.mouse.getPosition())
+			love.graphics.setColor(Computor_White)
+			love.graphics.print({Computor_White,StringFetch(16)},85,100)
+			love.graphics.rectangle("fill",85,130,290,265)
+
+			love.graphics.setColor(Computor_DarkGray)
+			love.graphics.rectangle("fill",85,130,290,1)
+			love.graphics.rectangle("fill",85,130,1,265)
+
+			love.graphics.setColor(Computor_White)
+			love.graphics.printf({Computor_Black,StringFetch(17),Computor_Black,StringFetch(18),Computor_Black,StringFetch(19)},90,130,280,"left")
+			
 			love.graphics.setColor(G_CLEAR)
+			Meta_Game.Music()
 		end,
 
 		Update = function(self,dt)
@@ -62,6 +89,7 @@ G_STATE_ONLINE_SHOP_SUBSTATES = {
 
 		Mousepressed = function(self,x,y,button)
 			x, y = NormalizeMouse(x,y)
+			
 			if Computor_Exit_Button:click(x,y) then
 				G_STATE = G_STATE_FRONT_DESK
 				G_STATE_SUB = 1

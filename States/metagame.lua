@@ -201,7 +201,7 @@ function Meta_Game.getLastThree()
 	return tbl[1], tbl[2], tbl[3]
 end
 
-function Meta_Game.Draw()
+function Meta_Game.Music()
 	if G_MUSIC_PLAYING then
 		if ((not G_MUSIC_SONG) or (not G_MUSIC_SONG:isPlaying())) then
 			G_MUSIC_DELAY_T = G_MUSIC_DELAY_T + G_DT()
@@ -214,6 +214,10 @@ function Meta_Game.Draw()
 			end
 		end
 	end
+end
+
+function Meta_Game.Draw()
+	Meta_Game.Music()
 
 	love.graphics.print({{0,0,0},StringFetch(11)..G_DAY},0,0)
 	love.graphics.print({{0,0,0},StringFetch(12)..Bank.balance},0,20)
