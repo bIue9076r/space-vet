@@ -59,6 +59,11 @@ function New_Day()
 			Bank.balance = Bank.balance - 5000
 			G_ENDING = 0 -- Bad
 		end
+		G_LAST_STATE = G_STATE
+		G_STATE = G_STATE_ENDING
+		if G_MUSIC_SONG then
+			G_MUSIC_SONG:stop()
+		end
 	end
 
 	Meta_Game.Animals = {}
@@ -103,6 +108,7 @@ end
 
 function New_Game()
 	G_DAY = 0
+	Bank.balance = 0
 	New_Day()
 
 	Meta_Game.Animals = {

@@ -10,6 +10,7 @@ require("modules/AlienNames")
 
 G_STATE = 1
 G_STATE_SUB = 1
+G_ENDING = 1
 G_UPDATE = {}
 G_KEYPRESSED = {}
 G_MOUSEPRESSED = {}
@@ -19,7 +20,7 @@ G_DAY = 0
 G_CLEAR = {1,1,1,1}
 G_STRINGS = {}
 G_PLAYING = false
-G_LAST_STATE = 0
+G_LAST_STATE = 1
 
 love.graphics.setFont(Font.get("Spacy"))
 
@@ -31,6 +32,8 @@ require("States/frontdesk")
 require("States/checkup")
 require("States/careunit")
 require("States/onlineshop")
+require("States/ending")
+require("States/credits")
 
 Main_Volume = 1
 Music_Volume = 1

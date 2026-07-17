@@ -15,6 +15,9 @@ function love.load(args)
 	-- Get Strings
 	GetStrings()
 
+	-- Get Credits
+	GetCredits()
+
 	-- Generates random alien names
 	Name.get()
 
