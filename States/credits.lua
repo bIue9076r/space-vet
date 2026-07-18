@@ -33,7 +33,12 @@ G_STATE_CREDITS_SUBSTATES = {
 		end,
 
 		Update = function(self,dt)
-			self.t = self.t + G_DT()
+			local mul = 1
+			if love.mouse.isDown(1) then
+				mul = 10
+			end
+
+			self.t = self.t + G_DT()*mul
 
 			if self.t > 80 then
 				self.t = 0
@@ -53,10 +58,7 @@ G_STATE_CREDITS_SUBSTATES = {
 		end,
 
 		Mousepressed = function(self,x,y,button)
-			self.t = 0
-			Credits_Song:stop()
-			G_STATE = G_LAST_STATE
-			G_STATE_SUB = 1
+			
 		end
 	}
 }
