@@ -1,6 +1,5 @@
 -- Meta Game State
 Meta_Game = {}
-Meta_Game.Objects = {}
 Meta_Game.Animals = {}
 
 Meta_Game.Animal_Count = 1
@@ -18,11 +17,19 @@ Meta_Game.Cured_Pet = nil
 Meta_Game.Deposit = false
 Meta_Game.Cured_Draw = function ()
 	local t = math.min(1,Meta_Game.Interaction_Timer/(Meta_Game.Interaction_Timer_Goal - 1))
-	love.graphics.setColor(0,0,1,1 - t)
-	love.graphics.rectangle("fill",200,450,250,100)
+
+	love.graphics.setColor(1,1,1,(1 - t))
+	local n = 1 -- TODO: Dynamic animations
+	love.graphics.draw(Meta_Game.Cured_Pet:image(n),150,350)
+
+	if G_DEBUG then
+		love.graphics.setColor(0,0,1,(1 - t)*0.25)
+		love.graphics.rectangle("fill",200,450,250,100)
+	end
 
 	if (not Meta_Game.Deposit) and Meta_Game.Interaction_Timer > (Meta_Game.Interaction_Timer_Goal - 1) then
 		Bank.Deposit(math.random(264,300))
+		G_STATS.Pets = G_STATS.Pets + 1
 		Meta_Game.Deposit = true
 	end
 end
@@ -121,7 +128,7 @@ function New_Game()
 end
 
 function Load_Game(path)
-	path = path or "Save.txt"
+	path = path or G_SAVE_PATH
 	local st, save, err = pcall(love.filesystem.load, path)
 	if not st or err then
 		-- Panic(err,"Load_Game")
@@ -129,7 +136,12 @@ function Load_Game(path)
 	end
 
 	local V = G_VERSION
-	pcall(save())
+	pcall(save)
+	
+	for i,v in pairs(Meta_Game.Animals) do
+		setmetatable(v,{__index = Animal})
+	end
+
 
 	if V > G_VERSION then -- it shouldn't break but in case
 		-- Panic("Save File Issue", "Load_Game")
@@ -137,7 +149,7 @@ function Load_Game(path)
 end
 
 function Save_Game(path)
-	path = path or "Save.txt"
+	path = path or G_SAVE_PATH
 	-- Stuff to store
 		-- Version
 		-- Main_Volume
@@ -148,6 +160,14 @@ function Save_Game(path)
 		-- G_ENDING
 		-- Bank.balance
 		-- G_DAY
+		-- Meta_Game.Timer
+		-- Meta_Game.Tick
+		-- Meta_Game.Interaction
+		-- Meta_Game.Interaction_Timer
+		-- Meta_Game.Interaction_Timer_Goal
+		-- Meta_Game.Cured
+		-- Meta_Game.Deposit
+		-- Meta_Game.Animals
 		-- Statistics
 			-- G_STATS.Pets
 			-- G_STATS.Pills_Used
@@ -162,21 +182,42 @@ function Save_Game(path)
 		return
 	end
 
-	file:write("G_VERSION = "..tostring(G_VERSION))
-	file:write("Main_Volume = "..tostring(Main_Volume))
-	file:write("Main_Volume = "..tostring(Music_Volume))
-	file:write("SFX_Volume = "..tostring(SFX_Volume))
-	file:write("G_LAST_STATE = "..tostring(G_LAST_STATE))
-	file:write("G_PLAYING = "..tostring(G_PLAYING))
-	file:write("G_ENDING = "..tostring(G_ENDING))
-	file:write("Bank.balance = "..tostring(Bank.balance))
-	file:write("G_DAY = "..tostring(G_DAY))
-	file:write("G_STATS.Pets = "..tostring(G_STATS.Pets))
-	file:write("G_STATS.Pills_Used = "..tostring(G_STATS.Pills_Used))
-	file:write("G_STATS.Bandades_Used = "..tostring(G_STATS.Bandades_Used))
-	file:write("G_STATS.Hammer_Used = "..tostring(G_STATS.Hammer_Used))
-	file:write("G_STATS.Baths_Taken = "..tostring(G_STATS.Baths_Taken))
-	file:write("G_STATS.Naps_Taken = "..tostring(G_STATS.Naps_Taken))
+	file:write("G_VERSION = "..tostring(G_VERSION).."\n")
+	file:write("Main_Volume = "..tostring(Main_Volume).."\n")
+	file:write("Music_Volume = "..tostring(Music_Volume).."\n")
+	file:write("SFX_Volume = "..tostring(SFX_Volume).."\n")
+	file:write("G_LAST_STATE = "..tostring(G_LAST_STATE).."\n")
+	file:write("G_PLAYING = "..tostring(G_PLAYING).."\n")
+	file:write("G_ENDING = "..tostring(G_ENDING).."\n")
+	file:write("Bank.balance = "..tostring(Bank.balance).."\n")
+	file:write("G_DAY = "..tostring(G_DAY).."\n")
+	file:write("Meta_Game.Timer = "..tostring(Meta_Game.Timer).."\n")
+	file:write("Meta_Game.Tick = "..tostring(Meta_Game.Tick).."\n")
+	file:write("Meta_Game.Interaction = "..tostring(Meta_Game.Interaction).."\n")
+	file:write("Meta_Game.Interaction_Timer = "..tostring(Meta_Game.Interaction_Timer).."\n")
+	file:write("Meta_Game.Interaction_Timer_Goal = "..tostring(Meta_Game.Interaction_Timer_Goal).."\n")
+	file:write("Meta_Game.Cured = "..tostring(Meta_Game.Cured).."\n")
+	file:write("Meta_Game.Deposit = "..tostring(Meta_Game.Deposit).."\n")
+	file:write("Meta_Game.Animals = {}\n")
+	for i, v in pairs(Meta_Game.Animals) do
+		file:write("Meta_Game.Animals["..tostring(i).."] = {}\n")
+		for i2, v2 in pairs(v) do
+			if type(v2) == "table" then
+				file:write("Meta_Game.Animals["..tostring(i).."][\""..tostring(i2).."\"] = {}\n")
+				for i3, v3 in pairs(v2) do
+					file:write("Meta_Game.Animals["..tostring(i).."][\""..tostring(i2).."\"]["..tostring(i3).."] = \""..tostring(v3).."\"\n")
+				end
+			else
+				file:write("Meta_Game.Animals["..tostring(i).."][\""..tostring(i2).."\"] = \""..tostring(v2).."\"\n")
+			end
+		end
+	end
+	file:write("G_STATS.Pets = "..tostring(G_STATS.Pets).."\n")
+	file:write("G_STATS.Pills_Used = "..tostring(G_STATS.Pills_Used).."\n")
+	file:write("G_STATS.Bandades_Used = "..tostring(G_STATS.Bandades_Used).."\n")
+	file:write("G_STATS.Hammer_Used = "..tostring(G_STATS.Hammer_Used).."\n")
+	file:write("G_STATS.Baths_Taken = "..tostring(G_STATS.Baths_Taken).."\n")
+	file:write("G_STATS.Naps_Taken = "..tostring(G_STATS.Naps_Taken).."\n")
 	file:close()
 end
 

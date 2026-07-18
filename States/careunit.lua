@@ -8,13 +8,14 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 			local tb = Meta_Game.getLastThree()
 			if tb.aches[1] == "Tummy" then	-- Todo: Success chance for lower level items
 											-- Later: expand for more Aches
-				tb.aches[1] = nil
+				tb.aches[1] = "None"
 				Meta_Game.Cured = true
 				Play_Sfx("thx")
 			else
 				Play_Sfx("no_"..math.random(1,4))
 			end
 
+			G_STATS.Pills_Used = G_STATS.Pills_Used + 1
 			Meta_Game.Interaction = true
 			Meta_Game.Interaction_Timer_Goal = 1
 			local x,y,w,h = self.location.Button.x, self.location.Button.y,self.location.Button.w, self.location.Button.h
@@ -22,13 +23,21 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 				local t = Meta_Game.Interaction_Timer/Meta_Game.Interaction_Timer_Goal
 				-- Draw Pet
 				if tb then
-					love.graphics.setColor(0,0,1)
-					love.graphics.rectangle("fill",200,450,250,100)
+					love.graphics.setColor(G_CLEAR)
+					local n = 1 -- TODO: Dynamic animations
+					love.graphics.draw(tb:image(n),150,350)
+
+					if G_DEBUG then
+						love.graphics.setColor(0,0,1,0.25)
+						love.graphics.rectangle("fill",200,450,250,100)
+					end
 				end
 
 				-- Draw tool being used
-				love.graphics.setColor(1,0,0,1 - t)
-				love.graphics.rectangle("fill",x,y,w,h)
+				if G_DEBUG then
+					love.graphics.setColor(1,0,0,1 - t)
+					love.graphics.rectangle("fill",x,y,w,h)
+				end
 			end
 		end),
 
@@ -36,13 +45,14 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 			local tb = Meta_Game.getLastThree()
 			if tb.aches[1] == "Scratch" then	-- Todo: Success chance for lower level items
 												-- Later: expand for more Aches
-				tb.aches[1] = nil
+				tb.aches[1] = "None"
 				Meta_Game.Cured = true
 				Play_Sfx("thx")
 			else
 				Play_Sfx("no_"..math.random(1,4))
 			end
 
+			G_STATS.Bandades_Used = G_STATS.Bandades_Used + 1
 			Meta_Game.Interaction = true
 			Meta_Game.Interaction_Timer_Goal = 1
 			local x,y,w,h = self.location.Button.x, self.location.Button.y,self.location.Button.w, self.location.Button.h
@@ -50,13 +60,21 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 				local t = Meta_Game.Interaction_Timer/Meta_Game.Interaction_Timer_Goal
 				-- Draw Pet
 				if tb then
-					love.graphics.setColor(0,0,1)
-					love.graphics.rectangle("fill",200,450,250,100)
+					love.graphics.setColor(G_CLEAR)
+					local n = 1 -- TODO: Dynamic animations
+					love.graphics.draw(tb:image(n),150,350)
+
+					if G_DEBUG then
+						love.graphics.setColor(0,0,1,0.25)
+						love.graphics.rectangle("fill",200,450,250,100)
+					end
 				end
 
 				-- Draw tool being used
-				love.graphics.setColor(1,1,1,1 - t)
-				love.graphics.rectangle("fill",x,y,w,h)
+				if G_DEBUG then
+					love.graphics.setColor(1,1,1,1 - t)
+					love.graphics.rectangle("fill",x,y,w,h)
+				end
 			end
 		end),
 
@@ -64,13 +82,14 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 			local tb = Meta_Game.getLastThree()
 			if tb.aches[1] == "Antenne" then	-- Todo: Success chance for lower level items
 												-- Later: expand for more Aches
-				tb.aches[1] = nil
+				tb.aches[1] = "None"
 				Meta_Game.Cured = true
 				Play_Sfx("thx")
 			else
 				Play_Sfx("no_"..math.random(1,4))
 			end
 
+			G_STATS.Hammer_Used = G_STATS.Hammer_Used + 1
 			Meta_Game.Interaction = true
 			Meta_Game.Interaction_Timer_Goal = 1
 			local x,y,w,h = self.location.Button.x, self.location.Button.y,self.location.Button.w, self.location.Button.h
@@ -78,13 +97,21 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 				local t = Meta_Game.Interaction_Timer/Meta_Game.Interaction_Timer_Goal
 				-- Draw Pet
 				if tb then
-					love.graphics.setColor(0,0,1)
-					love.graphics.rectangle("fill",200,450,250,100)
+					love.graphics.setColor(G_CLEAR)
+					local n = 1 -- TODO: Dynamic animations
+					love.graphics.draw(tb:image(n),150,350)
+
+					if G_DEBUG then
+						love.graphics.setColor(0,0,1,0.25)
+						love.graphics.rectangle("fill",200,450,250,100)
+					end
 				end
 
 				-- Draw tool being used
-				love.graphics.setColor(0,1,1,1 - t)
-				love.graphics.rectangle("fill",x,y,w,h)
+				if G_DEBUG then
+					love.graphics.setColor(0,1,1,1 - t)
+					love.graphics.rectangle("fill",x,y,w,h)
+				end
 			end
 		end),
 
@@ -122,11 +149,18 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 				-- Pet
 				local tb = Meta_Game.getLastThree()
 				if tb then
-					love.graphics.setColor(0,0,1)
-					love.graphics.rectangle("fill",200,450,250,100)
+					love.graphics.setColor(G_CLEAR)
+					local n = 1 -- TODO: Dynamic animations
+					love.graphics.draw(tb:image(n),150,350)
+
+					if G_DEBUG then
+						love.graphics.setColor(0,0,1,0.25)
+						love.graphics.rectangle("fill",200,450,250,100)
+					end
 
 					local x,y = NormalizeMouse(love.mouse.getPosition())
 					if self.Pet_Pills.goal.Button.f then
+						love.graphics.setColor(G_CLEAR)
 						love.graphics.print({{0,0,0},tb.name},x + 15,y + 15)
 					end
 				end
@@ -234,12 +268,18 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 			-- Pet
 			local tb = Meta_Game.getLastThree()
 			if tb then
-				love.graphics.setColor(0,0,1)
-				love.graphics.rectangle("fill",135,265,250*2,100*2)
+				love.graphics.setColor(G_CLEAR)
+				local n = 2 -- TODO: Dynamic animations
+				love.graphics.draw(tb:image(n),85,165,0,2,2)
 
-				if tb.aches[1] == "Tummy" then
-					love.graphics.setColor(G_CLEAR)
-					love.graphics.rectangle("fill",135 + 125,265 + 50,250,100)
+				if G_DEBUG then
+					love.graphics.setColor(0,0,1,0.25)
+					love.graphics.rectangle("fill",135,265,250*2,100*2)
+
+					if tb.aches[1] == "Tummy" then
+						love.graphics.setColor(1,1,1,0.5)
+						love.graphics.rectangle("fill",135 + 125,265 + 50,250,100)
+					end
 				end
 			end
 

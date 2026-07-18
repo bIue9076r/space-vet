@@ -7,13 +7,14 @@ G_STATE_CHECK_UP_SUBSTATES = {
 			local tb = Meta_Game.getLastThree()
 			if tb.aches[1] == "Cold" then	-- Todo: Success chance for lower level items
 											-- Later: expand for more Aches
-				tb.aches[1] = nil
+				tb.aches[1] = "None"
 				Meta_Game.Cured = true
 				Play_Sfx("thx")
 			else
 				Play_Sfx("no_"..math.random(1,4))
 			end
 
+			G_STATS.Naps_Taken = G_STATS.Naps_Taken + 1
 			Meta_Game.Interaction = true
 			Meta_Game.Interaction_Timer_Goal = 2
 			
@@ -21,8 +22,14 @@ G_STATE_CHECK_UP_SUBSTATES = {
 				local t = Meta_Game.Interaction_Timer/Meta_Game.Interaction_Timer_Goal
 				-- Draw tool being used pet
 				if tb then
-					love.graphics.setColor(0,0,1)
-					love.graphics.rectangle("fill",550,300,250,100)
+					love.graphics.setColor(G_CLEAR)
+					local n = 1 -- TODO: Dynamic animations
+					love.graphics.draw(tb:image(n),500,200)
+
+					if G_DEBUG then
+						love.graphics.setColor(0,0,1,0.25)
+						love.graphics.rectangle("fill",550,300,250,100)
+					end
 				end
 			end
 		end),
@@ -31,13 +38,14 @@ G_STATE_CHECK_UP_SUBSTATES = {
 			local tb = Meta_Game.getLastThree()
 			if tb.aches[1] == "Stinky" then	-- Todo: Success chance for lower level items
 											-- Later: expand for more Aches
-				tb.aches[1] = nil
+				tb.aches[1] = "None"
 				Meta_Game.Cured = true
 				Play_Sfx("thx")
 			else
 				Play_Sfx("no_"..math.random(1,4))
 			end
 
+			G_STATS.Baths_Taken = G_STATS.Baths_Taken + 1
 			Meta_Game.Interaction = true
 			Meta_Game.Interaction_Timer_Goal = 2
 			
@@ -45,8 +53,14 @@ G_STATE_CHECK_UP_SUBSTATES = {
 				local t = Meta_Game.Interaction_Timer/Meta_Game.Interaction_Timer_Goal
 				-- Draw tool being used by pet
 				if tb then
-					love.graphics.setColor(0,0,1)
-					love.graphics.rectangle("fill",100,300,250,100)
+					love.graphics.setColor(G_CLEAR)
+					local n = 1 -- TODO: Dynamic animations
+					love.graphics.draw(tb:image(n),50,200)
+
+					if G_DEBUG then
+						love.graphics.setColor(0,0,1,0.25)
+						love.graphics.rectangle("fill",100,300,250,100)
+					end
 				end
 			end
 		end),
@@ -68,16 +82,23 @@ G_STATE_CHECK_UP_SUBSTATES = {
 				-- Pet
 				local tb = Meta_Game.getLastThree()
 				if tb then
-					love.graphics.setColor(0,0,1)
-					love.graphics.rectangle("fill",
-						self.Pet_Bed.location.Button.x,
-						self.Pet_Bed.location.Button.y,
-						self.Pet_Bed.location.Button.w,
-						self.Pet_Bed.location.Button.h
-					)
+					love.graphics.setColor(G_CLEAR)
+					local n = 1 -- TODO: Dynamic animations
+					love.graphics.draw(tb:image(n),self.Pet_Bed.location.Button.x - 50,self.Pet_Bed.location.Button.y - 100)
+
+					if G_DEBUG then
+						love.graphics.setColor(0,0,1,0.25)
+						love.graphics.rectangle("fill",
+							self.Pet_Bed.location.Button.x,
+							self.Pet_Bed.location.Button.y,
+							self.Pet_Bed.location.Button.w,
+							self.Pet_Bed.location.Button.h
+						)
+					end
 
 					local x,y = NormalizeMouse(love.mouse.getPosition())
 					if self.Pet_Bed.location.Button.f then
+						love.graphics.setColor(G_CLEAR)
 						love.graphics.print({{0,0,0},tb.name},x + 15,y + 15)
 					end
 				end

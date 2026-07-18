@@ -27,3 +27,8 @@ function Animal.new(n,k,o)
 
 	return setmetatable(tbl, mt)
 end
+
+function Animal:image(n)
+	n = n or 1
+	return Image.get(tostring(self.kind).."_"..tostring(self.aches[1]).."_"..tostring(n)) or Image.get("Catlike_None_1")
+end

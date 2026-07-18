@@ -9,6 +9,7 @@ require("modules/animal")
 require("modules/AlienNames")
 
 G_VERSION = 1
+G_DEBUG = true -- make false in release
 G_STATE = 1
 G_STATE_SUB = 1
 G_ENDING = 0
@@ -22,7 +23,16 @@ G_CLEAR = {1,1,1,1}
 G_STRINGS = {}
 G_PLAYING = false
 G_LAST_STATE = 1
-G_STATS = {}
+G_STATS = {
+	Pets = 0,
+	Pills_Used = 0,
+	Bandades_Used = 0,
+	Hammer_Used = 0,
+	Baths_Taken = 0,
+	Naps_Taken = 0,
+}
+
+G_SAVE_PATH = "Save.txt"
 
 love.graphics.setFont(Font.get("Spacy"))
 
@@ -61,9 +71,13 @@ ASPECT = (CSCREEN_X/CSCREEN_Y)
 ASPECT_INDEX = 1
 CANVAS = love.graphics.newCanvas()
 
-function PrintAll()
-	for i,v in pairs(_G) do
+function PrintAll(tbl)
+	tbl = tbl or _G
+	for i,v in pairs(tbl) do
 		print(i,"= [",v,"]")
+		if type(v) == "table" then
+			PrintAll(v)
+		end
 	end
 end
 

@@ -11,11 +11,14 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 		Credits_b = Button.new(90,435,85,25),
 		ExitGame_b = Button.new(90,495,85,25),
 
+		Saved_t = 0,
+		Loaded_t = 0,
+
 		Draw = function(self)
 			love.graphics.rectangle("fill",0,0,800,600)
 
 			-- Main menu
-			love.graphics.print({{0,0,0},StringFetch(2)},50,50)
+			love.graphics.print({{0,0,0},StringFetch(2)},Font.get("Spacy_3"),50,30)
 
 			-- New game
 			if not self.NewGame_b.f then
@@ -92,6 +95,16 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 			love.graphics.rectangle("fill",90,495,85,25)
 			love.graphics.print({{0,0,0},StringFetch(14)},100,500)
 
+			if (self.Saved_t > 0) then
+				self.Saved_t = self.Saved_t - G_DT()
+				love.graphics.print({{0,0,0},StringFetch(21)},200,220)
+			end
+			
+			if (self.Loaded_t > 0) then
+				self.Loaded_t = self.Loaded_t - G_DT()
+				love.graphics.print({{0,0,0},StringFetch(20)},200,160)
+			end
+
 			love.graphics.setColor(G_CLEAR)
 		end,
 
@@ -99,9 +112,13 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 			local x,y = NormalizeMouse(love.mouse.getPosition())
 			self.NewGame_b:focus(x,y)
 			self.Settings_b:focus(x,y)
-			self.LoadGame_b:focus(x,y)
-			self.Resume_b:focus(x,y)
-			self.Save_b:focus(x,y)
+			if G_SAVE then
+				self.LoadGame_b:focus(x,y)
+			end
+			if G_PLAYING then
+				self.Resume_b:focus(x,y)
+				self.Save_b:focus(x,y)
+			end
 			self.ExitGame_b:focus(x,y)
 			self.Credits_b:focus(x,y)
 		end,
@@ -133,10 +150,12 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 				New_Game()
 			end
 
-			-- Load previous save
-			if self.LoadGame_b:click(nx,ny) then
-				G_STATE_SUB = 3
-				
+			if G_SAVE then
+				-- Load previous save
+				if self.LoadGame_b:click(nx,ny) then
+					Load_Game(G_SAVE_PATH)
+					self.Loaded_t = 1
+				end
 			end
 
 			-- Open settings sub menu
@@ -144,29 +163,30 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 				G_STATE_SUB = 2
 			end
 
-			-- Resume game
-			if self.Resume_b:click(nx,ny) then
-				G_MUSIC_PLAYING = true
-				G_STATE = G_LAST_STATE
-				if G_MUSIC_SONG then
-					G_MUSIC_SONG:play()
+			if G_PLAYING then
+				-- Resume game
+				if self.Resume_b:click(nx,ny) then
+					G_MUSIC_PLAYING = true
+					G_STATE = G_LAST_STATE
+					if G_MUSIC_SONG then
+						G_MUSIC_SONG:play()
+					end
 				end
-			end
 
-			-- Save game
-			if self.Save_b:click(nx,ny) then
-				G_STATE_SUB = 4
+				-- Save game
+				if self.Save_b:click(nx,ny) then
+					Save_Game(G_SAVE_PATH)
+					self.Saved_t = 1
+				end
 			end
 			
 			-- Credits
 			if self.Credits_b:click(nx,ny) then
-				Play_Sfx("ding",0.1)
 				G_STATE = 9
 			end
 
 			-- Exit game
 			if self.ExitGame_b:click(nx,ny) then
-				Play_Sfx("ding",0.1)
 				love.event.quit()
 			end
 		end
@@ -185,7 +205,7 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 		Draw = function(self)
 			love.graphics.rectangle("fill",0,0,800,600)
 			-- Settings
-			love.graphics.print({{0,0,0},StringFetch(9)},50,50)
+			love.graphics.print({{0,0,0},StringFetch(9)},Font.get("Spacy_3"),50,30)
 
 			-- Back button
 			if not self.Back_b.f then
@@ -270,10 +290,20 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 
 	[3] = {
 		Back_b = Button.new(600,495,85,25),
+		Load_b = Button.new(),
+
 		Draw = function(self)
 			love.graphics.rectangle("fill",0,0,800,600)
 			-- Load
-			love.graphics.print({{0,0,0},StringFetch(5)},50,50)
+			love.graphics.print({{0,0,0},StringFetch(5)},Font.get("Spacy_3"),50,30)
+
+			-- Load button
+			local x,y = NormalizeMouse(love.mouse.getPosition())
+			love.graphics.setColor(1,0,1)
+			-- love.graphics.rectangle("fill",x,y,85,25)
+
+			-- Load aera
+			love.graphics.printf({{0,0,0},StringFetch(V)},50,100,500)
 
 			-- Back button
 			if not self.Back_b.f then
@@ -300,6 +330,7 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 		Mousepressed = function(self,x,y,button)
 			Play_Sfx("ding",0.1)
 			local nx, ny = NormalizeMouse(x,y)
+			print(nx-50,ny-100)
 			if self.Back_b:click(nx,ny) then
 				G_STATE_SUB = 1
 			end
@@ -311,7 +342,7 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 		Draw = function(self)
 			love.graphics.rectangle("fill",0,0,800,600)
 			-- Save
-			love.graphics.print({{0,0,0},StringFetch(8)},50,50)
+			love.graphics.print({{0,0,0},StringFetch(8)},Font.get("Spacy_3"),50,30)
 
 			-- Back button
 			if not self.Back_b.f then

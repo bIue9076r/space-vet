@@ -5,7 +5,7 @@ G_STATE_INTRO_SUBSTATES = {
 	[1] = {
 		Draw = function(self)
 			love.graphics.rectangle("fill",0,0,800,600)
-			love.graphics.print({{0,0,0},StringFetch(1)},50,50)
+			love.graphics.print({{0,0,0},StringFetch(1)},Font.get("Spacy_4"),50,50)
 		end,
 
 		Update = function(self,dt)

@@ -9,27 +9,34 @@ G_STATE_OUTSIDE_SUBSTATES = {
 			local tn = Meta_Game.getTimeNumber() or 1
 			love.graphics.draw(Image.get("Outside_"..tn),0,0)
 
-			love.graphics.setColor(1,1,0,0.5)
 			-- Customer Line
-			love.graphics.rectangle("fill",325,125,SCREEN_X - 325,400)
+			if G_DEBUG then
+				love.graphics.setColor(1,1,0,0.25)
+				love.graphics.rectangle("fill",325,125,SCREEN_X - 325,400)
+			end
+
 			local tb = {Meta_Game.getLastThree()}
-			love.graphics.setColor(0,0,1)
 			for i = 1,#tb do
-				love.graphics.rectangle("fill",325 + 175*(i - 1),125,100,400)
+
+				if G_DEBUG then
+					love.graphics.setColor(0,0,1,0.5)
+					love.graphics.rectangle("fill",325 + 175*(i - 1),125,100,400)
+				end
 			end
 
 			-- Door to inside
 			-- Button
-			if not self.Door.f then
-				love.graphics.setColor(1,0,1,0.5)
-			else
-				local t = math.min(self.Door.t/0.125,1)
-				love.graphics.setColor(1*(1 - t),t,1*(1 - t),0.5)
+			if G_DEBUG then
+				if not self.Door.f then
+					love.graphics.setColor(1,0,1,0.25)
+				else
+					local t = math.min(self.Door.t/0.125,1)
+					love.graphics.setColor(1*(1 - t),t,1*(1 - t),0.25)
+				end
+				love.graphics.rectangle("fill",30,100,250,380)
 			end
-			love.graphics.rectangle("fill",30,100,250,380)
 
 			love.graphics.setColor(G_CLEAR)
-			
 			Meta_Game.Draw()
 		end,
 
@@ -43,9 +50,6 @@ G_STATE_OUTSIDE_SUBSTATES = {
 			if G_KEY_LEFT(key) then
 				G_STATE = G_STATE_FRONT_DESK
 				G_STATE_SUB = 1
-				-- G_TRANSITION_T = 0
-				-- G_TRANSITION = function()
-				-- end
 				-- Play_Sfx("Swipe")
 			end
 			Meta_Game.Keypressed(key)

@@ -18,7 +18,18 @@ function love.load(args)
 	Name.get()
 
 	-- Check save file
-	G_SAVE = true -- testing
+	local info = love.filesystem.getInfo(G_SAVE_PATH)
+	if info then
+		if info.type == "file" then
+			G_SAVE = true
+		else
+			-- Why is the save file a directory?
+			-- Panic("Save File is a directory","love.load")
+			G_SAVE = false
+		end
+	else
+		G_SAVE = false
+	end
 end
 
 function love.resize()
