@@ -33,7 +33,17 @@ Image.new("Wormlike_Stinky_2","/Assets/Wormlike_sprites/Wormlike_Stinky_2.png")
 Image.new("Wormlike_Tummy_1","/Assets/Wormlike_sprites/Wormlike_Tummy_1.png")
 Image.new("Wormlike_Tummy_2","/Assets/Wormlike_sprites/Wormlike_Tummy_2.png")
 
--- horse
+Image.new("Horselike_None_1","/Assets/Horselike_sprites/Horselike_None_1.png")
+Image.new("Horselike_Antenne_1","/Assets/Horselike_sprites/Horselike_Antenne_1.png")
+Image.new("Horselike_Antenne_2","/Assets/Horselike_sprites/Horselike_Antenne_2.png")
+Image.new("Horselike_Cold_1","/Assets/Horselike_sprites/Horselike_Cold_1.png")
+Image.new("Horselike_Cold_2","/Assets/Horselike_sprites/Horselike_Cold_2.png")
+Image.new("Horselike_Scratch_1","/Assets/Horselike_sprites/Horselike_Scratch_1.png")
+Image.new("Horselike_Scratch_2","/Assets/Horselike_sprites/Horselike_Scratch_2.png")
+Image.new("Horselike_Stinky_1","/Assets/Horselike_sprites/Horselike_Stinky_1.png")
+Image.new("Horselike_Stinky_2","/Assets/Horselike_sprites/Horselike_Stinky_2.png")
+Image.new("Horselike_Tummy_1","/Assets/Horselike_sprites/Horselike_Tummy_1.png")
+Image.new("Horselike_Tummy_2","/Assets/Horselike_sprites/Horselike_Tummy_2.png")
 
 Image.new("Bunnylike_None_1","/Assets/Bunnylike_sprites/Bunnylike_None_1.png")
 Image.new("Bunnylike_Antenne_1","/Assets/Bunnylike_sprites/Bunnylike_Antenne_1.png")
