@@ -19,7 +19,17 @@ Image.new("Catlike_Tummy_2","/Assets/Catlike_sprites/Catlike_Tummy_2.png")
 
 -- dog
 
--- bird
+Image.new("Birdlike_None_1","/Assets/Birdlike_sprites/Birdlike_None_1.png")
+Image.new("Birdlike_Antenne_1","/Assets/Birdlike_sprites/Birdlike_Antenne_1.png")
+Image.new("Birdlike_Antenne_2","/Assets/Birdlike_sprites/Birdlike_Antenne_2.png")
+Image.new("Birdlike_Cold_1","/Assets/Birdlike_sprites/Birdlike_Cold_1.png")
+Image.new("Birdlike_Cold_2","/Assets/Birdlike_sprites/Birdlike_Cold_2.png")
+Image.new("Birdlike_Scratch_1","/Assets/Birdlike_sprites/Birdlike_Scratch_1.png")
+Image.new("Birdlike_Scratch_2","/Assets/Birdlike_sprites/Birdlike_Scratch_2.png")
+Image.new("Birdlike_Stinky_1","/Assets/Birdlike_sprites/Birdlike_Stinky_1.png")
+Image.new("Birdlike_Stinky_2","/Assets/Birdlike_sprites/Birdlike_Stinky_2.png")
+Image.new("Birdlike_Tummy_1","/Assets/Birdlike_sprites/Birdlike_Tummy_1.png")
+Image.new("Birdlike_Tummy_2","/Assets/Birdlike_sprites/Birdlike_Tummy_2.png")
 
 Image.new("Wormlike_None_1","/Assets/Wormlike_sprites/Wormlike_None_1.png")
 Image.new("Wormlike_Antenne_1","/Assets/Wormlike_sprites/Wormlike_Antenne_1.png")
