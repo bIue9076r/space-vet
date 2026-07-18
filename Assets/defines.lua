@@ -69,7 +69,17 @@ Image.new("Fishlike_Stinky_2","/Assets/Fishlike_sprites/Fishlike_Stinky_2.png")
 Image.new("Fishlike_Tummy_1","/Assets/Fishlike_sprites/Fishlike_Tummy_1.png")
 Image.new("Fishlike_Tummy_2","/Assets/Fishlike_sprites/Fishlike_Tummy_2.png")
 
--- rat
+Image.new("Ratlike_None_1","/Assets/Ratlike_sprites/Ratlike_None_1.png")
+Image.new("Ratlike_Antenne_1","/Assets/Ratlike_sprites/Ratlike_Antenne_1.png")
+Image.new("Ratlike_Antenne_2","/Assets/Ratlike_sprites/Ratlike_Antenne_2.png")
+Image.new("Ratlike_Cold_1","/Assets/Ratlike_sprites/Ratlike_Cold_1.png")
+Image.new("Ratlike_Cold_2","/Assets/Ratlike_sprites/Ratlike_Cold_2.png")
+Image.new("Ratlike_Scratch_1","/Assets/Ratlike_sprites/Ratlike_Scratch_1.png")
+Image.new("Ratlike_Scratch_2","/Assets/Ratlike_sprites/Ratlike_Scratch_2.png")
+Image.new("Ratlike_Stinky_1","/Assets/Ratlike_sprites/Ratlike_Stinky_1.png")
+Image.new("Ratlike_Stinky_2","/Assets/Ratlike_sprites/Ratlike_Stinky_2.png")
+Image.new("Ratlike_Tummy_1","/Assets/Ratlike_sprites/Ratlike_Tummy_1.png")
+Image.new("Ratlike_Tummy_2","/Assets/Ratlike_sprites/Ratlike_Tummy_2.png")
 
 -- Fonts
 Font.new("Spacy","/Assets/Spacy.ttf",16)
