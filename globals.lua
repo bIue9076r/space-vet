@@ -62,6 +62,7 @@ G_MUSIC_PLAYING = true
 G_MUSIC_SONG = nil
 G_MUSIC_DELAY = 5
 G_MUSIC_DELAY_T = 0
+G_TRANSITION_BLOCKING = false
 
 CSCREEN_X = love.graphics.getWidth()
 SCREEN_X = CSCREEN_X

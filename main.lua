@@ -55,7 +55,9 @@ function love.keypressed(key)
 		local f = G_KEYPRESSED[G_STATE] or Error_Keypressed
 		if f then f(key) end
 	else
-		G_TRANSITION = nil
+		if not G_TRANSITION_BLOCKING then
+			G_TRANSITION = nil
+		end
 	end
 end
 
@@ -64,7 +66,9 @@ function love.mousepressed(x,y,button)
 		local f = G_MOUSEPRESSED[G_STATE]
 		if f then f(x,y,button) end
 	else
-		G_TRANSITION = nil
+		if not G_TRANSITION_BLOCKING then
+			G_TRANSITION = nil
+		end
 	end
 end
 

@@ -81,6 +81,7 @@ function New_Day()
 end
 
 function End_Day()
+	G_TRANSITION_BLOCKING = true
 	G_TRANSITION_T = 0
 	G_TRANSITION = function ()
 		G_TRANSITION_T = G_TRANSITION_T + G_DT()
@@ -107,6 +108,7 @@ function End_Day()
 		love.graphics.setColor(G_CLEAR)
 		if G_TRANSITION_T >= 6 then
 			New_Day()
+			G_TRANSITION_BLOCKING = false
 			return false
 		end
 		return true
