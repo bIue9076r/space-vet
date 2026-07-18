@@ -32,9 +32,9 @@ G_STATE_CHECK_UP_SUBSTATES = {
 					end
 				end
 			end
-		end),
+		end,"h","u"),
 
-		Pet_Bath = Draggable.new(200,450,250,100,150,325,100,50,function ()
+		Pet_Bath = Draggable.new(200,450,250,100,150,325,100,50,function(self)
 			local tb = Meta_Game.getLastThree()
 			if tb.aches[1] == "Stinky" then	-- Todo: Success chance for lower level items
 											-- Later: expand for more Aches
@@ -63,7 +63,7 @@ G_STATE_CHECK_UP_SUBSTATES = {
 					end
 				end
 			end
-		end),
+		end,"h","t"),
 
 		Draw = function(self)
             love.graphics.setColor(229/255, 182/255, 234/255)
@@ -129,6 +129,8 @@ G_STATE_CHECK_UP_SUBSTATES = {
 					G_STATE = G_STATE_FRONT_DESK
 					G_STATE_SUB = 1
 				end
+				self.Pet_Bed:keypressed(key)
+				self.Pet_Bath:keypressed(key)
 			end
 			Meta_Game.Keypressed(key)
 		end,

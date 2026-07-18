@@ -19,6 +19,9 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 			Meta_Game.Interaction = true
 			Meta_Game.Interaction_Timer_Goal = 1
 			local x,y,w,h = self.location.Button.x, self.location.Button.y,self.location.Button.w, self.location.Button.h
+			if x == self.location.x then
+				x,y = 320,425
+			end
 			Meta_Game.Interaction_Draw = function()
 				local t = Meta_Game.Interaction_Timer/Meta_Game.Interaction_Timer_Goal
 				-- Draw Pet
@@ -39,7 +42,7 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 					love.graphics.rectangle("fill",x,y,w,h)
 				end
 			end
-		end),
+		end,"u","h"),
 
 		Pet_Bandage = Draggable.new(490,350,60,30,200,450,250,100,function(self)
 			local tb = Meta_Game.getLastThree()
@@ -56,6 +59,9 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 			Meta_Game.Interaction = true
 			Meta_Game.Interaction_Timer_Goal = 1
 			local x,y,w,h = self.location.Button.x, self.location.Button.y,self.location.Button.w, self.location.Button.h
+			if x == self.location.x then
+				x,y = 320,425
+			end
 			Meta_Game.Interaction_Draw = function()
 				local t = Meta_Game.Interaction_Timer/Meta_Game.Interaction_Timer_Goal
 				-- Draw Pet
@@ -76,7 +82,7 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 					love.graphics.rectangle("fill",x,y,w,h)
 				end
 			end
-		end),
+		end,"t","h"),
 
 		Pet_Hammer = Draggable.new(570,330,70,50,200,450,250,100,function(self)
 			local tb = Meta_Game.getLastThree()
@@ -93,6 +99,9 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 			Meta_Game.Interaction = true
 			Meta_Game.Interaction_Timer_Goal = 1
 			local x,y,w,h = self.location.Button.x, self.location.Button.y,self.location.Button.w, self.location.Button.h
+			if x == self.location.x then
+				x,y = 320,425
+			end
 			Meta_Game.Interaction_Draw = function()
 				local t = Meta_Game.Interaction_Timer/Meta_Game.Interaction_Timer_Goal
 				-- Draw Pet
@@ -113,7 +122,7 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 					love.graphics.rectangle("fill",x,y,w,h)
 				end
 			end
-		end),
+		end,"y","h"),
 
 		Draw = function(self)
 			love.graphics.setColor(170/255, 212/255, 153/255)
@@ -233,6 +242,9 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 				elseif G_KEY_UP(key) then
 					G_STATE_SUB = 2
 				end
+				self.Pet_Pills:keypressed(key)
+				self.Pet_Bandage:keypressed(key)
+				self.Pet_Hammer:keypressed(key)
 			end
 			Meta_Game.Keypressed(key)
 		end,

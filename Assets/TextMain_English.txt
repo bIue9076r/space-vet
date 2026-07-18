@@ -13,9 +13,26 @@ Balance:
 Time Remaining: 
 Exit Game
 Credits
-Notepad.exe
-So Aliens are REAL? And they want me to fix all their pets??? 
-I don't know what to do..... 
-I've never done this before and I don't want them to hurt me.
+Notepad.exe - Descriptions.txt
+Descriptions:
+Green and similar to a Cat?
+Bent antenne?
 Loaded Game
 Saved Game
+Green and similar to a Cat, Dog, Bird?
+Bent antenne, Femur inside stomach?
+Green and similar to a Cat, Dog, Bird, Worm, Horse?
+Bent antenne, Femur inside stomach, Cold like symtoms?
+Green and similar to a Cat, Dog, Bird, Bunny, Fish?
+Bent antenne, Femur inside stomach, Cold like symtoms, Major laceration?
+Green and similar to a Cat, Dog, Bird, Rat?
+Bent antenne, Femur inside stomach, Cold like symtoms, Major laceration, Foul Odor?
+Green and similar to a Cat, Dog, Bird, Rat.
+Bent antenne, Femur inside stomach, Cold like symtoms, Major laceration, Foul Odor.
+Notepad.exe - Log.txt
+Pets? Cured: 
+Used Pills: 
+Used Bandades: 
+Used Hammer: 
+Baths Taken: 
+Naps Taken: 

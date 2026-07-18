@@ -116,8 +116,29 @@ function End_Day()
 end
 
 function New_Game()
+	G_MUSIC_PLAYING = true
+	G_STATE = G_STATE_OUTSIDE
+	G_STATE_SUB = 1
+
+	if G_MUSIC_SONG then
+		G_MUSIC_SONG:stop()
+	end
+	G_MUSIC_NEW()
+	if G_MUSIC_SONG then
+		G_MUSIC_SONG:play()
+	end
+
+	G_PLAYING = true
 	G_DAY = 0
 	Bank.balance = 0
+	G_STATE_ONLINE_SHOP_SUBSTATES[1].Npx = 60
+	G_STATE_ONLINE_SHOP_SUBSTATES[1].Npy = 60
+	G_STATE_ONLINE_SHOP_SUBSTATES[1].Npw = 300
+	G_STATE_ONLINE_SHOP_SUBSTATES[1].Nph = 300
+	G_STATE_ONLINE_SHOP_SUBSTATES[1].Sx = 400
+	G_STATE_ONLINE_SHOP_SUBSTATES[1].Sy = 190
+	G_STATE_ONLINE_SHOP_SUBSTATES[1].Sw = 300
+	G_STATE_ONLINE_SHOP_SUBSTATES[1].Sh = 200
 	New_Day()
 
 	Meta_Game.Animals = {
@@ -162,6 +183,14 @@ function Save_Game(path)
 		-- G_ENDING
 		-- Bank.balance
 		-- G_DAY
+		-- 	G_STATE_ONLINE_SHOP_SUBSTATES[1].Npx = 60
+		-- G_STATE_ONLINE_SHOP_SUBSTATES[1].Npy = 60
+		-- G_STATE_ONLINE_SHOP_SUBSTATES[1].Npw = 300
+		-- G_STATE_ONLINE_SHOP_SUBSTATES[1].Nph = 300
+		-- G_STATE_ONLINE_SHOP_SUBSTATES[1].Sx = 400
+		-- G_STATE_ONLINE_SHOP_SUBSTATES[1].Sy = 190
+		-- G_STATE_ONLINE_SHOP_SUBSTATES[1].Sw = 300
+		-- G_STATE_ONLINE_SHOP_SUBSTATES[1].Sh = 200
 		-- Meta_Game.Timer
 		-- Meta_Game.Tick
 		-- Meta_Game.Interaction
@@ -193,6 +222,14 @@ function Save_Game(path)
 	file:write("G_ENDING = "..tostring(G_ENDING).."\n")
 	file:write("Bank.balance = "..tostring(Bank.balance).."\n")
 	file:write("G_DAY = "..tostring(G_DAY).."\n")
+	file:write("G_STATE_ONLINE_SHOP_SUBSTATES[1].Npx = "..tostring(G_STATE_ONLINE_SHOP_SUBSTATES[1].Npx).."\n")
+	file:write("G_STATE_ONLINE_SHOP_SUBSTATES[1].Npy = "..tostring(G_STATE_ONLINE_SHOP_SUBSTATES[1].Npy).."\n")
+	file:write("G_STATE_ONLINE_SHOP_SUBSTATES[1].Npw = "..tostring(G_STATE_ONLINE_SHOP_SUBSTATES[1].Npw).."\n")
+	file:write("G_STATE_ONLINE_SHOP_SUBSTATES[1].Nph = "..tostring(G_STATE_ONLINE_SHOP_SUBSTATES[1].Nph).."\n")
+	file:write("G_STATE_ONLINE_SHOP_SUBSTATES[1].Sx = "..tostring(G_STATE_ONLINE_SHOP_SUBSTATES[1].Sx).."\n")
+	file:write("G_STATE_ONLINE_SHOP_SUBSTATES[1].Sy = "..tostring(G_STATE_ONLINE_SHOP_SUBSTATES[1].Sy).."\n")
+	file:write("G_STATE_ONLINE_SHOP_SUBSTATES[1].Sw = "..tostring(G_STATE_ONLINE_SHOP_SUBSTATES[1].Sw).."\n")
+	file:write("G_STATE_ONLINE_SHOP_SUBSTATES[1].Sh = "..tostring(G_STATE_ONLINE_SHOP_SUBSTATES[1].Sh).."\n")
 	file:write("Meta_Game.Timer = "..tostring(Meta_Game.Timer).."\n")
 	file:write("Meta_Game.Tick = "..tostring(Meta_Game.Tick).."\n")
 	file:write("Meta_Game.Interaction = "..tostring(Meta_Game.Interaction).."\n")

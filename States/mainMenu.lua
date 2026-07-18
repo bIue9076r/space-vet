@@ -125,6 +125,9 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 
 		Keypressed = function(self,key)
 			Play_Sfx("ding",0.1)
+			if key == "return" then
+				New_Game()
+			end
 		end,
 
 		Mousepressed = function(self,x,y,button)
@@ -132,21 +135,6 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 			-- Start new game
 			local nx, ny = NormalizeMouse(x,y)
 			if self.NewGame_b:click(nx,ny) then
-				G_MUSIC_PLAYING = true
-				G_STATE = G_STATE_OUTSIDE
-				G_STATE_SUB = 1
-				
-				if G_MUSIC_SONG then
-					G_MUSIC_SONG:stop()
-				end
-
-				G_MUSIC_NEW()
-
-				if G_MUSIC_SONG then
-					G_MUSIC_SONG:play()
-				end
-
-				G_PLAYING = true
 				New_Game()
 			end
 
@@ -287,93 +275,6 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 			end
 		end
 	},
-
-	[3] = {
-		Back_b = Button.new(600,495,85,25),
-		Load_b = Button.new(),
-
-		Draw = function(self)
-			love.graphics.rectangle("fill",0,0,800,600)
-			-- Load
-			love.graphics.print({{0,0,0},StringFetch(5)},Font.get("Spacy_3"),50,30)
-
-			-- Load button
-			local x,y = NormalizeMouse(love.mouse.getPosition())
-			love.graphics.setColor(1,0,1)
-			-- love.graphics.rectangle("fill",x,y,85,25)
-
-			-- Load aera
-			love.graphics.printf({{0,0,0},StringFetch(V)},50,100,500)
-
-			-- Back button
-			if not self.Back_b.f then
-				love.graphics.setColor(1,1,1)
-			else
-				local t = math.min(self.Back_b.t/0.125,1)
-				love.graphics.setColor(1*(1 - t),t,1*(1 - t))
-			end
-			love.graphics.rectangle("fill",630,495,85,25)
-			love.graphics.print({{0,0,0},StringFetch(10)},650,500)
-
-			love.graphics.setColor(G_CLEAR)
-		end,
-
-		Update = function(self,dt)
-			local x,y = NormalizeMouse(love.mouse.getPosition())
-			self.Back_b:focus(x,y)
-		end,
-
-		Keypressed = function(self,key)
-			Play_Sfx("ding",0.1)
-		end,
-
-		Mousepressed = function(self,x,y,button)
-			Play_Sfx("ding",0.1)
-			local nx, ny = NormalizeMouse(x,y)
-			print(nx-50,ny-100)
-			if self.Back_b:click(nx,ny) then
-				G_STATE_SUB = 1
-			end
-		end
-	},
-
-	[4] = {
-		Back_b = Button.new(600,495,85,25),
-		Draw = function(self)
-			love.graphics.rectangle("fill",0,0,800,600)
-			-- Save
-			love.graphics.print({{0,0,0},StringFetch(8)},Font.get("Spacy_3"),50,30)
-
-			-- Back button
-			if not self.Back_b.f then
-				love.graphics.setColor(1,1,1)
-			else
-				local t = math.min(self.Back_b.t/0.125,1)
-				love.graphics.setColor(1*(1 - t),t,1*(1 - t))
-			end
-			love.graphics.rectangle("fill",630,495,85,25)
-			love.graphics.print({{0,0,0},StringFetch(10)},650,500)
-
-			love.graphics.setColor(G_CLEAR)
-		end,
-
-		Update = function(self,dt)
-			local x,y = NormalizeMouse(love.mouse.getPosition())
-			self.Back_b:focus(x,y)
-		end,
-
-		Keypressed = function(self,key)
-			Play_Sfx("ding",0.1)
-		end,
-
-		Mousepressed = function(self,x,y,button)
-			Play_Sfx("ding",0.1)
-			local nx, ny = NormalizeMouse(x,y)
-			if self.Back_b:click(nx,ny) then
-				G_STATE_SUB = 1
-			end
-		end
-	}
 }
 
 
