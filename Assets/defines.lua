@@ -1,5 +1,7 @@
 -- Images
 Image.new("Alien","/Assets/Alien.png")
+Image.new("button","/Assets/temp_button.png")
+Image.new("button_squ","/Assets/temp_button_squ.png")
 Image.new("Outside_1","/Assets/outside_1.png")
 Image.new("Outside_2","/Assets/outside_2.png")
 

@@ -36,3 +36,6 @@ Used Bandades:
 Used Hammer: 
 Baths Taken: 
 Naps Taken: 
+ - Main Volume
+ - Music Volume
+ - SFX Volume
