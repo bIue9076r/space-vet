@@ -125,9 +125,11 @@ G_STATE_CHECK_UP_SUBSTATES = {
 				if G_KEY_LEFT(key) then
 					G_STATE = G_STATE_CARE_UNIT
 					G_STATE_SUB = 1
+					Play_Sfx("Swipe")
 				elseif G_KEY_RIGHT(key) then
 					G_STATE = G_STATE_FRONT_DESK
 					G_STATE_SUB = 1
+					Play_Sfx("Swipe")
 				end
 				self.Pet_Bed:keypressed(key)
 				self.Pet_Bath:keypressed(key)

@@ -57,6 +57,8 @@ Sound.new("no_3","/Assets/no_3.mp3","static")
 Sound.new("no_4","/Assets/no_4.mp3","static")
 Sound.new("Spend","/Assets/clear.mp3","static")
 Sound.new("No_money","/Assets/deny.mp3","static")
+Sound.new("Door","/Assets/door.mp3","static")
+Sound.new("Swipe","/Assets/swipe.mp3","static")
 
 -- Songs
 Sound.new("beep","/Assets/beepboop.mp3")

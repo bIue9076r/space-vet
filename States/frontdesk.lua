@@ -41,9 +41,11 @@ G_STATE_FRONT_DESK_SUBSTATES = {
 			elseif G_KEY_LEFT(key) then
 				G_STATE = G_STATE_CHECK_UP
 				G_STATE_SUB = 1
+				Play_Sfx("Swipe")
 			elseif G_KEY_RIGHT(key) then
 				G_STATE = G_STATE_OUTSIDE
 				G_STATE_SUB = 1
+				Play_Sfx("Door")
 			end
 			Meta_Game.Keypressed(key)
 		end,

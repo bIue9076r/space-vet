@@ -239,6 +239,7 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 				if G_KEY_RIGHT(key) then
 					G_STATE = G_STATE_CHECK_UP
 					G_STATE_SUB = 1
+					Play_Sfx("Swipe")
 				elseif G_KEY_UP(key) then
 					G_STATE_SUB = 2
 				end

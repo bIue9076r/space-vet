@@ -245,9 +245,9 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 			self.SFX_Volume_Up:draw()
 			self.SFX_Volume_Down:draw()
 
-			love.graphics.print({{0,0,0},Main_Volume..StringFetch(39)},self.Main_Volume_Down.x + 104, self.Main_Volume_Down.y + 24)
-			love.graphics.print({{0,0,0},Music_Volume..StringFetch(40)},self.Music_Volume_Down.x + 104, self.Music_Volume_Down.y + 24)
-			love.graphics.print({{0,0,0},SFX_Volume..StringFetch(41)},self.SFX_Volume_Down.x + 104, self.SFX_Volume_Down.y + 24)
+			love.graphics.print({{0,0,0},string.format("%.01f",Main_Volume)..StringFetch(39)},self.Main_Volume_Down.x + 104, self.Main_Volume_Down.y + 24)
+			love.graphics.print({{0,0,0},string.format("%.01f",Music_Volume)..StringFetch(40)},self.Music_Volume_Down.x + 104, self.Music_Volume_Down.y + 24)
+			love.graphics.print({{0,0,0},string.format("%.01f",SFX_Volume)..StringFetch(41)},self.SFX_Volume_Down.x + 104, self.SFX_Volume_Down.y + 24)
 
 			love.graphics.setColor(G_CLEAR)
 		end,

@@ -50,7 +50,7 @@ G_STATE_OUTSIDE_SUBSTATES = {
 			if G_KEY_LEFT(key) then
 				G_STATE = G_STATE_FRONT_DESK
 				G_STATE_SUB = 1
-				-- Play_Sfx("Swipe")
+				Play_Sfx("Door")
 			end
 			Meta_Game.Keypressed(key)
 		end,
@@ -60,7 +60,7 @@ G_STATE_OUTSIDE_SUBSTATES = {
 			if self.Door:click(nx,ny) then
 				G_STATE = G_STATE_FRONT_DESK
 				G_STATE_SUB = 1
-				-- Play_Sfx("Swipe")
+				Play_Sfx("Door")
 			end
 			Meta_Game.Mousepressed(x,y,button)
 		end
