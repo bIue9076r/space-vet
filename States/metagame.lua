@@ -20,7 +20,8 @@ Meta_Game.Cured_Draw = function ()
 
 	love.graphics.setColor(1,1,1,(1 - t))
 	local n = 1 -- TODO: Dynamic animations
-	love.graphics.draw(Meta_Game.Cured_Pet:image(n),150,350)
+	local p = Meta_Game.Cured_Pet:position(1)
+	love.graphics.draw(Meta_Game.Cured_Pet:image(n),p.x,p.y)
 
 	if G_DEBUG then
 		love.graphics.setColor(0,0,1,(1 - t)*0.25)
