@@ -17,6 +17,30 @@ Image.new("Catlike_Stinky_2","/Assets/Catlike_sprites/Catlike_Stinky_2.png")
 Image.new("Catlike_Tummy_1","/Assets/Catlike_sprites/Catlike_Tummy_1.png")
 Image.new("Catlike_Tummy_2","/Assets/Catlike_sprites/Catlike_Tummy_2.png")
 
+-- dog
+
+-- bird
+
+Image.new("Wormlike_None_1","/Assets/Wormlike_sprites/Wormlike_None_1.png")
+Image.new("Wormlike_Antenne_1","/Assets/Wormlike_sprites/Wormlike_Antenne_1.png")
+Image.new("Wormlike_Antenne_2","/Assets/Wormlike_sprites/Wormlike_Antenne_2.png")
+Image.new("Wormlike_Cold_1","/Assets/Wormlike_sprites/Wormlike_Cold_1.png")
+Image.new("Wormlike_Cold_2","/Assets/Wormlike_sprites/Wormlike_Cold_2.png")
+Image.new("Wormlike_Scratch_1","/Assets/Wormlike_sprites/Wormlike_Scratch_1.png")
+Image.new("Wormlike_Scratch_2","/Assets/Wormlike_sprites/Wormlike_Scratch_2.png")
+Image.new("Wormlike_Stinky_1","/Assets/Wormlike_sprites/Wormlike_Stinky_1.png")
+Image.new("Wormlike_Stinky_2","/Assets/Wormlike_sprites/Wormlike_Stinky_2.png")
+Image.new("Wormlike_Tummy_1","/Assets/Wormlike_sprites/Wormlike_Tummy_1.png")
+Image.new("Wormlike_Tummy_2","/Assets/Wormlike_sprites/Wormlike_Tummy_2.png")
+
+-- horse
+
+-- bunny
+
+-- fish
+
+-- rat
+
 -- Fonts
 Font.new("Spacy","/Assets/Spacy.ttf",16)
 Font.new("Spacy_2","/Assets/Spacy.ttf",24)
