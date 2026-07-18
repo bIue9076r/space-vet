@@ -35,7 +35,17 @@ Image.new("Wormlike_Tummy_2","/Assets/Wormlike_sprites/Wormlike_Tummy_2.png")
 
 -- horse
 
--- bunny
+Image.new("Bunnylike_None_1","/Assets/Bunnylike_sprites/Bunnylike_None_1.png")
+Image.new("Bunnylike_Antenne_1","/Assets/Bunnylike_sprites/Bunnylike_Antenna_1.png")
+Image.new("Bunnylike_Antenne_2","/Assets/Bunnylike_sprites/Bunnylike_Antenna_2.png")
+Image.new("Bunnylike_Cold_1","/Assets/Bunnylike_sprites/Bunnylike_Cold_1.png")
+Image.new("Bunnylike_Cold_2","/Assets/Bunnylike_sprites/Bunnylike_Cold_2.png")
+Image.new("Bunnylike_Scratch_1","/Assets/Bunnylike_sprites/Bunnylike_Scratch_1.png")
+Image.new("Bunnylike_Scratch_2","/Assets/Bunnylike_sprites/Bunnylike_Scratch_2.png")
+Image.new("Bunnylike_Stinky_1","/Assets/Bunnylike_sprites/Bunnylike_Stinky_1.png")
+Image.new("Bunnylike_Stinky_2","/Assets/Bunnylike_sprites/Bunnylike_Stinky_2.png")
+Image.new("Bunnylike_Tummy_1","/Assets/Bunnylike_sprites/Bunnylike_Tummy_1.png")
+Image.new("Bunnylike_Tummy_2","/Assets/Bunnylike_sprites/Bunnylike_Tummy_2.png")
 
 -- fish
 
