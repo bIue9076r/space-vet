@@ -36,8 +36,8 @@ Image.new("Wormlike_Tummy_2","/Assets/Wormlike_sprites/Wormlike_Tummy_2.png")
 -- horse
 
 Image.new("Bunnylike_None_1","/Assets/Bunnylike_sprites/Bunnylike_None_1.png")
-Image.new("Bunnylike_Antenne_1","/Assets/Bunnylike_sprites/Bunnylike_Antenna_1.png")
-Image.new("Bunnylike_Antenne_2","/Assets/Bunnylike_sprites/Bunnylike_Antenna_2.png")
+Image.new("Bunnylike_Antenne_1","/Assets/Bunnylike_sprites/Bunnylike_Antenne_1.png")
+Image.new("Bunnylike_Antenne_2","/Assets/Bunnylike_sprites/Bunnylike_Antenne_2.png")
 Image.new("Bunnylike_Cold_1","/Assets/Bunnylike_sprites/Bunnylike_Cold_1.png")
 Image.new("Bunnylike_Cold_2","/Assets/Bunnylike_sprites/Bunnylike_Cold_2.png")
 Image.new("Bunnylike_Scratch_1","/Assets/Bunnylike_sprites/Bunnylike_Scratch_1.png")
@@ -47,7 +47,17 @@ Image.new("Bunnylike_Stinky_2","/Assets/Bunnylike_sprites/Bunnylike_Stinky_2.png
 Image.new("Bunnylike_Tummy_1","/Assets/Bunnylike_sprites/Bunnylike_Tummy_1.png")
 Image.new("Bunnylike_Tummy_2","/Assets/Bunnylike_sprites/Bunnylike_Tummy_2.png")
 
--- fish
+Image.new("Fishlike_None_1","/Assets/Fishlike_sprites/Fishlike_None_1.png")
+Image.new("Fishlike_Antenne_1","/Assets/Fishlike_sprites/Fishlike_Antenne_1.png")
+Image.new("Fishlike_Antenne_2","/Assets/Fishlike_sprites/Fishlike_Antenne_2.png")
+Image.new("Fishlike_Cold_1","/Assets/Fishlike_sprites/Fishlike_Cold_1.png")
+Image.new("Fishlike_Cold_2","/Assets/Fishlike_sprites/Fishlike_Cold_2.png")
+Image.new("Fishlike_Scratch_1","/Assets/Fishlike_sprites/Fishlike_Scratch_1.png")
+Image.new("Fishlike_Scratch_2","/Assets/Fishlike_sprites/Fishlike_Scratch_2.png")
+Image.new("Fishlike_Stinky_1","/Assets/Fishlike_sprites/Fishlike_Stinky_1.png")
+Image.new("Fishlike_Stinky_2","/Assets/Fishlike_sprites/Fishlike_Stinky_2.png")
+Image.new("Fishlike_Tummy_1","/Assets/Fishlike_sprites/Fishlike_Tummy_1.png")
+Image.new("Fishlike_Tummy_2","/Assets/Fishlike_sprites/Fishlike_Tummy_2.png")
 
 -- rat
 
@@ -75,3 +85,4 @@ Sound.new("beep","/Assets/beepboop.mp3")
 Sound.new("gloorp","/Assets/gloorp.mp3")
 Sound.new("pit","/Assets/pit_stop.mp3")
 Sound.new("ggg","/Assets/glurp-glurp-glurp.mp3")
+Sound.new("saturn","/Assets/saturns_regards.mp3")

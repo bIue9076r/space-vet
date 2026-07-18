@@ -56,6 +56,11 @@ G_MUSIC_LIST = {
 	"beep",
 	"gloorp",
 	"pit",
+	"saturn",
+}
+
+G_MUSIC_LIST_C = {
+	0,0,0,0
 }
 
 G_MUSIC_PLAYING = true
@@ -97,6 +102,24 @@ end
 
 function G_MUSIC_NEW()
 	local n = math.random(1,#G_MUSIC_LIST)
+	for _ = 1,5 do -- Try 5 times to shuffle
+		local m = false
+		for i = 1,#G_MUSIC_LIST do
+			if not(i == n) then
+				if G_MUSIC_LIST_C[n] - G_MUSIC_LIST_C[i] >= 1 then
+					m = true
+				end
+			end
+		end
+
+		if m then
+			n = math.random(1,#G_MUSIC_LIST)
+		else
+			break
+		end
+	end
+
+	G_MUSIC_LIST_C[n] = G_MUSIC_LIST_C[n] + 1
 	G_MUSIC_SONG = Sound.get(G_MUSIC_LIST[n])
 end
 

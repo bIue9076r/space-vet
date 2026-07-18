@@ -23,17 +23,17 @@ Green and similar to a Cat, Dog, Bird?
 Bent antenne, Femur inside stomach?
 Green and similar to a Cat, Dog, Bird, Worm, Horse?
 Bent antenne, Femur inside stomach, Cold like symtoms?
-Green and similar to a Cat, Dog, Bird, Bunny, Fish?
+Green and similar to a Cat, Dog, Bird, Worm, Horse, Bunny? + Pink Fish?
 Bent antenne, Femur inside stomach, Cold like symtoms, Major laceration?
-Green and similar to a Cat, Dog, Bird, Rat?
+Green and similar to a Cat, Dog, Bird, Worm, Horse, Bunny, Rat? + Pink Fish?
 Bent antenne, Femur inside stomach, Cold like symtoms, Major laceration, Foul Odor?
-Green and similar to a Cat, Dog, Bird, Rat.
+Green and similar to a Cat, Dog, Bird, Worm, Horse, Bunny, Rat. + Pink Fish.
 Bent antenne, Femur inside stomach, Cold like symtoms, Major laceration, Foul Odor.
 Notepad.exe - Log.txt
 Pets? Cured: 
 Used Pills: 
 Used Bandades: 
-Used Hammer: 
+Used Hammers: 
 Baths Taken: 
 Naps Taken: 
  - Main Volume
