@@ -57,10 +57,11 @@ G_MUSIC_LIST = {
 	"gloorp",
 	"pit",
 	"saturn",
+	"planetx",
 }
 
 G_MUSIC_LIST_C = {
-	0,0,0,0
+	0,0,0,0,0
 }
 
 G_MUSIC_PLAYING = true
