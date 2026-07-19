@@ -12,34 +12,45 @@ Animal_Position = {}
 Animal_Position[1] = { -- floor
 	["Catlike"] = {x = 150, y = 350},
 	["Doglike"] = {x = 150, y = 300},
-	["Birdlike"] = {x = 150, y = 350},
-	["Wormlike"] = {x = 150, y = 350},
+	["Birdlike"] = {x = 175, y = 370},
+	["Wormlike"] = {x = 160, y = 355},
 	["Horselike"] = {x = 100, y = 275},
-	["Bunnylike"] = {x = 150, y = 350},
-	["Fishlike"] = {x = 150, y = 350},
-	["Ratlike"] = {x = 150, y = 350},
+	["Bunnylike"] = {x = 160, y = 350},
+	["Fishlike"] = {x = 160, y = 390},
+	["Ratlike"] = {x = 175, y = 390},
 }
 
 Animal_Position[2] = { -- bath
-	["Catlike"] = {x = 50, y = 200},
+	["Catlike"] = {x = 30, y = 200},
 	["Doglike"] = {x = 50, y = 200},
-	["Birdlike"] = {x = 50, y = 200},
-	["Wormlike"] = {x = 50, y = 200},
-	["Horselike"] = {x = 50, y = 100},
-	["Bunnylike"] = {x = 50, y = 200},
-	["Fishlike"] = {x = 50, y = 200},
-	["Ratlike"] = {x = 50, y = 200},
+	["Birdlike"] = {x = 35, y = 215},
+	["Wormlike"] = {x = 40, y = 200},
+	["Horselike"] = {x = -10, y = 100},
+	["Bunnylike"] = {x = 40, y = 190},
+	["Fishlike"] = {x = 40, y = 250},
+	["Ratlike"] = {x = 50, y = 225},
 }
 
 Animal_Position[3] = { -- bed
-	["Catlike"] = {x = 500, y = 200},
-	["Doglike"] = {x = 500, y = 200},
-	["Birdlike"] = {x = 500, y = 200},
-	["Wormlike"] = {x = 500, y = 200},
-	["Horselike"] = {x = 400, y = 200},
-	["Bunnylike"] = {x = 500, y = 200},
-	["Fishlike"] = {x = 500, y = 200},
-	["Ratlike"] = {x = 500, y = 200},
+	["Catlike"] = {x = 460, y = 225},
+	["Doglike"] = {x = 460, y = 235},
+	["Birdlike"] = {x = 455, y = 230},
+	["Wormlike"] = {x = 470, y = 220},
+	["Horselike"] = {x = 400, y = 130},
+	["Bunnylike"] = {x = 455, y = 200},
+	["Fishlike"] = {x = 455, y = 240},
+	["Ratlike"] = {x = 455, y = 260},
+}
+
+Animal_Position[4] = { -- xray
+	["Catlike"] = {x = 70, y = 130},
+	["Doglike"] = {x = 60, y = 40},
+	["Birdlike"] = {x = 95, y = 145},
+	["Wormlike"] = {x = 85, y = 120},
+	["Horselike"] = {x = -10, y = -10},
+	["Bunnylike"] = {x = 70, y = 110},
+	["Fishlike"] = {x = 70, y = 155},
+	["Ratlike"] = {x = 104, y = 172},
 }
 
 -- New Animal
@@ -71,3 +82,11 @@ function Animal:position(n)
 	local P = Animal_Position[n] or Animal_Position[1]
 	return P[self.kind]
 end
+
+-- TODO: offsets
+-- function Animal:offset(n,t)
+--	n = n or 1
+-- 	t = t or 0
+-- 	local P = Animal_Offset[n] or Animal_Offset[1]
+-- 	return {x = P[self.kind].x(t), y = P[self.kind].y(t)}
+-- end

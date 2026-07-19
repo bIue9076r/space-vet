@@ -20,7 +20,7 @@ Meta_Game.Cured_Draw = function ()
 
 	love.graphics.setColor(1,1,1,(1 - t))
 	local n = 1 -- TODO: Dynamic animations
-	local p = Meta_Game.Cured_Pet:position(1)
+	local p = Meta_Game.Cured_Pet:position(1) -- TODO: plus offsets
 	love.graphics.draw(Meta_Game.Cured_Pet:image(n),p.x,p.y)
 
 	if G_DEBUG then
@@ -347,6 +347,23 @@ function Meta_Game.Keypressed(key)
 		G_LAST_STATE = G_STATE
 		G_STATE = G_STATE_MAIN_MENU
 		G_STATE_SUB = 1
+	end
+
+	if G_DEBUG then
+		G_LP_N = G_LP_N or  1
+		if key == "=" then
+			local lp = Meta_Game.Animals[#Meta_Game.Animals]
+			if lp then
+				G_LP_N = (G_LP_N % #Kinds.list) + 1
+				lp.kind = Kinds.list[G_LP_N].value
+			end
+		elseif key == "-" then
+			local lp = Meta_Game.Animals[#Meta_Game.Animals]
+			if lp then
+				G_LP_N = (G_LP_N - 2) % #Kinds.list + 1
+				lp.kind = Kinds.list[G_LP_N].value
+			end
+		end
 	end
 end
 

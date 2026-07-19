@@ -24,7 +24,7 @@ G_STATE_CHECK_UP_SUBSTATES = {
 				if tb then
 					love.graphics.setColor(G_CLEAR)
 					local n = 1 -- TODO: Dynamic animations
-					local p = tb:position(3)
+					local p = tb:position(3) -- TODO: plus offsets
 					love.graphics.draw(tb:image(n),p.x,p.y)
 
 					if G_DEBUG then
@@ -56,7 +56,7 @@ G_STATE_CHECK_UP_SUBSTATES = {
 				if tb then
 					love.graphics.setColor(G_CLEAR)
 					local n = 1 -- TODO: Dynamic animations
-					local p = tb:position(2)
+					local p = tb:position(2) -- TODO: plus offsets
 					love.graphics.draw(tb:image(n),p.x,p.y)
 
 					if G_DEBUG then
@@ -86,7 +86,7 @@ G_STATE_CHECK_UP_SUBSTATES = {
 				if tb then
 					love.graphics.setColor(G_CLEAR)
 					local n = 1 -- TODO: Dynamic animations
-					local p = tb:position(1)
+					local p = tb:position(1) -- TODO: plus offsets
 					love.graphics.draw(tb:image(n),p.x,p.y)
 
 					if G_DEBUG then
