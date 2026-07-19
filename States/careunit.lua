@@ -28,7 +28,8 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 				if tb then
 					love.graphics.setColor(G_CLEAR)
 					local n = 1 -- TODO: Dynamic animations
-					love.graphics.draw(tb:image(n),150,350)
+					local p = tb:position(1)
+					love.graphics.draw(tb:image(n),p.x,p.y)
 
 					if G_DEBUG then
 						love.graphics.setColor(0,0,1,0.25)
@@ -68,7 +69,8 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 				if tb then
 					love.graphics.setColor(G_CLEAR)
 					local n = 1 -- TODO: Dynamic animations
-					love.graphics.draw(tb:image(n),150,350)
+					local p = tb:position(1)
+					love.graphics.draw(tb:image(n),p.x,p.y)
 
 					if G_DEBUG then
 						love.graphics.setColor(0,0,1,0.25)
@@ -108,7 +110,8 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 				if tb then
 					love.graphics.setColor(G_CLEAR)
 					local n = 1 -- TODO: Dynamic animations
-					love.graphics.draw(tb:image(n),150,350)
+					local p = tb:position(1)
+					love.graphics.draw(tb:image(n),p.x,p.y)
 
 					if G_DEBUG then
 						love.graphics.setColor(0,0,1,0.25)
