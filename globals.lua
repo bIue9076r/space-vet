@@ -78,16 +78,6 @@ ASPECT = (CSCREEN_X/CSCREEN_Y)
 ASPECT_INDEX = 1
 CANVAS = love.graphics.newCanvas()
 
-function PrintAll(tbl)
-	tbl = tbl or _G
-	for i,v in pairs(tbl) do
-		print(i,"= [",v,"]")
-		if type(v) == "table" then
-			PrintAll(v)
-		end
-	end
-end
-
 G_DRAW[-10] = function()
 	love.graphics.setColor(0,0,1)
 	love.graphics.rectangle("fill",0,0,SCREEN_X,SCREEN_Y)

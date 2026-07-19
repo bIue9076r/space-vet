@@ -11,7 +11,7 @@ Animal.owner = "Alien_1"
 Animal_Position = {}
 Animal_Position[1] = { -- floor
 	["Catlike"] = {x = 150, y = 350},
-	["Doglike"] = {x = 150, y = 350},
+	["Doglike"] = {x = 150, y = 300},
 	["Birdlike"] = {x = 150, y = 350},
 	["Wormlike"] = {x = 150, y = 350},
 	["Horselike"] = {x = 100, y = 275},
