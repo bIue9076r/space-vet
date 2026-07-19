@@ -1,8 +1,7 @@
 -- Kinds
 Kinds = {}
 Kinds.list = {
-	DayObj.new("Catlike"), -- DayObj.new("Doglike",2),
-	DayObj.new("Birdlike",2),
+	DayObj.new("Catlike"), DayObj.new("Doglike",2), DayObj.new("Birdlike",2),
 	DayObj.new("Wormlike",3), DayObj.new("Horselike",3), DayObj.new("Bunnylike",4),
 	DayObj.new("Fishlike",4), DayObj.new("Ratlike",5)
 	-- In the future add more animals :V
