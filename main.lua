@@ -9,6 +9,13 @@ function love.load(args)
 	love.window.setMode(1000, 600, {resizable = true, minwidth = 800, minheight = 600})
 	love.resize()
 
+	for i, v in ipairs(args) do
+		if(v == "-d" or v == "-D" or v == "debug") then
+			G_DEBUG = false
+			G_ALWAYS_AVALIABLE = false
+		end
+	end
+
 	-- Get Strings
 	GetStrings()
 
@@ -23,6 +30,7 @@ function love.load(args)
 	if info then
 		if info.type == "file" then
 			G_SAVE = true
+			G_HINTS = false
 		else
 			-- Why is the save file a directory?
 			-- Panic("Save File is a directory","love.load")
@@ -120,6 +128,7 @@ function love.draw()
 	-- Black Background
 	love.graphics.setColor(0,0,0)
 	love.graphics.rectangle("fill",cx,cy,ASPECT_INDEX*SCREEN_X,ASPECT_INDEX*SCREEN_Y)
-	love.graphics.setColor(1,1,1)
+	love.graphics.setColor(G_CLEAR)
 	love.graphics.draw(CANVAS,cx,cy,0,ASPECT_INDEX,ASPECT_INDEX)
+	love.graphics.setColor(G_CLEAR)
 end

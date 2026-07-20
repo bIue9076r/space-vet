@@ -39,3 +39,5 @@ Naps Taken:
  - Main Volume
  - Music Volume
  - SFX Volume
+Mute Audio
+Game Hints: 

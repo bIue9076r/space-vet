@@ -10,7 +10,7 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 											-- Later: expand for more Aches
 				tb.aches[1] = "None"
 				Meta_Game.Cured = true
-				Play_Sfx("thx")
+				Play_Sfx("thx_"..math.random(1,4))
 			else
 				Play_Sfx("no_"..math.random(1,4))
 			end
@@ -18,10 +18,7 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 			G_STATS.Pills_Used = G_STATS.Pills_Used + 1
 			Meta_Game.Interaction = true
 			Meta_Game.Interaction_Timer_Goal = 1
-			local x,y,w,h = self.location.Button.x, self.location.Button.y,self.location.Button.w, self.location.Button.h
-			if x == self.location.x then
-				x,y = 320,425
-			end
+			local w,h = self.location.Button.w, self.location.Button.h
 			Meta_Game.Interaction_Draw = function()
 				local t = Meta_Game.Interaction_Timer/Meta_Game.Interaction_Timer_Goal
 				-- Draw Pet
@@ -38,9 +35,10 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 				end
 
 				-- Draw tool being used
+				local l = tb:position(5)
 				if G_DEBUG then
 					love.graphics.setColor(1,0,0,1 - t)
-					love.graphics.rectangle("fill",x,y,w,h)
+					love.graphics.rectangle("fill",l.x,l.y,w,h)
 				end
 			end
 		end,"u","h"),
@@ -51,7 +49,7 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 												-- Later: expand for more Aches
 				tb.aches[1] = "None"
 				Meta_Game.Cured = true
-				Play_Sfx("thx")
+				Play_Sfx("thx_"..math.random(1,4))
 			else
 				Play_Sfx("no_"..math.random(1,4))
 			end
@@ -59,10 +57,7 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 			G_STATS.Bandades_Used = G_STATS.Bandades_Used + 1
 			Meta_Game.Interaction = true
 			Meta_Game.Interaction_Timer_Goal = 1
-			local x,y,w,h = self.location.Button.x, self.location.Button.y,self.location.Button.w, self.location.Button.h
-			if x == self.location.x then
-				x,y = 320,425
-			end
+			local w,h = self.location.Button.w, self.location.Button.h
 			Meta_Game.Interaction_Draw = function()
 				local t = Meta_Game.Interaction_Timer/Meta_Game.Interaction_Timer_Goal
 				-- Draw Pet
@@ -79,9 +74,10 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 				end
 
 				-- Draw tool being used
+				local l = tb:position(7)
 				if G_DEBUG then
 					love.graphics.setColor(1,1,1,1 - t)
-					love.graphics.rectangle("fill",x,y,w,h)
+					love.graphics.rectangle("fill",l.x,l.y,w,h)
 				end
 			end
 		end,"t","h"),
@@ -92,7 +88,7 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 												-- Later: expand for more Aches
 				tb.aches[1] = "None"
 				Meta_Game.Cured = true
-				Play_Sfx("thx")
+				Play_Sfx("thx_"..math.random(1,4))
 			else
 				Play_Sfx("no_"..math.random(1,4))
 			end
@@ -100,10 +96,7 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 			G_STATS.Hammer_Used = G_STATS.Hammer_Used + 1
 			Meta_Game.Interaction = true
 			Meta_Game.Interaction_Timer_Goal = 1
-			local x,y,w,h = self.location.Button.x, self.location.Button.y,self.location.Button.w, self.location.Button.h
-			if x == self.location.x then
-				x,y = 320,425
-			end
+			local w,h = self.location.Button.w, self.location.Button.h
 			Meta_Game.Interaction_Draw = function()
 				local t = Meta_Game.Interaction_Timer/Meta_Game.Interaction_Timer_Goal
 				-- Draw Pet
@@ -120,9 +113,10 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 				end
 
 				-- Draw tool being used
+				local l = tb:position(6)
 				if G_DEBUG then
 					love.graphics.setColor(0,1,1,1 - t)
-					love.graphics.rectangle("fill",x,y,w,h)
+					love.graphics.rectangle("fill",l.x,l.y,w,h)
 				end
 			end
 		end,"y","h"),
@@ -139,23 +133,66 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 
 			-- xray
 			-- button
-			if not self.Xray.f then
-				love.graphics.setColor(1,1,0)
-			else
-				local t = math.min(self.Xray.t/0.125,1)
-				love.graphics.setColor(1*(1 - t),t,1*(1 - t))
+			if G_DEBUG then
+				if not self.Xray.f then
+					love.graphics.setColor(1,1,0)
+				else
+					local t = math.min(self.Xray.t/0.125,1)
+					love.graphics.setColor(1*(1 - t),t,1*(1 - t))
+				end
+				love.graphics.rectangle("fill",
+					self.Xray.x,
+					self.Xray.y,
+					self.Xray.w,
+					self.Xray.h
+				)
 			end
-			love.graphics.rectangle("fill",60,250,220,250)
 
 			-- pills
-			love.graphics.setColor(1,0,0)
-			love.graphics.rectangle("fill",680,340,40,40)
+			if G_DEBUG then
+				love.graphics.setColor(1,0,0,0.25)
+				love.graphics.rectangle("fill",
+					self.Pet_Pills.location.x,
+					self.Pet_Pills.location.y,
+					self.Pet_Pills.location.Button.w,
+					self.Pet_Pills.location.Button.h
+				)
+			end
+			if G_HINTS then
+				love.graphics.setColor(G_CLEAR)
+				love.graphics.print({{0,0,0},"u"},self.Pet_Pills.location.x + self.Pet_Pills.location.Button.w/2 - 5, self.Pet_Pills.location.y - 30)
+			end
+
 			-- bandage
-			love.graphics.setColor(1,1,1)
-			love.graphics.rectangle("fill",490,350,60,30)
+			if G_DEBUG then
+				love.graphics.setColor(1,1,1,0.25)
+				love.graphics.rectangle("fill",
+					self.Pet_Bandage.location.x,
+					self.Pet_Bandage.location.y,
+					self.Pet_Bandage.location.Button.w,
+					self.Pet_Bandage.location.Button.h
+				)
+			end
+			if G_HINTS then
+				love.graphics.setColor(G_CLEAR)
+				love.graphics.print({{0,0,0},"t"},self.Pet_Bandage.location.x + self.Pet_Bandage.location.Button.w/2 - 5, self.Pet_Bandage.location.y - 30)
+			end
+			
 			-- rubber hammer
-			love.graphics.setColor(0,1,1)
-			love.graphics.rectangle("fill",570,330,70,50)
+			if G_DEBUG then
+				love.graphics.setColor(0,1,1,0.25)
+				-- love.graphics.rectangle("fill",570,330,70,50)
+				love.graphics.rectangle("fill",
+					self.Pet_Hammer.location.x,
+					self.Pet_Hammer.location.y,
+					self.Pet_Hammer.location.Button.w,
+					self.Pet_Hammer.location.Button.h
+				)
+			end
+			if G_HINTS then
+				love.graphics.setColor(G_CLEAR)
+				love.graphics.print({{0,0,0},"y"},self.Pet_Hammer.location.x + self.Pet_Hammer.location.Button.w/2 - 5, self.Pet_Hammer.location.y - 30)
+			end
 
 			if not Meta_Game.Interaction then
 				-- Pet
@@ -164,11 +201,19 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 					love.graphics.setColor(G_CLEAR)
 					local n = 1 -- TODO: Dynamic animations
 					local p = tb:position(1) -- TODO: plus offsets
+					local h = tb:hitbox()
 					love.graphics.draw(tb:image(n),p.x,p.y)
+					self.Pet_Pills.goal.Button:setVector(h)
+					self.Pet_Bandage.goal.Button:setVector(h)
+					self.Pet_Hammer.goal.Button:setVector(h)
+					if G_HINTS then
+						love.graphics.print({{0,0,0},"h"},self.Pet_Pills.goal.Button.x + self.Pet_Pills.goal.Button.w/2 - 5, self.Pet_Pills.goal.Button.y - 60)
+					end
+
 
 					if G_DEBUG then
 						love.graphics.setColor(0,0,1,0.25)
-						love.graphics.rectangle("fill",200,450,250,100)
+						love.graphics.rectangle("fill",h.x,h.y,h.w,h.h)
 					end
 
 					local x,y = NormalizeMouse(love.mouse.getPosition())
@@ -179,33 +224,39 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 				end
 				
 				if self.Pet_Pills.drag then
-					love.graphics.setColor(1,0,0)
-					love.graphics.rectangle("fill",
-						self.Pet_Pills.location.Button.x,
-						self.Pet_Pills.location.Button.y,
-						self.Pet_Pills.location.Button.w,
-						self.Pet_Pills.location.Button.h
-					)
+					if G_DEBUG then
+						love.graphics.setColor(1,0,0,0.25)
+						love.graphics.rectangle("fill",
+							self.Pet_Pills.location.Button.x,
+							self.Pet_Pills.location.Button.y,
+							self.Pet_Pills.location.Button.w,
+							self.Pet_Pills.location.Button.h
+						)
+					end
 				end
 				
 				if self.Pet_Bandage.drag then
-					love.graphics.setColor(1,1,1)
-					love.graphics.rectangle("fill",
-						self.Pet_Bandage.location.Button.x,
-						self.Pet_Bandage.location.Button.y,
-						self.Pet_Bandage.location.Button.w,
-						self.Pet_Bandage.location.Button.h
-					)
+					if G_DEBUG then
+						love.graphics.setColor(1,1,1,0.25)
+						love.graphics.rectangle("fill",
+							self.Pet_Bandage.location.Button.x,
+							self.Pet_Bandage.location.Button.y,
+							self.Pet_Bandage.location.Button.w,
+							self.Pet_Bandage.location.Button.h
+						)
+					end
 				end
 				
 				if self.Pet_Hammer.drag then
-					love.graphics.setColor(0,1,1)
-					love.graphics.rectangle("fill",
-						self.Pet_Hammer.location.Button.x,
-						self.Pet_Hammer.location.Button.y,
-						self.Pet_Hammer.location.Button.w,
-						self.Pet_Hammer.location.Button.h
-					)
+					if G_DEBUG then
+						love.graphics.setColor(0,1,1,0.25)
+						love.graphics.rectangle("fill",
+							self.Pet_Hammer.location.Button.x,
+							self.Pet_Hammer.location.Button.y,
+							self.Pet_Hammer.location.Button.w,
+							self.Pet_Hammer.location.Button.h
+						)
+					end
 				end
 			else
 				if Meta_Game.Interaction_Draw then

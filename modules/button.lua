@@ -58,6 +58,22 @@ function Button:draw()
 	end
 end
 
+function Button:set(x,y,w,h)
+	self.x = x or 0
+	self.y = y or 0
+	self.w = w or 10
+	self.h = h or 10
+end
+
+function Button:setVector(v)
+	if v then
+		self.x = v.x
+		self.y = v.y
+		self.w = v.w
+		self.h = v.h
+	end
+end
+
 function Button.new(x,y,w,h,i,s,sx,sy,sc,ix,iy,is)
 	local tbl = {
 		x = x or 0, y = y or 0, w = w or 10, h = h or 10, c = {1,1,1}, f = false, t = 0,

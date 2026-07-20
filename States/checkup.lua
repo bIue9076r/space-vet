@@ -9,7 +9,7 @@ G_STATE_CHECK_UP_SUBSTATES = {
 											-- Later: expand for more Aches
 				tb.aches[1] = "None"
 				Meta_Game.Cured = true
-				Play_Sfx("thx")
+				Play_Sfx("thx_"..math.random(1,4))
 			else
 				Play_Sfx("no_"..math.random(1,4))
 			end
@@ -27,10 +27,10 @@ G_STATE_CHECK_UP_SUBSTATES = {
 					local p = tb:position(3) -- TODO: plus offsets
 					love.graphics.draw(tb:image(n),p.x,p.y)
 
-					if G_DEBUG then
-						love.graphics.setColor(0,0,1,0.25)
-						love.graphics.rectangle("fill",550,300,250,100)
-					end
+					-- if G_DEBUG then
+					-- 	love.graphics.setColor(0,0,1,0.25)
+					-- 	love.graphics.rectangle("fill",550,300,250,100)
+					-- end
 				end
 			end
 		end,"h","u"),
@@ -41,7 +41,7 @@ G_STATE_CHECK_UP_SUBSTATES = {
 											-- Later: expand for more Aches
 				tb.aches[1] = "None"
 				Meta_Game.Cured = true
-				Play_Sfx("thx")
+				Play_Sfx("thx_"..math.random(1,4))
 			else
 				Play_Sfx("no_"..math.random(1,4))
 			end
@@ -59,10 +59,10 @@ G_STATE_CHECK_UP_SUBSTATES = {
 					local p = tb:position(2) -- TODO: plus offsets
 					love.graphics.draw(tb:image(n),p.x,p.y)
 
-					if G_DEBUG then
-						love.graphics.setColor(0,0,1,0.25)
-						love.graphics.rectangle("fill",100,300,250,100)
-					end
+					-- if G_DEBUG then
+					-- 	love.graphics.setColor(0,0,1,0.25)
+					-- 	love.graphics.rectangle("fill",100,300,250,100)
+					-- end
 				end
 			end
 		end,"h","t"),
@@ -76,9 +76,18 @@ G_STATE_CHECK_UP_SUBSTATES = {
 			-- bed
 			love.graphics.setColor(1,0,0)
 			love.graphics.rectangle("fill",500,400,240,100)
+			if G_HINTS then
+				love.graphics.setColor(G_CLEAR)
+				love.graphics.print({{0,0,0},"u"},self.Pet_Bed.goal.Button.x + self.Pet_Bed.goal.Button.w/2 - 5, self.Pet_Bed.goal.Button.y - 30)
+			end
+
 			-- bath
 			love.graphics.setColor(0,1,0)
 			love.graphics.rectangle("fill",50,350,300,150)
+			if G_HINTS then
+				love.graphics.setColor(G_CLEAR)
+				love.graphics.print({{0,0,0},"t"},self.Pet_Bath.goal.Button.x + self.Pet_Bath.goal.Button.w/2 - 5, self.Pet_Bath.goal.Button.y - 30)
+			end
 			
 			if not Meta_Game.Interaction then
 				-- Pet
@@ -87,7 +96,25 @@ G_STATE_CHECK_UP_SUBSTATES = {
 					love.graphics.setColor(G_CLEAR)
 					local n = 1 -- TODO: Dynamic animations
 					local p = tb:position(1) -- TODO: plus offsets
-					love.graphics.draw(tb:image(n),p.x,p.y)
+					local h = tb:hitbox()
+					self.Pet_Bed.location.x, self.Pet_Bed.location.y = h.x, h.y
+					self.Pet_Bath.location.x, self.Pet_Bath.location.y = h.x, h.y
+					self.Pet_Bed.location.Button.w, self.Pet_Bed.location.Button.h = h.w, h.h
+					self.Pet_Bath.location.Button.w, self.Pet_Bath.location.Button.h = h.w, h.h
+					
+					if not self.Pet_Bed.drag then
+						love.graphics.draw(tb:image(n),p.x,p.y)
+						if G_HINTS then
+							love.graphics.print({{0,0,0},"h"},self.Pet_Bed.location.Button.x + self.Pet_Bed.location.Button.w/2 - 5, self.Pet_Bed.location.Button.y - 60)
+						end
+					else
+						local ox = self.Pet_Bed.location.x - self.Pet_Bed.location.Button.x
+						local oy = self.Pet_Bed.location.y - self.Pet_Bed.location.Button.y
+						love.graphics.draw(tb:image(n),p.x - ox,p.y - oy)
+						if G_HINTS then
+							love.graphics.print({{0,0,0},"h"},self.Pet_Bed.location.Button.x + self.Pet_Bed.location.Button.w/2 - 5, self.Pet_Bed.location.Button.y - 60)
+						end
+					end
 
 					if G_DEBUG then
 						love.graphics.setColor(0,0,1,0.25)
@@ -96,6 +123,21 @@ G_STATE_CHECK_UP_SUBSTATES = {
 							self.Pet_Bed.location.Button.y,
 							self.Pet_Bed.location.Button.w,
 							self.Pet_Bed.location.Button.h
+						)
+
+						love.graphics.setColor(1,1,1,0.5)
+						love.graphics.rectangle("fill",
+							self.Pet_Bed.goal.Button.x,
+							self.Pet_Bed.goal.Button.y,
+							self.Pet_Bed.goal.Button.w,
+							self.Pet_Bed.goal.Button.h
+						)
+
+						love.graphics.rectangle("fill",
+							self.Pet_Bath.goal.Button.x,
+							self.Pet_Bath.goal.Button.y,
+							self.Pet_Bath.goal.Button.w,
+							self.Pet_Bath.goal.Button.h
 						)
 					end
 

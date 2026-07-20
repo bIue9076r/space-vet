@@ -10,6 +10,7 @@ require("modules/AlienNames")
 
 G_VERSION = 1
 G_DEBUG = true -- make false in release
+G_HINTS = true
 G_STATE = 1
 G_STATE_SUB = 1
 G_ENDING = 0

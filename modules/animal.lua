@@ -53,6 +53,50 @@ Animal_Position[4] = { -- xray
 	["Ratlike"] = {x = 104, y = 172},
 }
 
+Animal_Position[5] = { -- pills
+	["Catlike"] = {x = 225, y = 450},
+	["Doglike"] = {x = 190, y = 370},
+	["Birdlike"] = {x = 320, y = 445},
+	["Wormlike"] = {x = 260, y = 460},
+	["Horselike"] = {x = 320, y = 425},
+	["Bunnylike"] = {x = 270, y = 460},
+	["Fishlike"] = {x = 270, y = 480},
+	["Ratlike"] = {x = 240, y = 480},
+}
+
+Animal_Position[6] = { -- hammer
+	["Catlike"] = {x = 185, y = 380},
+	["Doglike"] = {x = 175, y = 285},
+	["Birdlike"] = {x = 290, y = 395},
+	["Wormlike"] = {x = 250, y = 410},
+	["Horselike"] = {x = 320, y = 425},
+	["Bunnylike"] = {x = 250, y = 390},
+	["Fishlike"] = {x = 270, y = 440},
+	["Ratlike"] = {x = 250, y = 445},
+}
+
+Animal_Position[7] = { -- bandage
+	["Catlike"] = {x = 310, y = 455},
+	["Doglike"] = {x = 225, y = 410},
+	["Birdlike"] = {x = 280, y = 480},
+	["Wormlike"] = {x = 240, y = 490},
+	["Horselike"] = {x = 320, y = 425},
+	["Bunnylike"] = {x = 320, y = 470},
+	["Fishlike"] = {x = 284, y = 470},
+	["Ratlike"] = {x = 308, y = 470},
+}
+
+Animal_Hitbox = {
+	["Catlike"] = {x = 195, y = 435, w = 230, h = 120},
+	["Doglike"] = {x = 165, y = 390, w = 260, h = 155},
+	["Birdlike"] = {x = 285, y = 435, w = 85, h = 110},
+	["Wormlike"] = {x = 245, y = 445, w = 135, h = 95},
+	["Horselike"] = {x = 200, y = 450, w = 250, h = 100},
+	["Bunnylike"] = {x = 265, y = 430, w = 105, h = 120},
+	["Fishlike"] = {x = 270, y = 465, w = 100, h = 95},
+	["Ratlike"] = {x = 250, y = 470, w = 125, h = 70},
+}
+
 -- New Animal
 -- Takes: n - name; k - kind; o - owner
 -- Returns: Animal
@@ -90,3 +134,7 @@ end
 -- 	local P = Animal_Offset[n] or Animal_Offset[1]
 -- 	return {x = P[self.kind].x(t), y = P[self.kind].y(t)}
 -- end
+
+function Animal:hitbox()
+	return Animal_Hitbox[self.kind] or Animal_Hitbox["Catlike"]
+end

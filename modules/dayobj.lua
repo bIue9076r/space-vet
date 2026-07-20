@@ -14,6 +14,10 @@ end
 -- Takes: DayObj
 -- Returns: If available
 function DayObj.Available(DObj)
+	if G_CHEATS_ALWAYS_AVALIABLE then
+		return true
+	end
+
 	if DObj.day <= G_DAY then
 		return true
 	end

@@ -211,12 +211,13 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 	[2] = {
 		Back_b = Button.new(600,495,140,70),
 		Main_Volume_Up = Button.new(50,100,70,70,nil,"+",24,24),
-		Main_Volume_Down = Button.new(50+80,100,70,70,nil,"-",24,24),
+		Main_Volume_Down = Button.new(130,100,70,70,nil,"-",24,24),
 		Music_Volume_Up = Button.new(50,180,70,70,nil,"+",24,24),
-		Music_Volume_Down = Button.new(50+80,180,70,70,nil,"-",24,24),
-		SFX_Volume_Up = Button.new(50,180+80,70,70,nil,"+",24,24),
-		SFX_Volume_Down = Button.new(50+80,180+80,70,70,nil,"-",24,24),
-		Mute_b = Button.new(50,180+80+80,70,70,nil,"x",24,24),
+		Music_Volume_Down = Button.new(130,180,70,70,nil,"-",24,24),
+		SFX_Volume_Up = Button.new(50,260,70,70,nil,"+",24,24),
+		SFX_Volume_Down = Button.new(130,260,70,70,nil,"-",24,24),
+		Mute_b = Button.new(50,340,70,70,nil,"x",24,24),
+		Hint_b = Button.new(50,420,70,70,nil,"?",24,24),
 
 		Draw = function(self)
 			love.graphics.rectangle("fill",0,0,800,600)
@@ -237,6 +238,7 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 			love.graphics.draw(Image.get("button"),self.Back_b.x,self.Back_b.y)
 			love.graphics.print({{0,0,0},StringFetch(10)},self.Back_b.x + 10,self.Back_b.y + 24)
 
+			self.Hint_b:draw()
 			self.Mute_b:draw()
 			self.Main_Volume_Up:draw()
 			self.Main_Volume_Down:draw()
@@ -245,9 +247,12 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 			self.SFX_Volume_Up:draw()
 			self.SFX_Volume_Down:draw()
 
+			love.graphics.setColor(G_CLEAR)
 			love.graphics.print({{0,0,0},string.format("%.01f",Main_Volume)..StringFetch(39)},self.Main_Volume_Down.x + 104, self.Main_Volume_Down.y + 24)
 			love.graphics.print({{0,0,0},string.format("%.01f",Music_Volume)..StringFetch(40)},self.Music_Volume_Down.x + 104, self.Music_Volume_Down.y + 24)
 			love.graphics.print({{0,0,0},string.format("%.01f",SFX_Volume)..StringFetch(41)},self.SFX_Volume_Down.x + 104, self.SFX_Volume_Down.y + 24)
+			love.graphics.print({{0,0,0},StringFetch(42)},self.SFX_Volume_Down.x + 104, self.Mute_b.y + 24)
+			love.graphics.print({{0,0,0},StringFetch(43)..tostring(G_HINTS)},self.SFX_Volume_Down.x + 104, self.Hint_b.y + 24)
 
 			love.graphics.setColor(G_CLEAR)
 		end,
@@ -256,6 +261,7 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 			local x,y = NormalizeMouse(love.mouse.getPosition())
 			self.Back_b:focus(x,y)
 			self.Mute_b:focus(x,y)
+			self.Hint_b:focus(x,y)
 			self.Main_Volume_Up:focus(x,y)
 			self.Main_Volume_Down:focus(x,y)
 			self.Music_Volume_Up:focus(x,y)
@@ -278,6 +284,10 @@ G_STATE_MAIN_MENU_SUBSTATES = {
 			if self.Mute_b:click(nx,ny) then
 				Main_Volume = 0
 				love.audio.setVolume(Main_Volume)
+			end
+
+			if self.Hint_b:click(nx,ny) then
+				G_HINTS = not(G_HINTS)
 			end
 
 			if self.Main_Volume_Up:click(nx,ny) then

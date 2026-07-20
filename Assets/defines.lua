@@ -110,7 +110,10 @@ Font.new("Spacy_5","/Assets/Spacy.ttf",96)
 
 -- SFX
 Sound.new("ding","/Assets/ding.mp3","static")
-Sound.new("thx","/Assets/thx.mp3","static")
+Sound.new("thx_1","/Assets/thx.mp3","static")
+Sound.new("thx_2","/Assets/thx_2.mp3","static")
+Sound.new("thx_3","/Assets/thx_3.mp3","static")
+Sound.new("thx_4","/Assets/thx_4.mp3","static")
 Sound.new("no_1","/Assets/no_1.mp3","static")
 Sound.new("no_2","/Assets/no_2.mp3","static")
 Sound.new("no_3","/Assets/no_3.mp3","static")

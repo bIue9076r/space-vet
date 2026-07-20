@@ -21,11 +21,12 @@ Meta_Game.Cured_Draw = function ()
 	love.graphics.setColor(1,1,1,(1 - t))
 	local n = 1 -- TODO: Dynamic animations
 	local p = Meta_Game.Cured_Pet:position(1) -- TODO: plus offsets
+	local h = Meta_Game.Cured_Pet:hitbox()
 	love.graphics.draw(Meta_Game.Cured_Pet:image(n),p.x,p.y)
 
 	if G_DEBUG then
 		love.graphics.setColor(0,0,1,(1 - t)*0.25)
-		love.graphics.rectangle("fill",200,450,250,100)
+		love.graphics.rectangle("fill",h.x,h.y,h.w,h.h)
 	end
 
 	if (not Meta_Game.Deposit) and Meta_Game.Interaction_Timer > (Meta_Game.Interaction_Timer_Goal - 1) then
@@ -176,14 +177,17 @@ function Save_Game(path)
 	path = path or G_SAVE_PATH
 	-- Stuff to store
 		-- Version
+		-- G_DEBUG
 		-- Main_Volume
 		-- Music_Volume
 		-- SFX_Volume
 		-- G_LAST_STATE
 		-- G_PLAYING
+		-- G_HINTS
 		-- G_ENDING
 		-- Bank.balance
 		-- G_DAY
+		-- G_CHEATS_ALWAYS_AVALIABLE
 		-- 	G_STATE_ONLINE_SHOP_SUBSTATES[1].Npx = 60
 		-- G_STATE_ONLINE_SHOP_SUBSTATES[1].Npy = 60
 		-- G_STATE_ONLINE_SHOP_SUBSTATES[1].Npw = 300
@@ -215,14 +219,17 @@ function Save_Game(path)
 	end
 
 	file:write("G_VERSION = "..tostring(G_VERSION).."\n")
+	file:write("G_DEBUG = "..tostring(G_DEBUG).."\n")
 	file:write("Main_Volume = "..tostring(Main_Volume).."\n")
 	file:write("Music_Volume = "..tostring(Music_Volume).."\n")
 	file:write("SFX_Volume = "..tostring(SFX_Volume).."\n")
 	file:write("G_LAST_STATE = "..tostring(G_LAST_STATE).."\n")
 	file:write("G_PLAYING = "..tostring(G_PLAYING).."\n")
+	file:write("G_HINTS = "..tostring(G_HINTS).."\n")
 	file:write("G_ENDING = "..tostring(G_ENDING).."\n")
 	file:write("Bank.balance = "..tostring(Bank.balance).."\n")
 	file:write("G_DAY = "..tostring(G_DAY).."\n")
+	file:write("G_CHEATS_ALWAYS_AVALIABLE = "..tostring(G_CHEATS_ALWAYS_AVALIABLE).."\n")
 	file:write("G_STATE_ONLINE_SHOP_SUBSTATES[1].Npx = "..tostring(G_STATE_ONLINE_SHOP_SUBSTATES[1].Npx).."\n")
 	file:write("G_STATE_ONLINE_SHOP_SUBSTATES[1].Npy = "..tostring(G_STATE_ONLINE_SHOP_SUBSTATES[1].Npy).."\n")
 	file:write("G_STATE_ONLINE_SHOP_SUBSTATES[1].Npw = "..tostring(G_STATE_ONLINE_SHOP_SUBSTATES[1].Npw).."\n")
@@ -300,11 +307,19 @@ end
 function Meta_Game.Draw()
 	Meta_Game.Music()
 
+	love.graphics.setColor(G_CLEAR)
 	love.graphics.print({{0,0,0},StringFetch(11)..G_DAY},0,0)
 	love.graphics.print({{0,0,0},StringFetch(12)..Bank.balance},0,20)
 	local m = string.format("%02d",math.floor((Meta_Game.Timer_Goal - Meta_Game.Timer) / 60))
 	local s = string.format("%02d",math.fmod((Meta_Game.Timer_Goal - Meta_Game.Timer), 60))
 	love.graphics.print({{0,0,0},StringFetch(13)..m..":"..s},0,40)
+	if G_HINTS then
+		if G_STATE == G_STATE_CHECK_UP then
+			love.graphics.print({{0,0,0},"1. h -> 2. t,u"},0,60)
+		elseif G_STATE == G_STATE_CARE_UNIT then
+			love.graphics.print({{0,0,0},"1. t,y,u -> 2. h"},0,60)
+		end
+	end
 end
 
 function Meta_Game.Update(dt)
