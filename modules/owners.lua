@@ -7,6 +7,12 @@ Owners.list = {
 	DayObj.new("Alien_4"),
 	DayObj.new("Alien_5"),
 	DayObj.new("Alien_6"),
+	DayObj.new("Alien_7"),
+	DayObj.new("Alien_8"),
+	DayObj.new("Alien_9"),
+	DayObj.new("Alien_10"),
+	DayObj.new("Alien_11"),
+	DayObj.new("Alien_12"),
 	-- In the future add more owners :V
 }
 
