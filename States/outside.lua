@@ -17,6 +17,8 @@ G_STATE_OUTSIDE_SUBSTATES = {
 
 			local tb = {Meta_Game.getLastThree()}
 			for i = 1,#tb do
+				love.graphics.setColor(G_CLEAR)
+				love.graphics.draw(Image.get(tb[i].owner),325 + 175*(i - 1),125)
 
 				if G_DEBUG then
 					love.graphics.setColor(0,0,1,0.5)

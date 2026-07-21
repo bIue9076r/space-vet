@@ -3,7 +3,7 @@ G_STATE_CHECK_UP = 5
 
 G_STATE_CHECK_UP_SUBSTATES = {
 	[1] = {
-		Pet_Bed = Draggable.new(200,450,250,100,600,375,40,50,function(self)
+		Pet_Bed = Draggable.new(200,450,250,100,480,330,220,105,function(self)
 			local tb = Meta_Game.getLastThree()
 			if tb.aches[1] == "Cold" then	-- Todo: Success chance for lower level items
 											-- Later: expand for more Aches
@@ -26,16 +26,12 @@ G_STATE_CHECK_UP_SUBSTATES = {
 					local n = 1 -- TODO: Dynamic animations
 					local p = tb:position(3) -- TODO: plus offsets
 					love.graphics.draw(tb:image(n),p.x,p.y)
-
-					-- if G_DEBUG then
-					-- 	love.graphics.setColor(0,0,1,0.25)
-					-- 	love.graphics.rectangle("fill",550,300,250,100)
-					-- end
+					love.graphics.draw(Image.get("CheckUp_Bed"),0,0)
 				end
 			end
 		end,"h","u"),
 
-		Pet_Bath = Draggable.new(200,450,250,100,150,325,100,50,function(self)
+		Pet_Bath = Draggable.new(200,450,250,100,0,250,315,110,function(self)
 			local tb = Meta_Game.getLastThree()
 			if tb.aches[1] == "Stinky" then	-- Todo: Success chance for lower level items
 											-- Later: expand for more Aches
@@ -55,35 +51,25 @@ G_STATE_CHECK_UP_SUBSTATES = {
 				-- Draw tool being used by pet
 				if tb then
 					love.graphics.setColor(G_CLEAR)
-					local n = 1 -- TODO: Dynamic animations
-					local p = tb:position(2) -- TODO: plus offsets
-					love.graphics.draw(tb:image(n),p.x,p.y)
-
-					-- if G_DEBUG then
-					-- 	love.graphics.setColor(0,0,1,0.25)
-					-- 	love.graphics.rectangle("fill",100,300,250,100)
-					-- end
+					-- local n = 1 -- TODO: Dynamic animations
+					-- local p = tb:position(2) -- TODO: plus offsets
+					-- love.graphics.draw(tb:image(n),p.x,p.y)
+					love.graphics.draw(Image.get("CheckUp_Bubbles"),0,0)
+					love.graphics.draw(Image.get("CheckUp_Bath"),0,0)
 				end
 			end
 		end,"h","t"),
 
 		Draw = function(self)
-            love.graphics.setColor(229/255, 182/255, 234/255)
-			love.graphics.rectangle("fill",0,0,SCREEN_X,SCREEN_Y)
-            love.graphics.setColor(65/255, 38/255, 15/255)
-			love.graphics.rectangle("fill",0,SCREEN_Y - 100,SCREEN_X,100)
+			love.graphics.draw(Image.get("CheckUp"),0,0)
 
 			-- bed
-			love.graphics.setColor(1,0,0)
-			love.graphics.rectangle("fill",500,400,240,100)
 			if G_HINTS then
 				love.graphics.setColor(G_CLEAR)
 				love.graphics.print({{0,0,0},"u"},self.Pet_Bed.goal.Button.x + self.Pet_Bed.goal.Button.w/2 - 5, self.Pet_Bed.goal.Button.y - 30)
 			end
 
 			-- bath
-			love.graphics.setColor(0,1,0)
-			love.graphics.rectangle("fill",50,350,300,150)
 			if G_HINTS then
 				love.graphics.setColor(G_CLEAR)
 				love.graphics.print({{0,0,0},"t"},self.Pet_Bath.goal.Button.x + self.Pet_Bath.goal.Button.w/2 - 5, self.Pet_Bath.goal.Button.y - 30)

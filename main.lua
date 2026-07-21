@@ -1,7 +1,7 @@
 jit.off()
 love.graphics.setDefaultFilter("nearest", "nearest")
 utf8 = require("utf8")
--- math.randomseed(os.time())
+math.randomseed(os.time())
 
 require("globals")
 
@@ -11,8 +11,8 @@ function love.load(args)
 
 	for i, v in ipairs(args) do
 		if(v == "-d" or v == "-D" or v == "debug") then
-			G_DEBUG = false
-			G_ALWAYS_AVALIABLE = false
+			G_DEBUG = true
+			G_ALWAYS_AVALIABLE = true
 		end
 	end
 

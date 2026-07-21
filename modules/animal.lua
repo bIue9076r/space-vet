@@ -10,14 +10,14 @@ Animal.kind = "Catlike"
 Animal.owner = "Alien_1"
 Animal_Position = {}
 Animal_Position[1] = { -- floor
-	["Catlike"] = {x = 150, y = 350},
-	["Doglike"] = {x = 150, y = 300},
-	["Birdlike"] = {x = 175, y = 370},
-	["Wormlike"] = {x = 160, y = 355},
-	["Horselike"] = {x = 150, y = 300},--{x = 100, y = 275},
-	["Bunnylike"] = {x = 160, y = 350},
-	["Fishlike"] = {x = 160, y = 390},
-	["Ratlike"] = {x = 175, y = 390},
+	["Catlike"] = {x = 20, y = 350},
+	["Doglike"] = {x = 20, y = 300},
+	["Birdlike"] = {x = 45, y = 370},
+	["Wormlike"] = {x = 30, y = 355},
+	["Horselike"] = {x = 20, y = 300},
+	["Bunnylike"] = {x = 30, y = 350},
+	["Fishlike"] = {x = 30, y = 390},
+	["Ratlike"] = {x = 45, y = 390},
 }
 
 Animal_Position[2] = { -- bath
@@ -47,54 +47,54 @@ Animal_Position[4] = { -- xray
 	["Doglike"] = {x = 60, y = 40},
 	["Birdlike"] = {x = 95, y = 145},
 	["Wormlike"] = {x = 85, y = 120},
-	["Horselike"] = {x = 60, y = 40},--{x = -10, y = -10},
+	["Horselike"] = {x = 60, y = 40},
 	["Bunnylike"] = {x = 70, y = 110},
 	["Fishlike"] = {x = 70, y = 155},
 	["Ratlike"] = {x = 104, y = 172},
 }
 
 Animal_Position[5] = { -- pills
-	["Catlike"] = {x = 225, y = 450},
-	["Doglike"] = {x = 190, y = 370},
-	["Birdlike"] = {x = 320, y = 445},
-	["Wormlike"] = {x = 260, y = 460},
-	["Horselike"] = {x = 400, y = 415},
-	["Bunnylike"] = {x = 270, y = 460},
-	["Fishlike"] = {x = 270, y = 480},
-	["Ratlike"] = {x = 240, y = 480},
+	["Catlike"] = {x = 95, y = 450},
+	["Doglike"] = {x = 60, y = 370},
+	["Birdlike"] = {x = 190, y = 445},
+	["Wormlike"] = {x = 130, y = 460},
+	["Horselike"] = {x = 270, y = 415},
+	["Bunnylike"] = {x = 140, y = 460},
+	["Fishlike"] = {x = 140, y = 480},
+	["Ratlike"] = {x = 110, y = 480},
 }
 
 Animal_Position[6] = { -- hammer
-	["Catlike"] = {x = 185, y = 380},
-	["Doglike"] = {x = 175, y = 285},
-	["Birdlike"] = {x = 290, y = 395},
-	["Wormlike"] = {x = 250, y = 410},
-	["Horselike"] = {x = 370, y = 315},
-	["Bunnylike"] = {x = 250, y = 390},
-	["Fishlike"] = {x = 270, y = 440},
-	["Ratlike"] = {x = 250, y = 445},
+	["Catlike"] = {x = 100, y = 380},
+	["Doglike"] = {x = 90, y = 290},
+	["Birdlike"] = {x = 175, y = 390},
+	["Wormlike"] = {x = 145, y = 410},
+	["Horselike"] = {x = 280, y = 310},
+	["Bunnylike"] = {x = 150, y = 385},
+	["Fishlike"] = {x = 155, y = 430},
+	["Ratlike"] = {x = 140, y = 430},
 }
 
 Animal_Position[7] = { -- bandage
-	["Catlike"] = {x = 310, y = 455},
-	["Doglike"] = {x = 225, y = 410},
-	["Birdlike"] = {x = 280, y = 480},
-	["Wormlike"] = {x = 240, y = 490},
-	["Horselike"] = {x = 375, y = 460},
-	["Bunnylike"] = {x = 320, y = 470},
-	["Fishlike"] = {x = 284, y = 470},
-	["Ratlike"] = {x = 308, y = 470},
+	["Catlike"] = {x = 180, y = 455},
+	["Doglike"] = {x = 95, y = 410},
+	["Birdlike"] = {x = 150, y = 480},
+	["Wormlike"] = {x = 110, y = 490},
+	["Horselike"] = {x = 245, y = 460},
+	["Bunnylike"] = {x = 190, y = 470},
+	["Fishlike"] = {x = 154, y = 470},
+	["Ratlike"] = {x = 178, y = 470},
 }
 
 Animal_Hitbox = {
-	["Catlike"] = {x = 195, y = 435, w = 230, h = 120},
-	["Doglike"] = {x = 165, y = 390, w = 260, h = 155},
-	["Birdlike"] = {x = 285, y = 435, w = 85, h = 110},
-	["Wormlike"] = {x = 245, y = 445, w = 135, h = 95},
-	["Horselike"] = {x = 225, y = 390, w = 260, h = 155},
-	["Bunnylike"] = {x = 265, y = 430, w = 105, h = 120},
-	["Fishlike"] = {x = 270, y = 465, w = 100, h = 95},
-	["Ratlike"] = {x = 250, y = 470, w = 125, h = 70},
+	["Catlike"] = {x = 65, y = 435, w = 230, h = 120},
+	["Doglike"] = {x = 35, y = 390, w = 260, h = 155},
+	["Birdlike"] = {x = 155, y = 435, w = 85, h = 110},
+	["Wormlike"] = {x = 115, y = 445, w = 135, h = 95},
+	["Horselike"] = {x = 95, y = 390, w = 260, h = 155},
+	["Bunnylike"] = {x = 135, y = 430, w = 105, h = 120},
+	["Fishlike"] = {x = 140, y = 465, w = 100, h = 95},
+	["Ratlike"] = {x = 120, y = 470, w = 125, h = 70},
 }
 
 -- New Animal

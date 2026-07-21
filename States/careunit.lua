@@ -3,8 +3,8 @@ G_STATE_CARE_UNIT = 6
 
 G_STATE_CARE_UNIT_SUBSTATES = {
 	[1] = {
-		Xray = Button.new(60,250,220,250),
-		Pet_Pills = Draggable.new(680,340,40,40,200,450,250,100,function(self)
+		Xray = Button.new(0,70,235,255),
+		Pet_Pills = Draggable.new(600,260,50,85,200,450,250,100,function(self)
 			local tb = Meta_Game.getLastThree()
 			if tb.aches[1] == "Tummy" then	-- Todo: Success chance for lower level items
 											-- Later: expand for more Aches
@@ -27,15 +27,11 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 					local n = 1 -- TODO: Dynamic animations
 					local p = tb:position(1) -- TODO: plus offsets
 					love.graphics.draw(tb:image(n),p.x,p.y)
-
-					if G_DEBUG then
-						love.graphics.setColor(0,0,1,0.25)
-						love.graphics.rectangle("fill",200,450,250,100)
-					end
 				end
 
 				-- Draw tool being used
 				local l = tb:position(5)
+				love.graphics.draw(Image.get("CareUnit_Pills_2"),l.x,l.y)
 				if G_DEBUG then
 					love.graphics.setColor(1,0,0,1 - t)
 					love.graphics.rectangle("fill",l.x,l.y,w,h)
@@ -43,7 +39,7 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 			end
 		end,"u","h"),
 
-		Pet_Bandage = Draggable.new(490,350,60,30,200,450,250,100,function(self)
+		Pet_Bandage = Draggable.new(520,330,50,75,200,450,250,100,function(self)
 			local tb = Meta_Game.getLastThree()
 			if tb.aches[1] == "Scratch" then	-- Todo: Success chance for lower level items
 												-- Later: expand for more Aches
@@ -66,15 +62,11 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 					local n = 1 -- TODO: Dynamic animations
 					local p = tb:position(1) -- TODO: plus offsets
 					love.graphics.draw(tb:image(n),p.x,p.y)
-
-					if G_DEBUG then
-						love.graphics.setColor(0,0,1,0.25)
-						love.graphics.rectangle("fill",200,450,250,100)
-					end
 				end
 
 				-- Draw tool being used
 				local l = tb:position(7)
+				love.graphics.draw(Image.get("CareUnit_Bandage_2"),l.x,l.y)
 				if G_DEBUG then
 					love.graphics.setColor(1,1,1,1 - t)
 					love.graphics.rectangle("fill",l.x,l.y,w,h)
@@ -82,7 +74,7 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 			end
 		end,"t","h"),
 
-		Pet_Hammer = Draggable.new(570,330,70,50,200,450,250,100,function(self)
+		Pet_Hammer = Draggable.new(670,335,70,70,200,450,250,100,function(self)
 			local tb = Meta_Game.getLastThree()
 			if tb.aches[1] == "Antenne" then	-- Todo: Success chance for lower level items
 												-- Later: expand for more Aches
@@ -105,15 +97,11 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 					local n = 1 -- TODO: Dynamic animations
 					local p = tb:position(1) -- TODO: plus offsets
 					love.graphics.draw(tb:image(n),p.x,p.y)
-
-					if G_DEBUG then
-						love.graphics.setColor(0,0,1,0.25)
-						love.graphics.rectangle("fill",200,450,250,100)
-					end
 				end
 
 				-- Draw tool being used
 				local l = tb:position(6)
+				love.graphics.draw(Image.get("CareUnit_RubberHammer_2"),l.x,l.y)
 				if G_DEBUG then
 					love.graphics.setColor(0,1,1,1 - t)
 					love.graphics.rectangle("fill",l.x,l.y,w,h)
@@ -122,23 +110,22 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 		end,"y","h"),
 
 		Draw = function(self)
-			love.graphics.setColor(170/255, 212/255, 153/255)
-			love.graphics.rectangle("fill",0,0,SCREEN_X,SCREEN_Y)
-            love.graphics.setColor(84/255, 34/255, 16/255)
-			love.graphics.rectangle("fill",0,SCREEN_Y - 100,SCREEN_X,100)
-
-			love.graphics.setColor(41/255,37/255,27/255)
-			-- table
-			love.graphics.rectangle("fill",440,380,SCREEN_X - 510,120)
+			love.graphics.draw(Image.get("CareUnit"),0,0)
 
 			-- xray
 			-- button
+			if self.Xray.f then
+				love.graphics.draw(Image.get("CareUnit_Xray_2"),0,0)
+			else
+				love.graphics.draw(Image.get("CareUnit_Xray_1"),0,0)
+			end
+
 			if G_DEBUG then
 				if not self.Xray.f then
-					love.graphics.setColor(1,1,0)
+					love.graphics.setColor(1,1,0,0.25)
 				else
 					local t = math.min(self.Xray.t/0.125,1)
-					love.graphics.setColor(1*(1 - t),t,1*(1 - t))
+					love.graphics.setColor(1*(1 - t),t,1*(1 - t),0.25)
 				end
 				love.graphics.rectangle("fill",
 					self.Xray.x,
@@ -149,6 +136,8 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 			end
 
 			-- pills
+			love.graphics.setColor(G_CLEAR)
+			love.graphics.draw(Image.get("CareUnit_Pills_1"),0,0)
 			if G_DEBUG then
 				love.graphics.setColor(1,0,0,0.25)
 				love.graphics.rectangle("fill",
@@ -164,6 +153,8 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 			end
 
 			-- bandage
+			love.graphics.setColor(G_CLEAR)
+			love.graphics.draw(Image.get("CareUnit_Bandage_1"),0,0)
 			if G_DEBUG then
 				love.graphics.setColor(1,1,1,0.25)
 				love.graphics.rectangle("fill",
@@ -179,6 +170,8 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 			end
 			
 			-- rubber hammer
+			love.graphics.setColor(G_CLEAR)
+			love.graphics.draw(Image.get("CareUnit_RubberHammer_1"),0,0)
 			if G_DEBUG then
 				love.graphics.setColor(0,1,1,0.25)
 				-- love.graphics.rectangle("fill",570,330,70,50)
@@ -224,6 +217,8 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 				end
 				
 				if self.Pet_Pills.drag then
+					love.graphics.setColor(G_CLEAR)
+					love.graphics.draw(Image.get("CareUnit_Pills_2"),self.Pet_Pills.location.Button.x,self.Pet_Pills.location.Button.y)
 					if G_DEBUG then
 						love.graphics.setColor(1,0,0,0.25)
 						love.graphics.rectangle("fill",
@@ -236,6 +231,8 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 				end
 				
 				if self.Pet_Bandage.drag then
+					love.graphics.setColor(G_CLEAR)
+					love.graphics.draw(Image.get("CareUnit_Bandage_2"),self.Pet_Bandage.location.Button.x,self.Pet_Bandage.location.Button.y)
 					if G_DEBUG then
 						love.graphics.setColor(1,1,1,0.25)
 						love.graphics.rectangle("fill",
@@ -248,6 +245,8 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 				end
 				
 				if self.Pet_Hammer.drag then
+					love.graphics.setColor(G_CLEAR)
+					love.graphics.draw(Image.get("CareUnit_RubberHammer_2"),self.Pet_Hammer.location.Button.x,self.Pet_Hammer.location.Button.y)
 					if G_DEBUG then
 						love.graphics.setColor(0,1,1,0.25)
 						love.graphics.rectangle("fill",

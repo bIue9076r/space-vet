@@ -3,26 +3,25 @@ G_STATE_FRONT_DESK = 4
 
 G_STATE_FRONT_DESK_SUBSTATES = {
 	[1] = {
-		Computor = Button.new(490,280,200,120),
+		Computor = Button.new(425,170,245,270),
 
 		Draw = function(self)
-			love.graphics.setColor(229/255, 162/255, 85/255)
-			love.graphics.rectangle("fill",0,0,SCREEN_X,SCREEN_Y)
-            love.graphics.setColor(65/255, 38/255, 15/255)
-			love.graphics.rectangle("fill",0,SCREEN_Y - 100,SCREEN_X,100)
-
-			-- computer desk
-			love.graphics.setColor(80/255,40/255,50/255)
-			love.graphics.rectangle("fill",300,400,400,100)
+			love.graphics.draw(Image.get("FrontDesk"),0,0)
 
 			-- computer
-			if not self.Computor.f then
-				love.graphics.setColor(0,1,1)
-			else
-				local t = math.min(self.Computor.t/0.125,1)
-				love.graphics.setColor(t,1*(1 - t),1*(1 - t))
+			if self.Computor.f then
+				love.graphics.draw(Image.get("FrontDesk_Computer"),0,0)
 			end
-            love.graphics.rectangle("fill",490,280,200,120)
+
+			if G_DEBUG then
+				if self.Computor.f then
+					local t = math.min(self.Computor.t/0.125,1)
+					love.graphics.setColor(t,1*(1 - t),1*(1 - t),0.25)
+				else
+					love.graphics.setColor(0,1,1,0.25)
+				end
+				love.graphics.rectangle("fill",self.Computor.x,self.Computor.y,self.Computor.w,self.Computor.h)
+			end
 
 			love.graphics.setColor(G_CLEAR)
 			Meta_Game.Draw()

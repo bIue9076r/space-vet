@@ -37,6 +37,8 @@ G_SAVE_PATH = "Save.txt"
 
 love.graphics.setFont(Font.get("Spacy"))
 
+G_CHEATS_ALWAYS_AVALIABLE = false
+
 require("States/metagame")
 require("States/intro")
 require("States/mainMenu")
