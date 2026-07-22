@@ -1,4 +1,4 @@
-jit.off()
+if jit then jit.off() end
 love.graphics.setDefaultFilter("nearest", "nearest")
 utf8 = require("utf8")
 math.randomseed(os.time())
@@ -10,12 +10,13 @@ function love.load(args)
 	love.resize()
 
 	for i, v in ipairs(args) do
-		if(v == "-d" or v == "-D" or v == "debug") then
+		if(v == "-d" or v == "-D" or v == "-debug" or v == "debug") then
 			G_DEBUG = true
 			G_ALWAYS_AVALIABLE = true
+			-- Todo: Cheats menu
 		end
 
-		if(v == "-m" or v == "-M" or v == "mute") then
+		if(v == "-m" or v == "-M" or v == "-mute" or v == "mute") then
 			Main_Volume = 0
 			love.audio.setVolume(Main_Volume)
 		end
