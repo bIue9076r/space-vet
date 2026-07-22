@@ -16,6 +16,10 @@ function love.load(args)
 			-- Todo: Cheats menu
 		end
 
+		if(v == "-a" or v == "-A") then
+			G_ALWAYS_AVALIABLE = true
+		end
+
 		if(v == "-m" or v == "-M" or v == "-mute" or v == "mute") then
 			Main_Volume = 0
 			love.audio.setVolume(Main_Volume)
