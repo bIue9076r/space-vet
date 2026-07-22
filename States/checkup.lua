@@ -31,7 +31,7 @@ G_STATE_CHECK_UP_SUBSTATES = {
 			end
 		end,"h","u"),
 
-		Pet_Bath = Draggable.new(200,450,250,100,0,250,315,110,function(self)
+		Pet_Bath = Draggable.new(200,450,250,100,0,250,315,90,function(self)
 			local tb = Meta_Game.getLastThree()
 			if tb.aches[1] == "Stinky" then	-- Todo: Success chance for lower level items
 											-- Later: expand for more Aches

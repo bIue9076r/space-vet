@@ -22,7 +22,7 @@ Image.new("Alien_10","/Assets/Customer_Aliens/Smirk_Alien_2.png")
 Image.new("Alien_11","/Assets/Customer_Aliens/Surprised_Alien_1.png")
 Image.new("Alien_12","/Assets/Customer_Aliens/Surprised_Alien_2.png")
 
-Image.new("FrontDesk","/Assets/FrontDesk/FrontDesk_Bg_Sketch.png")
+Image.new("FrontDesk","/Assets/FrontDesk/FrontDesk_Bg.png")
 Image.new("FrontDesk_Computer","/Assets/FrontDesk/FrontDesk_Computer_Sketch.png")
 
 Image.new("CheckUp","/Assets/CheckUp/CheckUp_Bg_Sketch.png")

@@ -3,7 +3,7 @@ G_STATE_FRONT_DESK = 4
 
 G_STATE_FRONT_DESK_SUBSTATES = {
 	[1] = {
-		Computor = Button.new(425,170,245,270),
+		Computor = Button.new(50,255,305,315),
 
 		Draw = function(self)
 			love.graphics.draw(Image.get("FrontDesk"),0,0)

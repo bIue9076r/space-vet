@@ -87,11 +87,11 @@ Animal_Position[7] = { -- bandage
 }
 
 Animal_Hitbox = {
-	["Catlike"] = {x = 65, y = 435, w = 230, h = 120},
-	["Doglike"] = {x = 35, y = 390, w = 260, h = 155},
+	["Catlike"] = {x = 65, y = 415, w = 230, h = 140},
+	["Doglike"] = {x = 35, y = 350, w = 260, h = 195},
 	["Birdlike"] = {x = 155, y = 435, w = 85, h = 110},
 	["Wormlike"] = {x = 115, y = 445, w = 135, h = 95},
-	["Horselike"] = {x = 95, y = 390, w = 260, h = 155},
+	["Horselike"] = {x = 95, y = 350, w = 260, h = 195},
 	["Bunnylike"] = {x = 135, y = 430, w = 105, h = 120},
 	["Fishlike"] = {x = 140, y = 465, w = 100, h = 95},
 	["Ratlike"] = {x = 120, y = 470, w = 125, h = 70},
