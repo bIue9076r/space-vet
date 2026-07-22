@@ -2,6 +2,10 @@
 Image.new("Alien","/Assets/Alien.png")
 Image.new("button","/Assets/temp_button.png")
 Image.new("button_squ","/Assets/temp_button_squ.png")
+Image.new("Arrow_left","/Assets/arrow_left.png")
+Image.new("Arrow_right","/Assets/arrow_right.png")
+Image.new("Arrow_red","/Assets/arrow_red.png")
+Image.new("Check","/Assets/check.png")
 Image.new("Outside_1","/Assets/outside_1.png")
 Image.new("Outside_2","/Assets/outside_2.png")
 

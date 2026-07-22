@@ -5,6 +5,7 @@ require("modules/button")
 require("modules/draggable")
 require("modules/normMouse")
 require("modules/bank")
+require("modules/shop")
 require("modules/animal")
 require("modules/AlienNames")
 

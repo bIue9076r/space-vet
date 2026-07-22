@@ -137,10 +137,16 @@ function New_Game()
 	G_STATE_ONLINE_SHOP_SUBSTATES[1].Npy = 60
 	G_STATE_ONLINE_SHOP_SUBSTATES[1].Npw = 300
 	G_STATE_ONLINE_SHOP_SUBSTATES[1].Nph = 300
-	G_STATE_ONLINE_SHOP_SUBSTATES[1].Sx = 400
-	G_STATE_ONLINE_SHOP_SUBSTATES[1].Sy = 190
+	G_STATE_ONLINE_SHOP_SUBSTATES[1].Sx = 415
+	G_STATE_ONLINE_SHOP_SUBSTATES[1].Sy = 300
 	G_STATE_ONLINE_SHOP_SUBSTATES[1].Sw = 300
 	G_STATE_ONLINE_SHOP_SUBSTATES[1].Sh = 200
+	G_STATE_ONLINE_SHOP_SUBSTATES[1].Shx = 415
+	G_STATE_ONLINE_SHOP_SUBSTATES[1].Shy = 75
+	G_STATE_ONLINE_SHOP_SUBSTATES[1].Shw = 300
+	G_STATE_ONLINE_SHOP_SUBSTATES[1].Shh = 200
+	G_STATE_ONLINE_SHOP_SUBSTATES[1].windows = {3,2,1}
+	ShopSetup()
 	New_Day()
 
 	Meta_Game.Animals = {
@@ -188,14 +194,19 @@ function Save_Game(path)
 		-- Bank.balance
 		-- G_DAY
 		-- G_CHEATS_ALWAYS_AVALIABLE
-		-- 	G_STATE_ONLINE_SHOP_SUBSTATES[1].Npx = 60
+		-- G_STATE_ONLINE_SHOP_SUBSTATES[1].Npx = 60
 		-- G_STATE_ONLINE_SHOP_SUBSTATES[1].Npy = 60
 		-- G_STATE_ONLINE_SHOP_SUBSTATES[1].Npw = 300
 		-- G_STATE_ONLINE_SHOP_SUBSTATES[1].Nph = 300
-		-- G_STATE_ONLINE_SHOP_SUBSTATES[1].Sx = 400
-		-- G_STATE_ONLINE_SHOP_SUBSTATES[1].Sy = 190
+		-- G_STATE_ONLINE_SHOP_SUBSTATES[1].Sx = 415
+		-- G_STATE_ONLINE_SHOP_SUBSTATES[1].Sy = 300
 		-- G_STATE_ONLINE_SHOP_SUBSTATES[1].Sw = 300
 		-- G_STATE_ONLINE_SHOP_SUBSTATES[1].Sh = 200
+		-- G_STATE_ONLINE_SHOP_SUBSTATES[1].Shx = 415
+		-- G_STATE_ONLINE_SHOP_SUBSTATES[1].Shy = 75
+		-- G_STATE_ONLINE_SHOP_SUBSTATES[1].Shw = 300
+		-- G_STATE_ONLINE_SHOP_SUBSTATES[1].Shh = 200
+		-- G_STATE_ONLINE_SHOP_SUBSTATES[1].windows = {1,2,3}
 		-- Meta_Game.Timer
 		-- Meta_Game.Tick
 		-- Meta_Game.Interaction
@@ -238,6 +249,15 @@ function Save_Game(path)
 	file:write("G_STATE_ONLINE_SHOP_SUBSTATES[1].Sy = "..tostring(G_STATE_ONLINE_SHOP_SUBSTATES[1].Sy).."\n")
 	file:write("G_STATE_ONLINE_SHOP_SUBSTATES[1].Sw = "..tostring(G_STATE_ONLINE_SHOP_SUBSTATES[1].Sw).."\n")
 	file:write("G_STATE_ONLINE_SHOP_SUBSTATES[1].Sh = "..tostring(G_STATE_ONLINE_SHOP_SUBSTATES[1].Sh).."\n")
+	file:write("G_STATE_ONLINE_SHOP_SUBSTATES[1].Shx = "..tostring(G_STATE_ONLINE_SHOP_SUBSTATES[1].Shx).."\n")
+	file:write("G_STATE_ONLINE_SHOP_SUBSTATES[1].Shy = "..tostring(G_STATE_ONLINE_SHOP_SUBSTATES[1].Shy).."\n")
+	file:write("G_STATE_ONLINE_SHOP_SUBSTATES[1].Shw = "..tostring(G_STATE_ONLINE_SHOP_SUBSTATES[1].Shw).."\n")
+	file:write("G_STATE_ONLINE_SHOP_SUBSTATES[1].Shh = "..tostring(G_STATE_ONLINE_SHOP_SUBSTATES[1].Shh).."\n")
+	file:write("G_STATE_ONLINE_SHOP_SUBSTATES[1].windows = {}\n")
+	for i = 1,#G_STATE_ONLINE_SHOP_SUBSTATES[1].windows do
+		file:write("G_STATE_ONLINE_SHOP_SUBSTATES[1].windows["..tostring(i).."] = "..tostring(G_STATE_ONLINE_SHOP_SUBSTATES[1].windows[i]).."\n")
+	end
+	Shop.Save(file)
 	file:write("Meta_Game.Timer = "..tostring(Meta_Game.Timer).."\n")
 	file:write("Meta_Game.Tick = "..tostring(Meta_Game.Tick).."\n")
 	file:write("Meta_Game.Interaction = "..tostring(Meta_Game.Interaction).."\n")

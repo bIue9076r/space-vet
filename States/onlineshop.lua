@@ -12,6 +12,20 @@ Computor_Blue = {0,0,128/255}
 
 Computor_Exit_Button = Button.new(55,520,60,25)
 
+function ShopSetup()
+	Shop.clearGoods()
+	-- Shop.newGood(StringFetch(45),200)
+	-- Shop.newGood(StringFetch(46),500)
+	-- Shop.newGood(StringFetch(47),1000)
+end
+
+function ShopPostoArrow(n)
+	local n = n or math.max(Shop.position, Shop.lowerWindow)
+	local l = Shop.lowerWindow
+
+	return 20*(n - l)
+end
+
 function Computor_String()
 	if G_DAY <= 1 then
 		return 18, 19
@@ -92,17 +106,102 @@ function Computor_Notepad_2(self)
 	},self.Sx+10,self.Sy+30,self.Sw-20,"left")
 end
 
+function Computor_Shop(self)
+	love.graphics.setColor(Computor_Gray)
+	love.graphics.rectangle("fill",self.Shx,self.Shy,self.Shw,self.Shh)
+
+	love.graphics.setColor(Computor_Black)
+	love.graphics.rectangle("fill",self.Shx,self.Shy+self.Shh,self.Shw+1,1)
+	love.graphics.rectangle("fill",self.Shx+self.Shw,self.Shy,1,self.Shh+1)
+
+	love.graphics.setColor(Computor_White)
+	love.graphics.rectangle("fill",self.Shx,self.Shy,self.Shw,1)
+	love.graphics.rectangle("fill",self.Shx,self.Shy,1,self.Shh)
+
+	love.graphics.setColor(Computor_Blue)
+	love.graphics.rectangle("fill",self.Shx+1,self.Shy+1,self.Shw-2,25)
+
+	love.graphics.setColor(Computor_White)
+	love.graphics.print({Computor_White,StringFetch(44)},self.Shx+5,self.Shy)
+	love.graphics.rectangle("fill",self.Shx+5,self.Shy+30,self.Shw-10,self.Shh-35)
+
+	love.graphics.setColor(Computor_DarkGray)
+	love.graphics.rectangle("fill",self.Shx+5,self.Shy+30,self.Shw-10,1)
+	love.graphics.rectangle("fill",self.Shx+5,self.Shy+30,1,self.Shh-35)
+
+	love.graphics.setColor(Computor_White)
+
+	local itms = Shop.getRange()
+	if #itms > 0 then
+		love.graphics.draw(Image.get("Arrow_red"),self.Shx+10,self.Shy+30+ShopPostoArrow())
+	end
+	for i = 1,#itms do
+		if itms[i].good then
+			if itms[i].good.bought then
+				love.graphics.print({Computor_Black,itms[i].good.name.." - SOLD"},self.Shx+10+30,self.Shy+30+ShopPostoArrow(itms[i].index))
+			else
+				love.graphics.print({Computor_Black,itms[i].good.name.." - $"..string.format("%d",itms[i].good.cost)},self.Shx+10+30,self.Shy+30+ShopPostoArrow(itms[i].index))
+			end
+		end
+	end
+
+	self.Sho_button_1.x = self.Shx+15
+	self.Sho_button_1.y = self.Shy+(200-40)
+	self.Sho_button_1.ix = self.Sho_button_1.x
+	self.Sho_button_1.iy = self.Sho_button_1.y
+	self.Sho_button_1:draw()
+
+	self.Sho_button_2.x = self.Shx+(150-12.5)
+	self.Sho_button_2.y = self.Shy+(200-40)
+	self.Sho_button_2.ix = self.Sho_button_2.x
+	self.Sho_button_2.iy = self.Sho_button_2.y
+	self.Sho_button_2:draw()
+
+	self.Sho_button_3.x = self.Shx+(300-40)
+	self.Sho_button_3.y = self.Shy+(200-40)
+	self.Sho_button_3.ix = self.Sho_button_3.x
+	self.Sho_button_3.iy = self.Sho_button_3.y
+	self.Sho_button_3:draw()
+end
+
+Computor_Windows = {
+	[1] = Computor_Notepad_1,
+	[2] = Computor_Notepad_2,
+	[3] = Computor_Shop,
+}
+
+function Computor_Swap(self,n)
+	local t = {n}
+	for i = 1,#self.windows do
+		if not (self.windows[i] == n) then
+			table.insert(t,self.windows[i])
+		end
+	end
+	
+	for i = 1,#t do
+		self.windows[i] = t[i]
+	end
+end
+
 G_STATE_ONLINE_SHOP_SUBSTATES = {
 	[1] = {
 		Npx = 60, Npy = 60,
 		Npw = 300, Nph = 300,
 		Np = Button.new(0,0,298,25),
 
-		Sx = 400, Sy = 190,
+		Sx = 415, Sy = 300,
 		Sw = 300, Sh = 200,
 		S = Button.new(0,0,298,25),
 
-		swap = false,
+		Shx = 415, Shy = 75,
+		Shw = 300, Shh = 200,
+		Sho = Button.new(0,0,298,25),
+
+		Sho_button_1 = Button.new(0,0,25,25,"Arrow_left"),
+		Sho_button_2 = Button.new(0,0,25,25,"Check"),
+		Sho_button_3 = Button.new(0,0,25,25,"Arrow_right"),
+
+		windows = {3,1,2},
 		ox = 0, oy = 0,
 		oread = true,
 		fo = true,
@@ -110,6 +209,8 @@ G_STATE_ONLINE_SHOP_SUBSTATES = {
 		Draw = function(self)
 			self.Np.x, self.Np.y = self.Npx + 1, self.Npy + 1
 			self.S.x, self.S.y = self.Sx + 1, self.Sy + 1
+			self.Sho.x, self.Sho.y = self.Shx + 1, self.Shy + 1
+
 			love.graphics.setColor(Computor_Back)
 			love.graphics.rectangle("fill",0,0,SCREEN_X,SCREEN_Y)
 			love.graphics.setColor(Computor_Back2)
@@ -146,12 +247,8 @@ G_STATE_ONLINE_SHOP_SUBSTATES = {
 				love.graphics.print({Computor_Black,StringFetch(3)},61,521)
 			end
 
-			if self.swap then
-				Computor_Notepad_1(self)
-				Computor_Notepad_2(self)
-			else
-				Computor_Notepad_2(self)
-				Computor_Notepad_1(self)
+			for i = #self.windows, 1, -1 do
+				Computor_Windows[self.windows[i]](self)
 			end
 
 			love.graphics.setColor(G_CLEAR)
@@ -165,15 +262,23 @@ G_STATE_ONLINE_SHOP_SUBSTATES = {
 				if (not self.Np.f) and (self.fo) then
 					self.fo = false
 					self.S:focus(x,y)
+					self.Sho:focus(x,y)
 				end
 
 				if (not self.S.f) and (self.fo) then
 					self.fo = false
 					self.Np:focus(x,y)
+					self.Sho:focus(x,y)
+				end
+
+				if (not self.Sho.f) and (self.fo) then
+					self.fo = false
+					self.S:focus(x,y)
+					self.Np:focus(x,y)
 				end
 
 				if self.Np.f then
-					self.swap = false
+					Computor_Swap(self,1)
 					if self.oread then
 						self.ox, self.oy = x - self.Np.x, y - self.Np.y
 						self.oread = false
@@ -184,7 +289,7 @@ G_STATE_ONLINE_SHOP_SUBSTATES = {
 				end
 
 				if self.S.f then
-					self.swap = true
+					Computor_Swap(self,2)
 					if self.oread then
 						self.ox, self.oy = x - self.S.x, y - self.S.y
 						self.oread = false
@@ -193,14 +298,33 @@ G_STATE_ONLINE_SHOP_SUBSTATES = {
 					self.Sx = math.max(50,math.min(750 - self.Sw,x - self.ox))
 					self.Sy = math.max(50,math.min(516 - self.Sh,y - self.oy))
 				end
+
+				if self.Sho.f then
+					Computor_Swap(self,3)
+					if self.oread then
+						self.ox, self.oy = x - self.Sho.x, y - self.Sho.y
+						self.oread = false
+					end
+
+					self.Shx = math.max(50,math.min(750 - self.Shw,x - self.ox))
+					self.Shy = math.max(50,math.min(516 - self.Shh,y - self.oy))
+				end
 			else
 				self.fo = true
 				self.oread = true
 				self.S:focus(x,y)
 				self.Np:focus(x,y)
+				self.Sho:focus(x,y)
 			end
 
 			Computor_Exit_Button:focus(x,y)
+
+			if self.windows[1] == 3 then
+				-- Store buttons
+				self.Sho_button_1:focus(x,y)
+				self.Sho_button_2:focus(x,y)
+				self.Sho_button_3:focus(x,y)
+			end
 		end,
 
 		Keypressed = function(self,key)
@@ -216,6 +340,27 @@ G_STATE_ONLINE_SHOP_SUBSTATES = {
 			if Computor_Exit_Button:click(x,y) then
 				G_STATE = G_STATE_FRONT_DESK
 				G_STATE_SUB = 1
+			end
+
+			if self.windows[1] == 3 then
+				-- Store buttons
+				if self.Sho_button_1:click(x,y) then
+					if not Shop.positionDiminish() then
+						Play_Sfx("No_money")
+					end
+				end
+
+				if self.Sho_button_2:click(x,y) then
+					if not Shop.select() then
+						Play_Sfx("No_money")
+					end
+				end
+
+				if self.Sho_button_3:click(x,y) then
+					if not Shop.positionAdvance() then
+						Play_Sfx("No_money")
+					end
+				end
 			end
 		end
 	}
