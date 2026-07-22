@@ -22,8 +22,8 @@ Background - @yuno_d.
 
 -- Other Credits --
 Metaflop - Font Editor
-
-
+love-build - Building
+love.js - HTML5 support
 
 
 

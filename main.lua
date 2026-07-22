@@ -1,4 +1,4 @@
-jit.off()
+if jit then jit.off() end
 love.graphics.setDefaultFilter("nearest", "nearest")
 utf8 = require("utf8")
 math.randomseed(os.time())
