@@ -330,9 +330,8 @@ function Meta_Game.Draw()
 	love.graphics.setColor(G_CLEAR)
 	love.graphics.print({{0,0,0},StringFetch(11)..G_DAY},0,0)
 	love.graphics.print({{0,0,0},StringFetch(12)..Bank.balance},0,20)
-	local mn = math.floor((Meta_Game.Timer_Goal - Meta_Game.Timer) / 60)
-	local m = string.format("%02d",mn)
-	local s = string.format("%02d",(((Meta_Game.Timer_Goal - Meta_Game.Timer) / 60) - mn)*60)
+	local m = string.format("%02d",math.floor((Meta_Game.Timer_Goal - Meta_Game.Timer) / 60))
+	local s = string.format("%02d",math.fmod((Meta_Game.Timer_Goal - Meta_Game.Timer), 60))
 	if s == "60" then s = "00" end
 	love.graphics.print({{0,0,0},StringFetch(13)..m..":"..s},0,40)
 	if G_HINTS then
