@@ -133,10 +133,7 @@ end
 
 function Animal:image(n)
 	n = n or 1
-	return Image.get(tostring(self.kind).."_"..tostring(
-		-- self.aches[1]
-		"Scratch"
-	).."_"..tostring(n)) or Image.get("Catlike_None_1")
+	return Image.get(tostring(self.kind).."_"..tostring(self.aches[1]).."_"..tostring(n)) or Image.get("Catlike_None_1")
 end
 
 function Animal:position(n)
@@ -150,7 +147,7 @@ end
 --	n = n or 1
 -- 	t = t or 0
 -- 	local P = Animal_Offset[n] or Animal_Offset[1]
--- 	return {x = 325+P[self.kind].x(t), y = (-145)+P[self.kind].y(t)}
+-- 	return {x = P[self.kind].x(t), y = P[self.kind].y(t)}
 -- end
 
 function Animal:hitbox(n)
