@@ -45,6 +45,26 @@ G_STATE_OUTSIDE_SUBSTATES = {
 		Update = function(self,dt)
 			local x,y = NormalizeMouse(love.mouse.getPosition())
 			self.Door:focus(x,y)
+
+			if love.mouse.isDown(1) then
+				if (not Meta_Game.Swiping) then
+					local dx = (x - Meta_Game.Last_X)
+					if dx <= -1 then
+						Meta_Game.Swipe_t = Meta_Game.Swipe_t - dt
+						if Meta_Game.Swipe_t < 0 then
+							Meta_Game.Swipe_t = Meta_Game.Swipe_max
+							Meta_Game.Swiping = true
+							G_STATE = G_STATE_FRONT_DESK
+							G_STATE_SUB = 1
+							Play_Sfx("Door")
+						end
+					end
+				end
+			else
+				Meta_Game.Swipe_t = Meta_Game.Swipe_max
+				Meta_Game.Swiping = false
+			end
+
 			Meta_Game.Update(dt)
 		end,
 

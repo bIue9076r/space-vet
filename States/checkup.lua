@@ -146,8 +146,39 @@ G_STATE_CHECK_UP_SUBSTATES = {
 
 		Update = function(self,dt)
 			if not Meta_Game.Interaction then
+				local x,y = NormalizeMouse(love.mouse.getPosition())
 				self.Pet_Bed:update(dt)
 				self.Pet_Bath:update(dt)
+
+				if not self.Pet_Bed.location.Button.f then
+					if love.mouse.isDown(1) then
+						if (not Meta_Game.Swiping) then
+							local dx = (x - Meta_Game.Last_X)
+							if dx <= -1 then
+								Meta_Game.Swipe_t = Meta_Game.Swipe_t - dt
+								if Meta_Game.Swipe_t < 0 then
+									Meta_Game.Swipe_t = Meta_Game.Swipe_max
+									Meta_Game.Swiping = true
+									G_STATE = G_STATE_CARE_UNIT
+									G_STATE_SUB = 1
+									Play_Sfx("Door")
+								end
+							elseif dx >= 1 then
+								Meta_Game.Swipe_t = Meta_Game.Swipe_t - dt
+								if Meta_Game.Swipe_t < 0 then
+									Meta_Game.Swipe_t = Meta_Game.Swipe_max
+									Meta_Game.Swiping = true
+									G_STATE = G_STATE_FRONT_DESK
+									G_STATE_SUB = 1
+									Play_Sfx("Door")
+								end
+							end
+						end
+					else
+						Meta_Game.Swipe_t = Meta_Game.Swipe_max
+						Meta_Game.Swiping = false
+					end
+				end
 			end
 			Meta_Game.Update(dt)
 		end,

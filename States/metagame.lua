@@ -7,6 +7,11 @@ Meta_Game.Timer = 0
 Meta_Game.Timer_Goal = 4*60
 Meta_Game.Tick = true
 
+Meta_Game.Swiping = false
+Meta_Game.Last_X = 0
+Meta_Game.Swipe_t = 0
+Meta_Game.Swipe_max = 0.125
+
 Meta_Game.Interaction = false
 Meta_Game.Interaction_Draw = nil
 Meta_Game.Interaction_Timer = 0
@@ -345,6 +350,9 @@ function Meta_Game.Draw()
 end
 
 function Meta_Game.Update(dt)
+	local _ -- Replace with a last Y
+	Meta_Game.Last_X, _ = NormalizeMouse(love.mouse.getPosition())
+
 	if Meta_Game.Interaction then
 		Meta_Game.Interaction_Timer = Meta_Game.Interaction_Timer + dt
 		if Meta_Game.Interaction_Timer > Meta_Game.Interaction_Timer_Goal then
