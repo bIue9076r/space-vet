@@ -31,14 +31,13 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 
 				-- Draw tool being used
 				local l = tb:position(5)
-				l.x, l.y = NormalizeMouse(love.mouse.getPosition())
 				love.graphics.draw(Image.get("CareUnit_Pills_2"),l.x,l.y,0,l.f,1)
 				if G_DEBUG then
 					love.graphics.setColor(1,0,0,1 - t)
 					love.graphics.rectangle("fill",l.x,l.y,w,h)
 				end
 			end
-		end,"u","h"),
+		end,"t","h"),
 
 		Pet_Bandage = Draggable.new(465,445,80,115,0,0,0,0,function(self)
 			local tb = Meta_Game.getLastThree()
@@ -73,7 +72,7 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 					love.graphics.rectangle("fill",l.x,l.y,w,h)
 				end
 			end
-		end,"t","h"),
+		end,"y","h"),
 
 		Pet_Hammer = Draggable.new(620,470,130,100,0,0,0,0,function(self)
 			local tb = Meta_Game.getLastThree()
@@ -108,7 +107,7 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 					love.graphics.rectangle("fill",l.x,l.y,w,h)
 				end
 			end
-		end,"y","h"),
+		end,"u","h"),
 
 		Draw = function(self)
 			love.graphics.setColor(G_CLEAR)
@@ -151,7 +150,8 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 			end
 			if G_HINTS then
 				love.graphics.setColor(G_CLEAR)
-				love.graphics.print({{0,0,0},"u"},self.Pet_Pills.location.x + self.Pet_Pills.location.Button.w/2 - 5, self.Pet_Pills.location.y - 30)
+				love.graphics.rectangle("fill",self.Pet_Pills.location.x + self.Pet_Pills.location.Button.w/2 - 12.5, self.Pet_Pills.location.y + self.Pet_Pills.location.Button.h/2 - 2,32,32)
+				love.graphics.print({{0,0,0},"t"},Font.get("Spacy_3"),self.Pet_Pills.location.x + self.Pet_Pills.location.Button.w/2 - 5, self.Pet_Pills.location.y + self.Pet_Pills.location.Button.h/2 - 12)
 			end
 
 			-- bandage
@@ -168,7 +168,8 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 			end
 			if G_HINTS then
 				love.graphics.setColor(G_CLEAR)
-				love.graphics.print({{0,0,0},"t"},self.Pet_Bandage.location.x + self.Pet_Bandage.location.Button.w/2 - 5, self.Pet_Bandage.location.y - 30)
+				love.graphics.rectangle("fill",self.Pet_Bandage.location.x + self.Pet_Bandage.location.Button.w/2 - 12.5, self.Pet_Bandage.location.y + self.Pet_Bandage.location.Button.h/2 - 2,32,40)
+				love.graphics.print({{0,0,0},"y"},Font.get("Spacy_3"),self.Pet_Bandage.location.x + self.Pet_Bandage.location.Button.w/2 - 5, self.Pet_Bandage.location.y + self.Pet_Bandage.location.Button.h/2 - 12)
 			end
 			
 			-- rubber hammer
@@ -186,7 +187,8 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 			end
 			if G_HINTS then
 				love.graphics.setColor(G_CLEAR)
-				love.graphics.print({{0,0,0},"y"},self.Pet_Hammer.location.x + self.Pet_Hammer.location.Button.w/2 - 5, self.Pet_Hammer.location.y - 30)
+				love.graphics.rectangle("fill",self.Pet_Hammer.location.x + self.Pet_Hammer.location.Button.w/2 - 12.5, self.Pet_Hammer.location.y + self.Pet_Hammer.location.Button.h/2 - 2,32,32)
+				love.graphics.print({{0,0,0},"u"},Font.get("Spacy_3"),self.Pet_Hammer.location.x + self.Pet_Hammer.location.Button.w/2 - 5, self.Pet_Hammer.location.y + self.Pet_Hammer.location.Button.h/2 - 12)
 			end
 
 			if not Meta_Game.Interaction then
@@ -202,7 +204,8 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 					self.Pet_Bandage.goal.Button:setVector(h)
 					self.Pet_Hammer.goal.Button:setVector(h)
 					if G_HINTS then
-						love.graphics.print({{0,0,0},"h"},self.Pet_Pills.goal.Button.x + self.Pet_Pills.goal.Button.w/2 - 5, self.Pet_Pills.goal.Button.y - 60)
+						love.graphics.rectangle("fill",self.Pet_Pills.goal.Button.x + self.Pet_Pills.goal.Button.w/2 - 12.5, self.Pet_Pills.goal.Button.y - 60,32,40)
+						love.graphics.print({{0,0,0},"h"},Font.get("Spacy_3"),self.Pet_Pills.goal.Button.x + self.Pet_Pills.goal.Button.w/2 - 5, self.Pet_Pills.goal.Button.y - 60)
 					end
 
 

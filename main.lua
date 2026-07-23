@@ -7,8 +7,9 @@ require("globals")
 
 function love.load(args)
 	love.window.setMode(1000, 600, {resizable = true, minwidth = 800, minheight = 600})
-	love.resize()
+	G_RESIZE()
 
+	local hintFlag = false
 	for i, v in ipairs(args) do
 		if(v == "-d" or v == "-D" or v == "-debug" or v == "debug") then
 			G_DEBUG = true
@@ -18,6 +19,11 @@ function love.load(args)
 
 		if(v == "-a" or v == "-A") then
 			G_ALWAYS_AVALIABLE = true
+		end
+
+		if(v == "-h" or v == "-H" or v == "-help" or v == "help") then
+			G_HINTS = true
+			hintFlag = true
 		end
 
 		if(v == "-m" or v == "-M" or v == "-mute" or v == "mute") then
@@ -40,7 +46,9 @@ function love.load(args)
 	if info then
 		if info.type == "file" then
 			G_SAVE = true
-			G_HINTS = false
+			if not hintFlag then
+				G_HINTS = false
+			end
 		else
 			-- Why is the save file a directory?
 			-- Panic("Save File is a directory","love.load")
@@ -52,14 +60,7 @@ function love.load(args)
 end
 
 function love.resize()
-	CSCREEN_X = love.graphics.getWidth()
-	CSCREEN_Y = love.graphics.getHeight()
-	ASPECT = (CSCREEN_X/CSCREEN_Y) 
-	
-	ASPECT_INDEX = 1
-	while ((SCREEN_X * (ASPECT_INDEX + 1)) <= CSCREEN_X) and ((SCREEN_Y * (ASPECT_INDEX + 1)) <= CSCREEN_Y) do
-		ASPECT_INDEX = ASPECT_INDEX + 1
-	end
+	G_RESIZE()
 end
 
 function love.update(dt)

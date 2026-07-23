@@ -65,13 +65,15 @@ G_STATE_CHECK_UP_SUBSTATES = {
 			-- bed
 			if G_HINTS then
 				love.graphics.setColor(G_CLEAR)
-				love.graphics.print({{0,0,0},"u"},self.Pet_Bed.goal.Button.x + self.Pet_Bed.goal.Button.w/2 - 5, self.Pet_Bed.goal.Button.y - 30)
+				love.graphics.rectangle("fill",self.Pet_Bed.goal.Button.x + self.Pet_Bed.goal.Button.w/2 - 12.5, self.Pet_Bed.goal.Button.y - 80,32,32)
+				love.graphics.print({{0,0,0},"u"},Font.get("Spacy_3"),self.Pet_Bed.goal.Button.x + self.Pet_Bed.goal.Button.w/2 - 5, self.Pet_Bed.goal.Button.y - 90)
 			end
 
 			-- bath
 			if G_HINTS then
 				love.graphics.setColor(G_CLEAR)
-				love.graphics.print({{0,0,0},"t"},self.Pet_Bath.goal.Button.x + self.Pet_Bath.goal.Button.w/2 - 5, self.Pet_Bath.goal.Button.y - 30)
+				love.graphics.rectangle("fill",self.Pet_Bath.goal.Button.x + self.Pet_Bath.goal.Button.w/2 - 12.5, self.Pet_Bath.goal.Button.y - 80,32,32)
+				love.graphics.print({{0,0,0},"t"},Font.get("Spacy_3"),self.Pet_Bath.goal.Button.x + self.Pet_Bath.goal.Button.w/2 - 5, self.Pet_Bath.goal.Button.y - 90)
 			end
 			
 			if not Meta_Game.Interaction then
@@ -89,16 +91,14 @@ G_STATE_CHECK_UP_SUBSTATES = {
 					
 					if not self.Pet_Bed.drag then
 						love.graphics.draw(tb:image(n),p.x,p.y)
-						if G_HINTS then
-							love.graphics.print({{0,0,0},"h"},self.Pet_Bed.location.Button.x + self.Pet_Bed.location.Button.w/2 - 5, self.Pet_Bed.location.Button.y - 60)
-						end
 					else
 						local ox = self.Pet_Bed.location.x - self.Pet_Bed.location.Button.x
 						local oy = self.Pet_Bed.location.y - self.Pet_Bed.location.Button.y
 						love.graphics.draw(tb:image(n),p.x - ox,p.y - oy)
-						if G_HINTS then
-							love.graphics.print({{0,0,0},"h"},self.Pet_Bed.location.Button.x + self.Pet_Bed.location.Button.w/2 - 5, self.Pet_Bed.location.Button.y - 60)
-						end
+					end
+					if G_HINTS then
+						love.graphics.rectangle("fill",self.Pet_Bed.location.Button.x + self.Pet_Bed.location.Button.w/2 - 12.5, self.Pet_Bed.location.Button.y - 60,32,40)
+						love.graphics.print({{0,0,0},"h"},Font.get("Spacy_3"),self.Pet_Bed.location.Button.x + self.Pet_Bed.location.Button.w/2 - 5, self.Pet_Bed.location.Button.y - 60)
 					end
 
 					if G_DEBUG then

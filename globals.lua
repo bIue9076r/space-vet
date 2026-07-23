@@ -75,12 +75,23 @@ G_MUSIC_DELAY_T = 0
 G_TRANSITION_BLOCKING = false
 
 CSCREEN_X = love.graphics.getWidth()
-SCREEN_X = CSCREEN_X
+SCREEN_X = 800
 CSCREEN_Y = love.graphics.getHeight()
-SCREEN_Y = CSCREEN_Y
+SCREEN_Y = 600
 ASPECT = (CSCREEN_X/CSCREEN_Y) 
 ASPECT_INDEX = 1
 CANVAS = love.graphics.newCanvas()
+
+function G_RESIZE()
+	CSCREEN_X = love.graphics.getWidth()
+	CSCREEN_Y = love.graphics.getHeight()
+	ASPECT = (CSCREEN_X/CSCREEN_Y) 
+	
+	ASPECT_INDEX = 1
+	while ((SCREEN_X * (ASPECT_INDEX + 1)) <= CSCREEN_X) and ((SCREEN_Y * (ASPECT_INDEX + 1)) <= CSCREEN_Y) do
+		ASPECT_INDEX = ASPECT_INDEX + 1
+	end
+end
 
 G_DRAW[-10] = function()
 	love.graphics.setColor(0,0,1)
