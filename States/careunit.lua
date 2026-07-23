@@ -10,6 +10,7 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 											-- Later: expand for more Aches
 				tb.aches[1] = "None"
 				Meta_Game.Cured = true
+				Meta_Game.Cured_Location = 1
 				Play_Sfx("thx_"..math.random(1,4))
 			else
 				Play_Sfx("no_"..math.random(1,4))
@@ -45,6 +46,7 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 												-- Later: expand for more Aches
 				tb.aches[1] = "None"
 				Meta_Game.Cured = true
+				Meta_Game.Cured_Location = 1
 				Play_Sfx("thx_"..math.random(1,4))
 			else
 				Play_Sfx("no_"..math.random(1,4))
@@ -80,6 +82,7 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 												-- Later: expand for more Aches
 				tb.aches[1] = "None"
 				Meta_Game.Cured = true
+				Meta_Game.Cured_Location = 1
 				Play_Sfx("thx_"..math.random(1,4))
 			else
 				Play_Sfx("no_"..math.random(1,4))

@@ -14,13 +14,14 @@ Meta_Game.Interaction_Timer_Goal = 0
 
 Meta_Game.Cured = false
 Meta_Game.Cured_Pet = nil
+Meta_Game.Cured_Location = 1
 Meta_Game.Deposit = false
 Meta_Game.Cured_Draw = function ()
 	local t = math.min(1,Meta_Game.Interaction_Timer/(Meta_Game.Interaction_Timer_Goal - 1))
 
 	love.graphics.setColor(1,1,1,(1 - t))
 	local n = 1 -- TODO: Dynamic animations
-	local p = Meta_Game.Cured_Pet:position(1) -- TODO: plus offsets
+	local p = Meta_Game.Cured_Pet:position(Meta_Game.Cured_Location) -- TODO: plus offsets
 	local h = Meta_Game.Cured_Pet:hitbox()
 	love.graphics.draw(Meta_Game.Cured_Pet:image(n),p.x,p.y)
 
@@ -30,7 +31,7 @@ Meta_Game.Cured_Draw = function ()
 	end
 
 	if (not Meta_Game.Deposit) and Meta_Game.Interaction_Timer > (Meta_Game.Interaction_Timer_Goal - 1) then
-		Bank.Deposit(math.random(264,300))
+		Bank.Deposit(math.random(170,200))
 		G_STATS.Pets = G_STATS.Pets + 1
 		Meta_Game.Deposit = true
 	end
@@ -54,7 +55,7 @@ function New_Day()
 	end
 
 	if G_DAY >= 2 then
-		Meta_Game.Animal_Count = math.min(10,G_DAY + 1)
+		Meta_Game.Animal_Count = math.min(10,2*G_DAY)
 		Bank.Update()
 	end
 
