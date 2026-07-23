@@ -3,7 +3,7 @@ G_STATE_CHECK_UP = 5
 
 G_STATE_CHECK_UP_SUBSTATES = {
 	[1] = {
-		Pet_Bed = Draggable.new(200,450,250,100,480,330,220,105,function(self)
+		Pet_Bed = Draggable.new(0,0,0,0,480,330,250,125,function(self)
 			local tb = Meta_Game.getLastThree()
 			if tb.aches[1] == "Cold" then	-- Todo: Success chance for lower level items
 											-- Later: expand for more Aches
@@ -23,15 +23,15 @@ G_STATE_CHECK_UP_SUBSTATES = {
 				-- Draw tool being used pet
 				if tb then
 					love.graphics.setColor(G_CLEAR)
-					local n = 1 -- TODO: Dynamic animations
-					local p = tb:position(3) -- TODO: plus offsets
-					love.graphics.draw(tb:image(n),p.x,p.y)
-					love.graphics.draw(Image.get("CheckUp_Bed"),0,0)
+					-- local n = 1 -- TODO: Dynamic animations
+					-- local p = tb:position(3) -- TODO: plus offsets
+					-- love.graphics.draw(tb:image(n),p.x,p.y)
+					love.graphics.draw(Image.get("CheckUp_Blanket_"..tb:size()),0,0)
 				end
 			end
 		end,"h","u"),
 
-		Pet_Bath = Draggable.new(200,450,250,100,0,250,315,90,function(self)
+		Pet_Bath = Draggable.new(0,0,0,0,0,250,345,90,function(self)
 			local tb = Meta_Game.getLastThree()
 			if tb.aches[1] == "Stinky" then	-- Todo: Success chance for lower level items
 											-- Later: expand for more Aches
@@ -55,7 +55,6 @@ G_STATE_CHECK_UP_SUBSTATES = {
 					-- local p = tb:position(2) -- TODO: plus offsets
 					-- love.graphics.draw(tb:image(n),p.x,p.y)
 					love.graphics.draw(Image.get("CheckUp_Bubbles"),0,0)
-					love.graphics.draw(Image.get("CheckUp_Bath"),0,0)
 				end
 			end
 		end,"h","t"),
@@ -81,8 +80,8 @@ G_STATE_CHECK_UP_SUBSTATES = {
 				if tb then
 					love.graphics.setColor(G_CLEAR)
 					local n = 1 -- TODO: Dynamic animations
-					local p = tb:position(1) -- TODO: plus offsets
-					local h = tb:hitbox()
+					local p = tb:position(2) -- TODO: plus offsets
+					local h = tb:hitbox(2)
 					self.Pet_Bed.location.x, self.Pet_Bed.location.y = h.x, h.y
 					self.Pet_Bath.location.x, self.Pet_Bath.location.y = h.x, h.y
 					self.Pet_Bed.location.Button.w, self.Pet_Bed.location.Button.h = h.w, h.h

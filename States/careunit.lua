@@ -4,7 +4,7 @@ G_STATE_CARE_UNIT = 6
 G_STATE_CARE_UNIT_SUBSTATES = {
 	[1] = {
 		Xray = Button.new(0,70,235,255),
-		Pet_Pills = Draggable.new(600,260,50,85,200,450,250,100,function(self)
+		Pet_Pills = Draggable.new(290,445,70,130,0,0,0,0,function(self)
 			local tb = Meta_Game.getLastThree()
 			if tb.aches[1] == "Tummy" then	-- Todo: Success chance for lower level items
 											-- Later: expand for more Aches
@@ -31,7 +31,8 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 
 				-- Draw tool being used
 				local l = tb:position(5)
-				love.graphics.draw(Image.get("CareUnit_Pills_2"),l.x,l.y)
+				l.x, l.y = NormalizeMouse(love.mouse.getPosition())
+				love.graphics.draw(Image.get("CareUnit_Pills_2"),l.x,l.y,0,l.f,1)
 				if G_DEBUG then
 					love.graphics.setColor(1,0,0,1 - t)
 					love.graphics.rectangle("fill",l.x,l.y,w,h)
@@ -39,7 +40,7 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 			end
 		end,"u","h"),
 
-		Pet_Bandage = Draggable.new(520,330,50,75,200,450,250,100,function(self)
+		Pet_Bandage = Draggable.new(465,445,80,115,0,0,0,0,function(self)
 			local tb = Meta_Game.getLastThree()
 			if tb.aches[1] == "Scratch" then	-- Todo: Success chance for lower level items
 												-- Later: expand for more Aches
@@ -74,7 +75,7 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 			end
 		end,"t","h"),
 
-		Pet_Hammer = Draggable.new(670,335,70,70,200,450,250,100,function(self)
+		Pet_Hammer = Draggable.new(620,470,130,100,0,0,0,0,function(self)
 			local tb = Meta_Game.getLastThree()
 			if tb.aches[1] == "Antenne" then	-- Todo: Success chance for lower level items
 												-- Later: expand for more Aches
@@ -110,6 +111,7 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 		end,"y","h"),
 
 		Draw = function(self)
+			love.graphics.setColor(G_CLEAR)
 			love.graphics.draw(Image.get("CareUnit"),0,0)
 
 			-- xray
@@ -323,14 +325,8 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 
 	[2] = {
 		Draw = function(self)
-			love.graphics.setColor(170/255, 212/255, 153/255)
-			love.graphics.rectangle("fill",0,0,SCREEN_X,SCREEN_Y)
-            love.graphics.setColor(84/255, 34/255, 16/255)
-			love.graphics.rectangle("fill",0,SCREEN_Y - 300,SCREEN_X,300)
-
-			love.graphics.setColor(41/255,37/255,27/255)
-			-- table
-			love.graphics.rectangle("fill",550,110,250,330)
+			love.graphics.setColor(G_CLEAR)
+			love.graphics.draw(Image.get("Xray"),0,0)
 
 			-- Pet
 			local tb = Meta_Game.getLastThree()
@@ -338,7 +334,7 @@ G_STATE_CARE_UNIT_SUBSTATES = {
 				love.graphics.setColor(G_CLEAR)
 				local n = 2 -- TODO: Dynamic animations
 				local p = tb:position(4) -- TODO: plus offsets
-				love.graphics.draw(tb:image(n),p.x,p.y,0,2,2)
+				love.graphics.draw(tb:image(n),p.x,p.y,0,1.5,1.5)
 
 				if G_DEBUG then
 					love.graphics.setColor(0,0,1,0.25)
