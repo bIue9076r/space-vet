@@ -117,6 +117,7 @@ function love.draw()
 	end
 
 	love.graphics.setCanvas()
+	love.graphics.setColor(G_CLEAR)
 
 	local ain = G_ASPECT_INDEX_EVAL()
 	local cx = (CSCREEN_X - (ain * SCREEN_X))/2

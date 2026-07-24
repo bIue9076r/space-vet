@@ -167,3 +167,6 @@ Sound.new("ggg","/Assets/glurp-glurp-glurp.mp3")
 Sound.new("saturn","/Assets/saturns_regards.mp3")
 Sound.new("planetx","/Assets/planetx.mp3")
 Sound.new("ache","/Assets/ache.mp3")
+
+-- Video
+Video.new("intro","/Assets/Intro/intro.ogv")
