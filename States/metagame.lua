@@ -413,5 +413,11 @@ function Meta_Game.Keypressed(key)
 end
 
 function Meta_Game.Mousepressed(x,y,button)
-
+	local x,y = NormalizeMouse(x,y)
+	if (x >= SCREEN_X - 50) and (y <= 50) then
+		G_MUSIC_PLAYING = false
+		G_LAST_STATE = G_STATE
+		G_STATE = G_STATE_MAIN_MENU
+		G_STATE_SUB = 1
+	end
 end

@@ -62,10 +62,11 @@ G_MUSIC_LIST = {
 	"pit",
 	"saturn",
 	"planetx",
+	"ache",
 }
 
 G_MUSIC_LIST_C = {
-	0,0,0,0,0
+	0,0,0,0,0,0,
 }
 
 G_MUSIC_PLAYING = true
@@ -82,14 +83,49 @@ ASPECT = (CSCREEN_X/CSCREEN_Y)
 ASPECT_INDEX = 1
 CANVAS = love.graphics.newCanvas()
 
+function G_ASPECT_INDEX_EVAL(n)
+	n = n or ASPECT_INDEX
+	if n == 0 or n == 1 then
+		return 1
+	end
+
+	if n > 1 then
+		return n
+	end
+
+	if n <= -1 then
+		if n <= -9 then n = -9 end
+		return 1 + 0.1*n
+	end
+end
+
+function G_RESIZE_SHRINK()
+	ASPECT_INDEX = -1
+	local ain = G_ASPECT_INDEX_EVAL(ASPECT_INDEX - 1)
+	while (CSCREEN_X <= (SCREEN_X * ain)) or (CSCREEN_Y <= (SCREEN_Y * ain)) do
+		ASPECT_INDEX = ASPECT_INDEX - 1
+		ain = G_ASPECT_INDEX_EVAL()
+	end
+end
+
+function G_RESIZE_GROW()
+	ASPECT_INDEX = 1
+	local ain = G_ASPECT_INDEX_EVAL(ASPECT_INDEX + 1)
+	while ((SCREEN_X * ain) <= CSCREEN_X) and ((SCREEN_Y * ain) <= CSCREEN_Y) do
+		ASPECT_INDEX = ASPECT_INDEX + 1
+		ain = G_ASPECT_INDEX_EVAL()
+	end
+end
+
 function G_RESIZE()
 	CSCREEN_X = love.graphics.getWidth()
 	CSCREEN_Y = love.graphics.getHeight()
 	ASPECT = (CSCREEN_X/CSCREEN_Y) 
 	
-	ASPECT_INDEX = 1
-	while ((SCREEN_X * (ASPECT_INDEX + 1)) <= CSCREEN_X) and ((SCREEN_Y * (ASPECT_INDEX + 1)) <= CSCREEN_Y) do
-		ASPECT_INDEX = ASPECT_INDEX + 1
+	if CSCREEN_X >= SCREEN_X and CSCREEN_Y >= SCREEN_Y then
+		G_RESIZE_GROW()
+	else
+		G_RESIZE_SHRINK()
 	end
 end
 
@@ -111,6 +147,7 @@ function G_MUSIC_NEW()
 	for _ = 1,5 do -- Try 5 times to shuffle
 		local m = false
 		for i = 1,#G_MUSIC_LIST do
+			G_MUSIC_LIST_C[n] = G_MUSIC_LIST_C[n] or 0
 			if not(i == n) then
 				if G_MUSIC_LIST_C[n] - G_MUSIC_LIST_C[i] >= 1 then
 					m = true
@@ -176,9 +213,11 @@ function Error_Draw()
 end
 
 function Error_Keypressed(key)
-	if key == "return" then
-		G_STATE = 1
-	end
+	G_STATE = 1
+end
+
+function Error_Mousepressed(x,y,button)
+	G_STATE = 1
 end
 
 function GetStrings(path)

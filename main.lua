@@ -7,6 +7,7 @@ require("globals")
 
 function love.load(args)
 	love.window.setMode(1000, 600, {resizable = true, minwidth = 800, minheight = 600})
+	-- Todo: 400x300 image base
 	G_RESIZE()
 
 	local hintFlag = false
@@ -83,7 +84,7 @@ end
 
 function love.mousepressed(x,y,button)
 	if not G_TRANSITION then
-		local f = G_MOUSEPRESSED[G_STATE]
+		local f = G_MOUSEPRESSED[G_STATE] or Error_Mousepressed
 		if f then f(x,y,button) end
 	else
 		if not G_TRANSITION_BLOCKING then
@@ -117,8 +118,9 @@ function love.draw()
 
 	love.graphics.setCanvas()
 
-	local cx = (CSCREEN_X - (ASPECT_INDEX * SCREEN_X))/2
-	local cy = (CSCREEN_Y - (ASPECT_INDEX * SCREEN_Y))/2
+	local ain = G_ASPECT_INDEX_EVAL()
+	local cx = (CSCREEN_X - (ain * SCREEN_X))/2
+	local cy = (CSCREEN_Y - (ain * SCREEN_Y))/2
 	
 	-- Screen Border
 	for y = 0, (math.ceil(cy/100) - 1) do
@@ -138,8 +140,8 @@ function love.draw()
 
 	-- Black Background
 	love.graphics.setColor(0,0,0)
-	love.graphics.rectangle("fill",cx,cy,ASPECT_INDEX*SCREEN_X,ASPECT_INDEX*SCREEN_Y)
+	love.graphics.rectangle("fill",cx,cy,ain*SCREEN_X,ain*SCREEN_Y)
 	love.graphics.setColor(G_CLEAR)
-	love.graphics.draw(CANVAS,cx,cy,0,ASPECT_INDEX,ASPECT_INDEX)
+	love.graphics.draw(CANVAS,cx,cy,0,ain,ain)
 	love.graphics.setColor(G_CLEAR)
 end
